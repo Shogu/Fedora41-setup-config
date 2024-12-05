@@ -65,7 +65,7 @@ sudo dnf install gnome-tweaks
 ```
 sudo dnf install seahorse
 ```
-Puis reboot.  
+Puis 'modifier le mot de passe' et laisser les champs vides, puis reboot pour contrôle.  
   
 
 
