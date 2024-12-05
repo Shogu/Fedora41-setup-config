@@ -38,64 +38,35 @@ Sommaire :
 * c - Graver l'iso `Fedora-Everything-netinst`
 
 * d - Utiliser `systemd-boot` plutot que Grub : passer l'argument suivant dans le kernel de 
-      l'iso  d'installation (en pressant Espace au boot) juste avant QUIET
+l'iso  d'installation (en pressant Espace au boot) juste avant QUIET
   
-  ```
-  inst.sdboot
-  ```
-
-
-
-
+```
+inst.sdboot
+```
 
 
 ## **2 - Réglages de base**
 
-* a - Télécharger le fichier `README.MD` et l'ouvrir avec `Marker` pour faciliter la suite des 
-      instructions : penser à régler l'UI de Marker avec les options `cobalt`, `screen_light` 
-      et `mode sombre` :
+
+* a - Régler le système avec Paramètres (penser à désactiver les animations dans Accessibilité??) puis Ajustements :
   
-  ```
-  flatpak install flathub com.github.fabiocolacio.marker
-  ```
+```
+sudo dnf install gnome-tweaks
+```
 
-* b - Régler le système avec Paramètres (penser à désactiver les animations dans Accessibilité) puis Ajustements :
+* b - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
   
-  ```
-  sudo dnf install gnome-tweaks
-  ```
+```
+192.168.31.68:2121
+```
 
-* c - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
+* c - Supprimer le mot de passe au démarrage avec le logiciel Mots de Passe puis penser à reconnecter le compte Google dans Gnome :
+
+```
+sudo dnf install seahorse
+```
+Puis reboot.  
   
-  ```
-  192.168.31.68:2121
-  ```
-
-* d - Supprimer le mot de passe au démarrage avec le logiciel puis penser à reconnecter le compte Google dans Gnome :
-
-  ```
-  rm -v ~/.local/share/keyrings/*.keyring && reboot
-  ```
-  
-* e - Installer le plugin dnf `snapper` avant d'utiliser dnf et s'assurer que le plugin installe bien la dépendance snapper :
-  
-  ```
-  sudo dnf install  dnf-plugins-core dnf-plugin-snapper
-  ```
-  
-     puis l'activer avec :
-  
-  ```
-  snapper create-config / 
-  ```
-
-     Compléter avec l'installation du logiciel de sauvegarde BTRFS-Assistant :
-
-  ```
-  sudo dnf install btrfs-assistant
-  ```
-
-
 
 
 
@@ -103,17 +74,16 @@ Sommaire :
 
 * a - Ajouter les sources `RPMFusion` :
   
-     RPMFusion Free
-  ```
-  sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E%fedora).noarch.rpm 
-  ```
+RPMFusion Free
+```
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E%fedora).noarch.rpm 
+```
 
-     RMPFusion Non free
-  ```
-  sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-  ```
+RMPFusion Non free
+```
+sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+```
     
-
 * c - Ajouter les codecs `FFMPEG` & `AV1` :
 
   ```
@@ -163,7 +133,7 @@ Installation des dépendances faibles :
 * f - Installer les logiciels suivants avec dnf :
 
   ```
-  sudo dnf install htop dconf-editor bleachbit ufw gnome-tweaks nicotine+ powertop loupe zstd gnome-network-displays ffmpegthumbnailer.x86_64 file-roller profile-cleaner celluloid -y
+  sudo dnf install htop dconf-editor bleachbit ufw gnome-tweaks nicotine+ powertop loupe zstd gnome-network-displays ffmpegthumbnailer.x86_64 file-roller profile-cleaner celluloid btrfs-assistant -y
   ```
 
   
