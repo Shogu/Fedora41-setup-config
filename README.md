@@ -33,7 +33,7 @@ Sommaire :
 
 * a - Désactiver `Secure Boot` dans le Bios (F2)
 
-* b - Désactiver la caméra dans le bios
+* b - Désactiver la caméra et le lecteur de carte dans le bios
 
 * c - Graver l'iso `Fedora-Everything-netinst`
 
@@ -492,47 +492,34 @@ gsettings set org.gnome.SessionManager logout-prompt false
 
 * a - Supprimer les logiciels inutiles avec Gnome-software
     
-   
 
 * d - Supprimer les logiciels suivants avec le terminal :
   
-  ```
-  sudo dnf autoremove speech-dispatcher mdadm lvm2 mdadm lvm2 sssd firewalld ibus-libzhuyin 
-  ibus-libpinyin ibus-typing-booster ibus-m17n ibus-hangul ibus-anthy yelp abrt brltty 
-  podman openvpn gnome-weather rygel totem virtualbox* avahi-tools -y
-  ```
+```
+sudo dnf remove speech-dispatcher ibus-libzhuyin ibus-libpinyin ibus-typing-booster ibus-m17n ibus-hangul ibus-anthy yelp abrt brltty podman openvpn gnome-weather rygel totem avahi-tools virtualbox-guest-additions 
+```
 
-  
-* e - Supprimer les flatpaks KDE :
-  
-  ```
-  flatpak remove org.kde.KStyle.Adwaita org.kde.PlatformTheme.QGnomePlatform     
-  org.kde.WaylandDecoration.QAdwaitaDecorations QGnomePlatform-decoration  
-  org.kde.WaylandDecoration.QGnomePlatform-decoration   org.kde.Platform 
-  ```
-
-  
+    
 * f - Supprimer et masquer les services inutiles :
   
-  ```
-  sudo systemctl mask NetworkManager-wait-online.service auditd.service ModemManager.service avahi-daemon.service plymouth-quit-wait.service switcheroo-control.service sys-kernel-tracing.mount sys-kernel-debug.mount httpd.service   mdmonitor.service mdmonitor.service raid-check.timer sssd-kcm.service pcscd raid-check.timer fwupd avahi-daemon.socket sssd-kcm.socket pcscd.socket
+```
+sudo systemctl mask NetworkManager-wait-online.service auditd.service ModemManager.service avahi-daemon.service plymouth-quit-wait.service switcheroo-control.service sys-kernel-tracing.mount sys-kernel-debug.mount httpd.service   mdmonitor.service mdmonitor.service raid-check.timer sssd-kcm.service pcscd raid-check.timer fwupd avahi-daemon.socket sssd-kcm.socket pcscd.socket sssd.service
 
-  ```
+```
   
-     et désactiver le Bluetooth pour l' activer à la volée (voir script dans la rubrique UI Gnome) + cups :
+et désactiver le Bluetooth pour l'activer à la volée (voir script dans la rubrique UI Gnome) + cups :
   
-  ```
-  sudo systemctl disable bluetooth.service cups
-  ```
+```
+sudo systemctl disable bluetooth.service cups
+```
   
+Enfin, reboot puis controle de l'état des services avec :
+  
+```
+systemd-analyze blame | grep -v '\.device$'
+```
 
-     Enfin, reboot puis controle de l'état des services avec :
-  
-  ```
-  systemd-analyze blame | grep -v '\.device$'
-  ```
-
-     et :
+et :
 
 ```
 systemctl list-unit-files --type=service --state=enabled
@@ -815,9 +802,27 @@ systemctl list-unit-files --type=service --state=enabled
 
 
 Boot time : avant optimisation :
-
 ogu@fedora-ogu:~$ systemd-analyze
 Startup finished in 2.213s (firmware) + 500ms (loader) + 1.806s (kernel) + 3.901s (initrd) + 28.363s (userspace) = 36.786s
 graphical.target reached after 28.330s in userspace.
 
 Boot time après désactivation des services inutiles :
+ogu@ogu-fedora:~$ systemd-analyze
+Startup finished in 2.314s (firmware) + 505ms (loader) + 1.865s (kernel) + 4.035s (initrd) + 3.633s (userspace) = 12.354s 
+graphical.target reached after 3.557s in userspace.
+
+
+
+
+
+
+
+
+* e - Supprimer les flatpaks KDE :
+  
+  ```
+  flatpak remove org.kde.KStyle.Adwaita org.kde.PlatformTheme.QGnomePlatform     
+  org.kde.WaylandDecoration.QAdwaitaDecorations QGnomePlatform-decoration  
+  org.kde.WaylandDecoration.QGnomePlatform-decoration   org.kde.Platform 
+  ```
+
