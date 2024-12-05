@@ -840,3 +840,15 @@ systemctl list-unit-files --type=service --state=enabled
         NOTA : pensez à lancer Bleachbit en gui une première fois pour sélectionner les options.
    
 
+
+
+
+
+
+Boot time : avant optimisation :
+
+ogu@fedora-ogu:~$ systemd-analyze
+Startup finished in 2.213s (firmware) + 500ms (loader) + 1.806s (kernel) + 3.901s (initrd) + 28.363s (userspace) = 36.786s
+graphical.target reached after 28.330s in userspace.
+
+Boot time après désactivation des services inutiles :
