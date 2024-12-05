@@ -1,32 +1,6 @@
 # Fedora41_setup
 Mémo pour le setup complet de Fedora 41
-
-
-# Fedora_config pour ASUS ZENBOK S13 FLIP OLED
-
-
-Tips &amp; tricks de configuration de Fedora 39
-
   
-Sommaire :
-
-1. [Installation](https://github.com/Shogu/Configuration-Fedora-ASUS-Zenbook-13/blob/main/README.md#1---installation)
-
-2. [Réglages de base](https://github.com/Shogu/Configuration-Fedora-ASUS-Zenbook-13/blob/main/README.md#2---réglages-de-base)
-
-3. [Remplacement et installation de logiciels et codecs](https://github.com/Shogu/Configuration-Fedora-ASUS-Zenbook-13/blob/main/README.md#3---remplacement-et-installation-de-logiciels-et-codecs)
-
-4. [Réglages des navigateurs Opera & Firefox](https://github.com/Shogu/Configuration-Fedora-ASUS-Zenbook-13/blob/main/README.md#4---réglages-des-navigateurs-opera--firefox)
-
-5. [Réglages de l'UI Gnome Shell](https://github.com/Shogu/Configuration-Fedora-ASUS-Zenbook-13/blob/main/README.md#5---réglages-de-lui-gnome-shell)
-   
-6. [Allégement du système](https://github.com/Shogu/Configuration-Fedora-ASUS-Zenbook-13/blob/main/README.md#6---allégement-du-système)
-
-7. [Optimisation du système](https://github.com/Shogu/Configuration-Fedora-ASUS-Zenbook-13/blob/main/README.md#7---optimisation-du-système)
-
-8. [Maintenance de la distribution](https://github.com/Shogu/Configuration-Fedora-ASUS-Zenbook-13?tab=readme-ov-file#7---optimisation-du-système)
-
-   
    
 
 ## **1 - Installation**
@@ -45,30 +19,80 @@ inst.sdboot
 ```
 
 
-## **2 - Réglages de base**
 
 
-* a - Régler le système avec Paramètres (penser à désactiver les animations dans Accessibilité??) puis Ajustements :
+## **2 - Allégement du système**
+
+* a - Supprimer les logiciels inutiles avec Gnome-software
+    
+
+* d - Supprimer les logiciels suivants avec le terminal :
   
 ```
-sudo dnf install gnome-tweaks
+sudo dnf remove speech-dispatcher
+sudo dnf remove ibus-libzhuyin
+sudo dnf remove ibus-libpinyin
+sudo dnf remove ibus-typing-booster
+sudo dnf remove ibus-m17n
+sudo dnf remove ibus-hangul 
+sudo dnf remove ibus-anthy
+sudo dnf remove yelp
+sudo dnf remove abrt
+sudo dnf remove brltty
+sudo dnf remove podman
+sudo dnf remove openvpn
+sudo dnf remove gnome-weather
+sudo dnf remove rygel
+sudo dnf remove totem
+sudo dnf remove avahi-tools
+sudo dnf remove virtualbox-guest-additions
+sudo dnf remove gnome-boxes
 ```
 
-* b - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
+    
+* f - Supprimer et masquer les services inutiles :
   
 ```
-192.168.31.68:2121
+sudo systemctl mask NetworkManager-wait-online.service
+sudo systemctl mask auditd.service
+sudo systemctl mask ModemManager.service
+sudo systemctl mask avahi-daemon.service
+sudo systemctl mask plymouth-quit-wait.service
+sudo systemctl mask switcheroo-control.service
+sudo systemctl mask sys-kernel-tracing.mount
+sudo systemctl mask sys-kernel-debug.mount
+sudo systemctl mask httpd.service
+sudo systemctl mask mdmonitor.service
+sudo systemctl mask mdmonitor.service
+sudo systemctl mask raid-check.timer
+sudo systemctl mask sssd-kcm.service
+sudo systemctl mask pcscd
+sudo systemctl mask raid-check.timer
+sudo systemctl mask fwupd
+sudo systemctl mask avahi-daemon.socket
+sudo systemctl mask sssd-kcm.socket
+sudo systemctl mask pcscd.socket
+sudo systemctl mask sssd.service
 ```
-
-* c - Supprimer le mot de passe au démarrage avec le logiciel Mots de Passe puis penser à reconnecter le compte Google dans Gnome :
-
-```
-sudo dnf install seahorse
-```
-Puis 'modifier le mot de passe' et laisser les champs vides, puis reboot pour contrôle.  
   
+et désactiver le Bluetooth pour l'activer à la volée (voir script dans la rubrique UI Gnome) + cups :
+  
+```
+sudo systemctl disable bluetooth.service
+sudo systemctl disable cups
+```
+  
+Enfin, reboot puis controle de l'état des services avec :
+```
+systemd-analyze blame | grep -v '\.device$'
+```
 
+et :
+```
+systemctl list-unit-files --type=service --state=enabled
+```
 
+  
 
 ## **3 - Remplacement et installation de logiciels et codecs**
 
@@ -84,108 +108,59 @@ RMPFusion Non free
 sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 ```
     
-* c - Ajouter les codecs `FFMPEG` & `AV1` :
+* c - Ajouter les codecs `FFMPEG`, `AV1`, & le `pilote Intel` d'accélération matérielle :
 
-  ```
-  sudo dnf swap ffmpeg-free ffmpeg --allowerasing && dnf install gstreamer1-plugins-bad-free-extras
-  ```
-TEST ogu@fedora-ogu:~$ sudo dnf swap ffmpeg-free ffmpeg --allowerasing 
-Mise à jour et chargement des dépôts :
-Dépôts chargés.
-Paquet                                                     Architecture       Version                                                    Dépôt                             Taille
-Suppression de :
- ffmpeg-free                                               x86_64             7.0.2-7.fc41                                               fedora                           2.5 MiB
-Suppression des paquets dépendants :
- libavcodec-free                                           x86_64             7.0.2-7.fc41                                               fedora                           9.5 MiB
- libavdevice-free                                          x86_64             7.0.2-7.fc41                                               fedora                         215.2 KiB
- libavfilter-free                                          x86_64             7.0.2-7.fc41                                               fedora                           4.1 MiB
- libavformat-free                                          x86_64             7.0.2-7.fc41                                               fedora                           2.6 MiB
- libavutil-free                                            x86_64             7.0.2-7.fc41                                               fedora                         950.7 KiB
- libpostproc-free                                          x86_64             7.0.2-7.fc41                                               fedora                          89.7 KiB
- libswresample-free                                        x86_64             7.0.2-7.fc41                                               fedora                         147.4 KiB
- libswscale-free                                           x86_64             7.0.2-7.fc41                                               fedora                         587.3 KiB
-Installation de :
- ffmpeg                                                    x86_64             7.0.2-4.fc41                                               rpmfusion-free                   2.5 MiB
-Installation des dépendances :
- ffmpeg-libs                                               x86_64             7.0.2-4.fc41                                               rpmfusion-free                  21.0 MiB
- libavdevice                                               x86_64             7.0.2-4.fc41                                               rpmfusion-free                 162.1 KiB
- x264-libs                                                 x86_64             0.164-15.20231001git31e19f92.fc41                          rpmfusion-free                   2.8 MiB
- x265-libs                                                 x86_64             3.6-3.fc41                                                 rpmfusion-free                  16.4 MiB
-Installation des dépendances faibles :
- vmaf-models   
-
-* d - Ajouter le `pilote Intel` d'accélération matérielle :
-
-  ```
-  sudo dnf install intel-media-driver
-  ```
+```
+sudo dnf install gstreamer1-plugins-bad-free-extras && sudo dnf swap ffmpeg-free ffmpeg --allowerasing && sudo dnf install intel-media-driver
+```
 
   
-* e - Installer les logiciels Flatpak suivants : nota : utiliser prioritairement les flatpaks 
-      Fedora OU Flathub car les runtimes ne sont pas partagés entre les 2.
+* e - Installer les logiciels Flatpak suivants : nota : utiliser prioritairement les flatpaks Fedora OU Flathub car les runtimes ne sont pas partagés entre les 2.
 
-  ```
-  flatpak install flathub com.mattjakeman.ExtensionManager io.github.giantpinkrobots.flatsweep net.nokyan.Resources 
-  com.github.fabiocolacio.marker org.jdownloader.JDownloader  org.onlyoffice.desktopeditors de.haeckerfelix.Fragments -y
-  ```
+```
+flatpak install flathub com.mattjakeman.ExtensionManager -y
+flatpak install flathub io.github.giantpinkrobots.flatsweep -y
+flatpak install flathub net.nokyan.Resources -y
+flatpak install flathub org.jdownloader.JDownloader -y
+flatpak install flathub org.onlyoffice.desktopeditors -y
+flatpak install flathub de.haeckerfelix.Fragments -y
+flatpak install flathub org.gnome.Papers -y
+flatpak install flathub page.codeberg.libre_menu_editor.LibreMenuEditor -y
+flatpak install flathub com.mattjakeman.ExtensionManager -y
+flatpak install flathub io.github.celluloid_player.Celluloid -y
+flatpak install flathub org.gnome.Epiphany -y
+flatpak install flathub org.nicotine_plus.Nicotine -y
+```
 
     
 * f - Installer les logiciels suivants avec dnf :
 
-  ```
-  sudo dnf install htop dconf-editor bleachbit ufw gnome-tweaks nicotine+ powertop loupe zstd gnome-network-displays ffmpegthumbnailer.x86_64 file-roller profile-cleaner celluloid btrfs-assistant -y
-  ```
-
-  
-* g - Installer [Opera en rpm](https://www.opera.com/download/get/?partner=www&opsys=Linux&package=RPM)
+```
+sudo dnf install dconf-editor -y
+sudo dnf install gnome-tweaks -y
+sudo dnf install powertop -y
+sudo dnf install zstd -y
+sudo dnf install ffmpegthumbnailer.x86_64 -y
+sudo dnf install profile-cleaner -y
+sudo dnf install btrfs-assistant -y
+sudo dnf install seahorse -y
+```
 
 * h - Installer [Dropbox](https://www.dropbox.com/fr/install-linux)
 
 
 
-
-
    
-## **4 - Réglages des navigateurs Opera & Firefox**
+## **4 - Réglages du navigateur Firefox**
 
-* a -Passer Opera en navigateur par défaut dans Gnome : !! à adapter à la version rpm!
-
-  ```
-  xdg-settings set default-web-browser com.opera.Opera.desktop
-  ```
-
-* b - Passer Opera en français : éditer le raccourci avec l'application :
-  
-  ```
-  flatpak install flathub page.codeberg.libre_menu_editor.LibreMenuEditor
-  ```
-  puis éditer le chemin du raccourci avec  `Opera @@u --lang=fr %U @@`
+* a - Réglages internes de Firefox
   
 
-* c - Editer le raccourci Opera :
-      -pour ouvrir un onglet fermé avec `ctrl-q`
-      -`ctrl-s` pour `Sélectionner l'onglet actif précédent`
-      -`ctrl-<` pour `Ouvrir ChatGPT dans la barre latérale`
+* c - Editer les raccourcis :
 
-* d - Passer Opera sur `wayland` APRES avoir fait un snap (possible problème de flou) avec le flag `chrome://flags/#ozone-platform-hint` puis activer l'autoclose de xwayland (voir plus bas).
-  
-* e - Créer les `tuiles` dans la page d'accueil
 
-* f - Extensions Opera :
 
-   1 - [LocalCDN](https://chromewebstore.google.com/detail/localcdn/njdfdhgcmkocbgbhcioffdbicglldapd)
 
-   2 - [Bypass Paywalls](https://github.com/bpc-clone/bpc_updates/releases/tag/latest) (via le 
-   fichier crx en mode développeur)
-
-   3 - [I don't care about cookies](https://addons.opera.com/extensions/download/i-dont-care-about-cookies/)
-  
-   4 - [Raindrop](https://raindrop.io/r/extension/chrome)
-  
-   5 - [uBlock Origin](https://addons.opera.com/fr/extensions/details/ublock/) Penser à désactiver le bloqueur de pub natif d'Opera qui est bien moins performant, puis régler l'extension avec les filtres. Envisager le mode [MEDIUM](https://github.com/gorhill/uBlock/wiki/Blocking-mode:-medium-mode) même s'il complique souvent la navigation : chercher un ensemble de règles comme [celui-ci](https://raw.githubusercontent.com/Yuki2718/adblock2/main/medium_mode/dynamic-rules.txt) et les copier dans `Mon filtrage dynamique`, `règles temporaires` : enregistrer puis `appliquer` pour en faire des règles permanentes.
-ATTENTION cela désactive ChatGPT dans la sidebar! 
-  
-   6 - [Cleaner Pro](https://addons.opera.com/fr/extensions/details/cleaner-pro-clear-cache-history/)
   
    7 - [Disable HTML5](https://chromewebstore.google.com/detail/disable-html5-autoplay-re/cafckninonjkogajnihihlnnimmkndgf) et activer le preloading dans les options.
   
@@ -196,84 +171,8 @@ ATTENTION cela désactive ChatGPT dans la sidebar!
     ou remplacer Disable HTML5 & h264ify par 10 - [Enhancer for Youtube](https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle?hl=fr) qui intègre leurs fonctions. Le configurer d'un coup en rentrant le code du fichier `youtube_enhancer_conf`
   
 
-* g - Codecs vidéos [libffmpeg](https://onedrive.live.com/?authkey=%21AC7ddalBsUiWsUE&id=75D48EF8D3750510%21234&cid=75D48EF8D3750510) pour Opera : à 
-      coller en root dans le dossier suivant si les vidéos en ligne ne marchent pas :
-
-```
-à éditer pour la version rpm!
-```
-   
-* h - Désactiver les options inutiles et `Faire defiler les onglets dans l'ordre d'utilisation`
-  
-* i - Dans `about:flags`, modifier les options suivantes :
-  
-  1 - Sidebar : `opera://flags/#sidebar-site-panel`
-
-  2 - Pinboard : `chrome://flags/#pinboard`
-  
-  3 - Emoji tab : `chrome://flags/#tab-art`
-  
-  4 - UI refresh 2023 : `chrome://flags/#chrome-webui-refresh-2023`
-  
-  5 - Devtools : `chrome://flags/#devtools-tab-target`
-  
-  6 - Sync banner : `chrome://flags/#startpage-sync-banner`
-  
-  7 - Check d'extension : `chrome://flags/#safety-check-extension`
-  
-  8 - Wallet : `chrome://flags/#wallet-selector` & `chrome://flags/#native-crypto-wallet`
-  
-  9 - Autofill : `opera://flags/#show-autofill-type-predictions`
-  
-  10 - Caption : `chrome://flags/#enable-live-caption-multilang` & `chrome://flags/#enable- 
-  accessibility-live-caption`
-  
-  11 - Profile Badging : `chrome://flags/#enable-enterprise-profile-badging`
-  
-  12 - Support tool : `chrome://flags/#support-tool`
-  
-  13 - Reading mode Screen2x : `chrome://flags/#read-anything-with-screen2x`
-  
-  14 - GPU Rasterization : `chrome://flags/#enable-gpu-rasterization` & `chrome://flags/#ui-enable-shared-image-cache-for-gpu` & `chrome://flags/#canvas-oop-rasterization`
-  
-  15 - Memory Saver : `opera://flags/#memory-saver` & `chrome://flags/#memory-saver-multi-state-mode` puis activer les options.
-  
-  16 - Split Screen : `opera://flags/#split-screen`
-  
-  17 - Disable accessibility : `chrome://flags/#enable-auto-disable-accessibility`
-  
-  18 - Scrollbar old school : `chrome://flags/#component-based-scrollbar`
-  
-  19 - Drag des groupes & onglets : `chrome://flags/#drag-multiple-tabs`
-  
-  20 - Scroll dans la barre d'onglets : `chrome://flags/#scrollable-tab-strip`
-  
-  21 - Dark thème pour les sites : `opera://flags/#enable-force-dark-from-settings`
-  
-  22 - Activer le protocole QUIC : `opera://flags/#enable-quic`
-  
-  23 - Parallel Downloading : `opera://flags/#enable-parallel-downloading`
-
-  24 - Oop video decoding : `opera://flags/#use-out-of-process-video-decoding`
-
-  25 - Update au lancement : `chrome://flags/#sync-poll-immediately-on-every-startup` à désactiver (vérifier si la 
-       synchronisation se fait quand même)
-
-  26 - Tab Cycler (à désactiver) : `opera://flags/#component-based-tab-cycler`
 
 
-* j - Créer dans la barre latérale d'Opera les sites internet suivants APRES s'être connecté à 
-      Google :
-  
-     [Google Translate](translate.google.com)
-  
-     [Gmail](https://mail.google.com/mail/u/0/?pli=1#inbox)
-  
-     [Keep](keep.google.com)
-  
-     [Raindrop](https://app.raindrop.io/my/0)
-  
-     [Play Livres pour le mode tablette](https://play.google.com/store/books?hl=fr)
 
 
 * k - Extensions pour Firefox :
@@ -297,8 +196,7 @@ ATTENTION cela désactive ChatGPT dans la sidebar!
 
 * l - Activer ``openh264`` dans les plugins firefox.
 
-* m - Réduire l'intervalle de sauvegarde des sessions Firefox en la passant à `600000` avec 
-      `about:config`:
+* m - Réduire l'intervalle de sauvegarde des sessions Firefox en la passant à `600000` avec `about:config`:
 
 ```
 browser.sessionstore.interval
@@ -310,263 +208,172 @@ browser.sessionstore.interval
 
 ## **5 - Réglages de l'UI Gnome Shell**
 
-* a - Changer le [wallpaper](https://github.com/CubeJ/LinuxWallpaper)
 
-* b - Régler HiDPI sur 200, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la 
-      taille des icones dossiers.
-
-* c - Installer diverses extensions :
+* a - Régler le système avec Paramètres (penser à désactiver les animations dans Accessibilité??) puis Ajustements (Changer les polices d'écriture pour `Noto Sans` en 11 ?)
   
-    1 - [Appindicator](https://extensions.gnome.org/extension/615/appindicator-support/)
 
-    2 - [Tiling Shell](https://extensions.gnome.org/extension/7065/tiling-shell/) puis la désactiver (voir script d'activation plus bas)
-
-    3 - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/) puis la supprimer : l'ordre alphabetique persistera.
-
-    4 - [Mute/unmute](https://extensions.gnome.org/extension/5088/muteunmute/)
-
-    5 - [Screen Rotate](https://extensions.gnome.org/extension/5389/screen-rotate/)) puis la désactiver (voir script d'activation plus bas)
+* b - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
   
-    6 - [AutoActivities](https://extensions.gnome.org/extension/5500/auto-activities/)
+```
+192.168.31.68:2121
+```
+
+* c - Modifier le mot de passe au démarrage avec le logiciel Mots de Passe, puis laisser les champs vides. Penser à reconnecter le compte Google dans Gnome.
+
+* d - Changer le [wallpaper](https://github.com/CubeJ/LinuxWallpaper)
+
+* e - Régler HiDPI sur 200, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
+
+* f - Installer diverses extensions :
   
-    7 - [Battery Time](https://extensions.gnome.org/extension/5425/battery-time/)
+1 - [Appindicator](https://extensions.gnome.org/extension/615/appindicator-support/)
+
+2 - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/) puis la supprimer : l'ordre alphabetique persistera.
+  
+3 - [AutoActivities](https://extensions.gnome.org/extension/5500/auto-activities/)
+  
+4 - [Battery Time](https://extensions.gnome.org/extension/5425/battery-time/)
     
-    8 - [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
+5 - [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
   
-    9 - [Clipboard History](https://extensions.gnome.org/extension/4839/clipboard-history/)
+6 - [Clipboard History](https://extensions.gnome.org/extension/4839/clipboard-history/)
   
-    10 - [Frequency Boost Switch](https://extensions.gnome.org/extension/4792/frequency-boost-switch/)
-  
-    11 - [Quick Settings Extension](https://extensions.gnome.org/extension/5446/quick-settings-tweaker/)
-  
-    12 - [Hot Edge](https://extensions.gnome.org/extension/4222/hot-edge/)
-  
-    13 - [Impatience](https://extensions.gnome.org/extension/277/impatience/)
-  
-    14 - [NoAnnoyance](https://extensions.gnome.org/extension/6109/noannoyance-fork/)
-
-    15 - [Custom Command Toggle](https://extensions.gnome.org/extension/7012/custom-command-toggle/)
-  
-    16 - [Power Profile Indicator](https://extensions.gnome.org/extension/6679/power-profile-indicator/)
-  
-    17 - [Privacy Quick Settings](https://extensions.gnome.org/extension/4491/privacy-settings-menu/) puis la 
-         supprimer une fois les réglages réalisés.
-
-
-* d - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-38-x86_64/06214967-nautilus-admin/) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
-
-* e - Raccourcis à éditer dans Gnome : mettre ```x-terminal-emulator``` à la place de la touche Exposant, et la 
-      commande ```flatpak run net.nokyan.Resources``` pour la combinaison ```ctrl-alt-supp```.
-
-* f - Passer Gnome-text-editor en `theme LIGHT`, puis  régler gnome-terminal (police, raccourci copier-coller, 
-      curseur, et surtout `palette prédéfinie=Gnome Clair` & `Désactiver la barre de défilement`.
-
-
-* g - Supprimer le décompte de 60 secondes lors de l'extinction du PC et désactiver dans Settings l'extinction par le 
-      bouton Power :
-  
-```
-gsettings set org.gnome.SessionManager logout-prompt false
-```
-  
-* h - Changer les polices d'écriture pour `Noto Sans` en 11 ?
-  
-* i - Améliorer  Celluloid :
-    - inscrire `hwdec=auto-safe` dans Paramètres --> Divers --> Options supplémentaires
-    - installer les deux scripts lua suivants pour la musique :
-      [Visualizer](https://www.dropbox.com/scl/fi/bbwlvfhtjnu8sgr4yoai9/visualizer.lua?rlkey=gr3bmjnrlexj7onqrxzjqxafl&dl=0)
-      [Delete File avec traduction française](https://www.dropbox.com/scl/fi/c2cacmw2a815husriuvc1/delete_file.lua?rlkey=6b9d352xtvybu685ujx5mpv7v&dl=0)
-      - activer l'option `focus` et `toujours afficher les boutons de titre`
-  
-* j - Améliorer l'autocomplétion du terminal en téléchargeant le fichier`.inputrc` et le palcer dans `~/`, puis 
-      changer les polices au profit de `Noto Sans 12` ou `Monospace 11`
-  
-
-* k - Modifier le thème de `Jdownloader` avec ce dépôt [Github](https://calendar.google.com/calendar/u/0/r?pli=1) : 
-      (attention, les polices et sont trop grosses et rendent la lecture trop difficile, ou alors avec les icons 
-      `flat` et le thème `Black Star` puis supprimer les bannières, menus & colonnes inutiles.
-
-
-* l - Télécharger le script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les 
-      vidéos vers Vidéos en supprimant le sous-dossier d'origine : en faire un raccourci avec l'éditeur de menu et 
-      lui mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/drive-multidisk.svg`
-
-
-  
-* m - Télécharger le script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à 
-      la volée : en faire un raccourci avec l'éditeur de menu et mettre l'icone 
-      `/usr/share/icons/Adwaita/scalable/devices/phone.svg`.
-
-
-
-
-
-               ******** Rajouter des toggles au menu de Gnome-Shell ********
-  
-![](https://i.postimg.cc/FR3wnnV6/Capture-d-cran-du-2024-06-24-19-25-39.png) 
-![](https://i.postimg.cc/L5SGdBy8/Capture-d-cran-du-2024-06-24-19-26-15.png) 
-
-
-
-  
-* n - Télécharger le script `.activer_tiling.sh` pour activer/désactiver l'extension de `Tiling`, puis rendre le script exécutable et créer  le toggle avec Custom 
-      Command Toggle :
-  ![Toggle Tiling](https://i.ibb.co/CMsJQpK/Capture-d-cran-du-2024-06-19-14-32-27.png)
-
-
-* o - Créer le `Mode Tablette` (à compléter avec les logiciels Wike, Librum, et un raccourci Google Play Livres) : créer un toggle Gnome-shell qui lance le script 
-      `.tablette.sh` qui va activer l'extension  Screen-rotate (qu'il faut régler en rajoutant l'option Manual) et le clavier virtuel, ou les désactiver s'ils 
-      sont en fonction, et lui attribuer le raccourci `pda-symbolic`.
-     
+7 - [Frequency Boost Switch](https://extensions.gnome.org/extension/4792/frequency-boost-switch/)
     
-* p - Créer un toggle `Powertop` qui va lancer powertop en `auto-tune` pour économiser encore plus de batterie, et baisser la luminosité sur 5% : rentrer cette 
-      commande pour le toggle activé :
+8 - [Hot Edge](https://extensions.gnome.org/extension/4222/hot-edge/)
   
-  ```
-  pkexec powertop --auto-tune && gdbus call --session --dest org.gnome.SettingsDaemon.Power --object-path /org/gnome/SettingsDaemon/Power --method org.freedesktop.DBus.Properties.Set org.gnome.SettingsDaemon.Power.Screen Brightness " <int32 5>"()
-  ```
+9 - [Impatience](https://extensions.gnome.org/extension/277/impatience/)
   
-     Et cette commande pour le toggle désactivé :
-      
-  ```
-  gdbus call --session --dest org.gnome.SettingsDaemon.Power --object-path /org/gnome/SettingsDaemon/Power --method 
-  org.freedesktop.DBus.Properties.Set org.gnome.SettingsDaemon.Power.Screen Brightness " 
-  <int32 2O>"()
-  ```
-     Enfin rentrer le nom de l'icone : `thunderbolt-symbolic` 
+10 - [NoAnnoyance](https://extensions.gnome.org/extension/6109/noannoyance-fork/)
 
- 
-* q - Créer un toggle `luminosité` pour passer à 70 ou 20% :  attribuer l'icone `view-reveal-symbolic` puis passer les arguments suivants :
+11 - [Custom Command Toggle](https://extensions.gnome.org/extension/7012/custom-command-toggle/)
   
-  ```
-  gdbus call --session --dest org.gnome.SettingsDaemon.Power --object-path 
-  /org/gnome/SettingsDaemon/Power --method org.freedesktop.DBus.Properties.Set 
-  org.gnome.SettingsDaemon.Power.Screen Brightness "<int32 70>"()
+12 - [Power Profile Indicator](https://extensions.gnome.org/extension/6679/power-profile-indicator/)
+  
+13 - [Privacy Quick Settings](https://extensions.gnome.org/extension/4491/privacy-settings-menu/) puis la supprimer une fois les réglages réalisés.
 
-  gdbus call --session --dest org.gnome.SettingsDaemon.Power --object-path 
-  /org/gnome/SettingsDaemon/Power --method org.freedesktop.DBus.Properties.Set 
-  org.gnome.SettingsDaemon.Power.Screen Brightness "<int32 20>"()
-  ```
 
-  * l - Créer un toggle "No Touchscreen" :
+* g - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
+
+* h - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
+
+* i - Régler Gnome-text-editor et Ptyxis; améliorer l'autocomplétion du terminal en téléchargeant le fichier`.inputrc` et le placer dans `~/`
+
+  
+* j - Améliorer  Celluloid :
+- inscrire `hwdec=auto-safe` dans Paramètres --> Divers --> Options supplémentaires
+- installer les deux scripts lua suivants pour la musique :
+[Visualizer](https://www.dropbox.com/scl/fi/bbwlvfhtjnu8sgr4yoai9/visualizer.lua?rlkey=gr3bmjnrlexj7onqrxzjqxafl&dl=0)
+[Delete File avec traduction française](https://www.dropbox.com/scl/fi/c2cacmw2a815husriuvc1/delete_file.lua?rlkey=6b9d352xtvybu685ujx5mpv7v&dl=0)
+- activer l'option `focus` et `toujours afficher les boutons de titre`
+  
+
+* k - Modifier le thème de `Jdownloader` + tips
+
+
+* l - Télécharger le script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les vidéos vers Vidéos en supprimant le sous-dossier d'origine : en faire un raccourci avec l'éditeur de menu et lui mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/drive-multidisk.svg`
+
+
+* m - Télécharger le script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à la volée : en faire un raccourci avec l'éditeur de menu et mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/phone.svg`.
+   
     
-    ```
-    echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/unbind > /dev/null
-    ```
-    ```
-    echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/bind > /dev/null                         
-    ```
+* n - Créer un toggle `Powertop` qui va lancer powertop en `auto-tune` pour économiser encore plus de batterie, et baisser la luminosité sur 5% : rentrer cette commande pour le toggle activé :
+```
+pkexec powertop --auto-tune && gdbus call --session --dest org.gnome.SettingsDaemon.Power --object-path /org/gnome/SettingsDaemon/Power --method org.freedesktop.DBus.Properties.Set org.gnome.SettingsDaemon.Power.Screen Brightness " <int32 5>"()
+```
+  
+Et cette commande pour le toggle désactivé :
+```
+gdbus call --session --dest org.gnome.SettingsDaemon.Power --object-path /org/gnome/SettingsDaemon/Power --method org.freedesktop.DBus.Properties.Set org.gnome.SettingsDaemon.Power.Screen Brightness " <int32 2O>"()
+```
+Enfin rentrer le nom de l'icone : `thunderbolt-symbolic` 
 
 
-## **6 - Allégement du système**
-
-* a - Supprimer les logiciels inutiles avec Gnome-software
+* o - Créer un toggle "No Touchscreen" et le rendre permanent au boot :
     
-
-* d - Supprimer les logiciels suivants avec le terminal :
-  
 ```
-sudo dnf remove speech-dispatcher ibus-libzhuyin ibus-libpinyin ibus-typing-booster ibus-m17n ibus-hangul ibus-anthy yelp abrt brltty podman openvpn gnome-weather rygel totem avahi-tools virtualbox-guest-additions 
+echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/unbind > /dev/null
 ```
-
-    
-* f - Supprimer et masquer les services inutiles :
-  
 ```
-sudo systemctl mask NetworkManager-wait-online.service auditd.service ModemManager.service avahi-daemon.service plymouth-quit-wait.service switcheroo-control.service sys-kernel-tracing.mount sys-kernel-debug.mount httpd.service   mdmonitor.service mdmonitor.service raid-check.timer sssd-kcm.service pcscd raid-check.timer fwupd avahi-daemon.socket sssd-kcm.socket pcscd.socket sssd.service
-
-```
-  
-et désactiver le Bluetooth pour l'activer à la volée (voir script dans la rubrique UI Gnome) + cups :
-  
-```
-sudo systemctl disable bluetooth.service cups
-```
-  
-Enfin, reboot puis controle de l'état des services avec :
-  
-```
-systemd-analyze blame | grep -v '\.device$'
+echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/bind > /dev/null                         
 ```
 
-et :
 
-```
-systemctl list-unit-files --type=service --state=enabled
-```
-  
 
-  ```
-  
+
+
+
+
+
+
+* m - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
+
 
 * h - Alléger les journaux système et les mettre en RAM :
   
-  ```
-  sudo gnome-text-editor /etc/systemd/journald.conf
-  ```
+```
+sudo gnome-text-editor /etc/systemd/journald.conf
+```
+puis remplacer le contenu du fichier par celui du fichier `journald.conf.txt` & relancer le service :
   
-     puis remplacer le contenu du fichier par celui du fichier `journald.conf.txt` & relancer le service :
-  
-  ```
-  sudo systemctl restart systemd-journald
-  ```
+```
+sudo systemctl restart systemd-journald
+```
   
 * j - Supprimer les `coredump` en éditant systemd :
   
-  ``` 
-  sudo gnome-text-editor /etc/systemd/coredump.conf.d/
-  ```
-     Editer le fichier comme suit :
+``` 
+sudo gnome-text-editor /etc/systemd/coredump.conf.d/
+```
+Editer le fichier comme suit :
   
-  ```
-  [Coredump]
-  Storage=none
-  ProcessSizeMax=0
-  ```
-     et supprimer le service dans le noyau ```kernel```  avec la commande :
+```
+[Coredump]
+Storage=none
+ProcessSizeMax=0
+```
+et supprimer le service dans le noyau ```kernel```  avec la commande :
 
-  ```
-  sudo ln -sf /dev/null /usr/lib/sysctl.d/50-coredump.conf
+```
+sudo ln -sf /dev/null /usr/lib/sysctl.d/50-coredump.conf
    
-  ```
-     puis
+```
+puis
 
-  ```
-  sudo gnome-text-editor /etc/sysctl.d/50-coredump.conf
-  ```
-     et y inscrire :
+```
+sudo gnome-text-editor /etc/sysctl.d/50-coredump.conf
+```
+et y inscrire :
 
-  ```
-  kernel.core_pattern=|/bin/false
-  ```
+```
+kernel.core_pattern=|/bin/false
+```
   
-     Enfin configurer `ulimit` pour désactiver les core dumps au niveau utilisateur :
+Enfin configurer `ulimit` pour désactiver les core dumps au niveau utilisateur :
   
-  ```
-  sudo gnome-text-editor /etc/security/limits.conf
-  ```
-     puis coller : `* hard core 0`
+```
+sudo gnome-text-editor /etc/security/limits.conf
+```
+puis coller : `* hard core 0`
 
-* k - Supprimer le `watchdog` et blacklister les pilotes inutiles `Nouveau` & `ELAN:Fingerprint` : éditer le fichier 
-      suivant :
+* k - Supprimer le `watchdog` et blacklister les pilotes inutiles `Nouveau` & `ELAN:Fingerprint` : éditer le fichier suivant :
   
-  ```
-  sudo gnome-text-editor /etc/sysctl.conf
-  ```
-     et ajouter :
+```
+sudo gnome-text-editor /etc/sysctl.conf
+```
+et ajouter :
   
+```
+kernel.nmi_watchdog=0
+```
+Puis créer un fichier `blacklist` ```sudo gnome-text-editor /etc/modprobe.d/blacklist.conf``` et l'éditer :
   ```
-  kernel.nmi_watchdog=0
-  ```
-     Puis créer un fichier `blacklist` ```sudo gnome-text-editor /etc/modprobe.d/blacklist.conf``` et l'éditer :
-  
-  ```
-  blacklist iTCO_vendor_support
-  blacklist wdat_wdt
-  blacklist intel_pmc_bxt
-  blacklist nouveau
-  blacklist ELAN:Fingerprint
-  ```
+blacklist iTCO_vendor_support
+blacklist wdat_wdt
+blacklist intel_pmc_bxt
+blacklist nouveau
+blacklist ELAN:Fingerprint
+```
 
 * l - EXPERIMENTAL : créer un initramfs plus petit et plus rapide en désactivant des modules inutiles : manipulation à faire à chaque màj du kernel : d'abord désactiver vconsole :
 
@@ -608,7 +415,6 @@ systemctl list-unit-files --type=service --state=enabled
 
 
   
-* m - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
 
 
 
@@ -618,88 +424,82 @@ systemctl list-unit-files --type=service --state=enabled
 
 * a - Désactiver `SElinux` :
   
-  ```
-  sudo gnome-text-editor /etc/selinux/config
-  ```
-     et saisir ```SELINUX=disabled```
+```
+sudo gnome-text-editor /etc/selinux/config
+```
+et saisir ```SELINUX=disabled```
   
-     Vérifier la désactivation après reboot avec la commande ```sestatus```
+Vérifier la désactivation après reboot avec la commande ```sestatus```
 
-     Enfin supprimer les labels SElinux avec :
+Enfin supprimer les labels SElinux avec :
  
-  ```
-  sudo find / -print0 | xargs -r0 setfattr -x security.selinux 2>/dev/null
-  ```
+```
+sudo find / -print0 | xargs -r0 setfattr -x security.selinux 2>/dev/null
+```
   
 
 * b - Passer `xwayland` en autoclose : sur dconf-editor, modifier la clé suivante.
   
-  ```
-  org.gnome.mutter experimental-features
-  ```
+```
+org.gnome.mutter experimental-features
+```
 
 
 * c - Optimiser le kernel :
   
-  ```
-  sudo gnome-text-editor /etc/kernel/cmdline
-  ```
+```
+sudo gnome-text-editor /etc/kernel/cmdline
+```
 
-     Puis saisir :
+Puis saisir :
+```
+mitigations=off selinux=0 cgroup_disable=rdma nmi_watchdog=0
+```
+puis reinstaller le noyau avec la commande suivante :
   
-  ```
-  mitigations=off selinux=0 cgroup_disable=rdma nmi_watchdog=0
-  ```
-     puis reinstaller le noyau avec la commande suivante :
-  
-  ```
-  sudo kernel-install add $(uname -r) /lib/modules/$(uname -r)/vmlinuz
-  ```
+```
+sudo kernel-install add $(uname -r) /lib/modules/$(uname -r)/vmlinuz
+```
 
-  ```
-  sudo dracut
-  ```
+```
+sudo dracut
+```
   
-     Au reboot, contrôler le fichier de boot de `systemd-boot` avec la commande :
-  
-  ```
-  cat /proc/cmdline
-  ```
+Au reboot, contrôler le fichier de boot de `systemd-boot` avec la commande :
+```
+cat /proc/cmdline
+```
 
 * d - Réduire le temps d'affichage du menu systemd-boot à 0 seconde ou une seconde, au choix:
 
-  ```
-  sudo bootctl set-timeout 0
-  
-  ```
+```
+sudo bootctl set-timeout 0
+```
 
 * e - Editer le mount des partitions BTRFS `/` et `/home` avec la commande :
 
-  ```
-  sudo gnome-text-editor /etc/fstab
-  ```
-     puis saisir les flags suivants :
+```
+sudo gnome-text-editor /etc/fstab
+```
+puis saisir les flags suivants :
 
-  ```
-  noatime,commit=120,discard=async,space_cache=v2
-   
-  ```
-  Contrôler avec `cat /etc/fstab` après un reboot.
+```
+noatime,commit=120,discard=async,space_cache=v2
+```
+Contrôler avec `cat /etc/fstab` après un reboot.
 
    
 * f - Mettre les fichiers temporaires en RAM :
   
-  ```
-  sudo gnome-text-editor /etc/fstab
-  ```
-     puis saisir :
+```
+sudo gnome-text-editor /etc/fstab
+```
+puis saisir :
   
-  ```
-  tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=4196M 0 0
-  ```
-
-    Contrôler avec `cat /etc/fstab` après un reboot.
-  
+```
+tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=4196M 0 0
+```
+Contrôler avec `cat /etc/fstab` après un reboot.  
 
 * g - Activer et régler le pare-feu :
   
@@ -727,14 +527,14 @@ systemctl list-unit-files --type=service --state=enabled
 
 * h - Modifier le `swappiness` :
   
-  ```
-  echo vm.swappiness=5 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
-  echo vm.vfs_cache_pressure=50 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
-  sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
-  ```
+```
+echo vm.swappiness=5 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
+echo vm.vfs_cache_pressure=50 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
+sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
+```
 
   
-* i - Accélérer `DNF` :
+* i - Accélérer `DNF` : A MODIFIER POUR DNF5
   
   ```
   echo 'max_parallel_downloads=20' | sudo tee -a /etc/dnf/dnf.conf
@@ -743,16 +543,16 @@ systemctl list-unit-files --type=service --state=enabled
   
 * j - Diviser le nombre de `ttys` au boot par deux :
   
-  ```
-  sudo gnome-text-editor /etc/systemd/logind.conf
-  ```
-     puis editer `NautoVTS=3`
+```
+sudo gnome-text-editor /etc/systemd/logind.conf
+```
+puis editer `NautoVTS=3`
 
 * k - Vérifier que le système utilise bien les DNS du routeur Xiaomi (192.168.31.1) :
 
-  ```
-  nmcli dev show |grep DNS
-  ```
+```
+nmcli dev show |grep DNS
+```
 
 
 
