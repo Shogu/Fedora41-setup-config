@@ -491,33 +491,7 @@ gsettings set org.gnome.SessionManager logout-prompt false
 ## **6 - Allégement du système**
 
 * a - Supprimer les logiciels inutiles avec Gnome-software
-  
-* b - Supprimer les sources inutiles dans Gnome-software :
-  
-  ```
-  sudo rm /etc/yum.repos.d/google-chrome.repo 
-  /etc/yum.repos.d/_copr\:copr.fedorainfracloud.org\:phracek\:PyCharm.repo
-  ```
-  
-* c - Supprimer les autostarts inutiles :
-  
-  ```
-  sudo rm /etc/xdg/autostart/vmware-user.desktop
-  sudo rm /etc/xdg/autostart/org.gnome.SettingsDaemon.Smartcard.desktop
-  ```
-     et
-
-  ```
-  cd /usr/share/dbus-1/services/org.gnome.Software.service && sudo mv 
-  org.gnome.Software.service.org.gnome.Software.service_disabled
-  ```
-     puis :
-
-  ```
-  dconf write /org/gnome/software/allow-updates false
-  dconf write /org/gnome/software/download-updates false
-  ```
-
+    
    
 
 * d - Supprimer les logiciels suivants avec le terminal :
@@ -541,10 +515,8 @@ gsettings set org.gnome.SessionManager logout-prompt false
 * f - Supprimer et masquer les services inutiles :
   
   ```
-  sudo systemctl mask NetworkManager-wait-online.service auditd.service ModemManager.service avahi-daemon.service 
-  plymouth-quit-wait.service switcheroo-control.service sys-kernel-tracing.mount sys-kernel-debug.mount httpd.service 
-  mdmonitor.service mdmonitor.service raid-check.timer sssd-kcm.service pcscd raid-check.timer fwupd
-  avahi-daemon.socket
+  sudo systemctl mask NetworkManager-wait-online.service auditd.service ModemManager.service avahi-daemon.service plymouth-quit-wait.service switcheroo-control.service sys-kernel-tracing.mount sys-kernel-debug.mount httpd.service   mdmonitor.service mdmonitor.service raid-check.timer sssd-kcm.service pcscd raid-check.timer fwupd avahi-daemon.socket sssd-kcm.socket pcscd.socket
+
   ```
   
      et désactiver le Bluetooth pour l' activer à la volée (voir script dans la rubrique UI Gnome) + cups :
@@ -566,10 +538,7 @@ gsettings set org.gnome.SessionManager logout-prompt false
 systemctl list-unit-files --type=service --state=enabled
 ```
   
-* g - Supprimer l'autoboot d'Orca si besoin :
-  
-  ```
-  rm -rf /usr/share/gdm/greeter/autostart/orca.desktop
+
   ```
   
 
