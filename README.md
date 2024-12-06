@@ -393,7 +393,7 @@ sudo dnf install ufw -y
 
 * e - Régler HiDPI sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
 
-* f - Installer diverses extensions (2 temporaires, 10 permanentes) :
+* f - Installer diverses extensions (2 temporaires, 9 permanentes) :
   
 1 - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/) puis la supprimer : l'ordre alphabetique persistera.
 
@@ -416,8 +416,6 @@ sudo dnf install ufw -y
 10 - [Grand Theft Focus](https://extensions.gnome.org/extension/5410/grand-theft-focus/)
     
 11 - [Hide Activities Button](https://extensions.gnome.org/extension/744/hide-activities-button/)
-
-12 - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/)
 
 
 * g - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
