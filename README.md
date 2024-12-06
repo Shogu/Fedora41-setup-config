@@ -222,33 +222,31 @@ browser.sessionstore.interval
 
 * e - Régler HiDPI sur 200, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
 
-* f - Installer diverses extensions :
+* f - Installer diverses extensions (2 temporaires, 10 permanentes) :
   
-1 - [Appindicator](https://extensions.gnome.org/extension/615/appindicator-support/)
+1 - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/) puis la supprimer : l'ordre alphabetique persistera.
 
-2 - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/) puis la supprimer : l'ordre alphabetique persistera.
-  
-3 - [AutoActivities](https://extensions.gnome.org/extension/5500/auto-activities/)
-  
-4 - [Battery Time](https://extensions.gnome.org/extension/5425/battery-time/)
-    
-5 - [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
-  
-6 - [Clipboard History](https://extensions.gnome.org/extension/4839/clipboard-history/)
-  
-7 - [Frequency Boost Switch](https://extensions.gnome.org/extension/4792/frequency-boost-switch/)
-    
-8 - [Hot Edge](https://extensions.gnome.org/extension/4222/hot-edge/)
-  
-9 - [Impatience](https://extensions.gnome.org/extension/277/impatience/)
-  
-10 - [NoAnnoyance](https://extensions.gnome.org/extension/6109/noannoyance-fork/)
+2 - [Privacy Quick Settings](https://extensions.gnome.org/extension/4491/privacy-settings-menu/) puis la supprimer une fois les réglages réalisés.
 
-11 - [Custom Command Toggle](https://extensions.gnome.org/extension/7012/custom-command-toggle/)
+3 - [Appindicator](https://extensions.gnome.org/extension/615/appindicator-support/)
+
+4 - [AutoActivities](https://extensions.gnome.org/extension/5500/auto-activities/)
   
-12 - [Power Profile Indicator](https://extensions.gnome.org/extension/6679/power-profile-indicator/)
+5 - [Battery Time](https://extensions.gnome.org/extension/5425/battery-time/)
+    
+6 - [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
   
-13 - [Privacy Quick Settings](https://extensions.gnome.org/extension/4491/privacy-settings-menu/) puis la supprimer une fois les réglages réalisés.
+7 - [Clipboard History](https://extensions.gnome.org/extension/4839/clipboard-history/)
+  
+8 - [Frequency Boost Switch](https://extensions.gnome.org/extension/4792/frequency-boost-switch/)
+    
+9 - [Hot Edge](https://extensions.gnome.org/extension/4222/hot-edge/)
+    
+10 - [Grand Theft Focus](https://extensions.gnome.org/extension/5410/grand-theft-focus/)
+    
+11 - [Hide Activities Button](https://extensions.gnome.org/extension/744/hide-activities-button/)
+
+12 - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/)
 
 
 * g - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
