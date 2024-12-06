@@ -544,7 +544,7 @@ nmcli dev show |grep DNS
 
 
 Boot time : avant optimisation :
-ogu@fedora-ogu:~$ systemd-analyze
+ogu@ogu-fedora:~$ systemd-analyze
 Startup finished in 2.213s (firmware) + 500ms (loader) + 1.806s (kernel) + 3.901s (initrd) + 28.363s (userspace) = 36.786s
 graphical.target reached after 28.330s in userspace.
 
@@ -553,6 +553,10 @@ ogu@ogu-fedora:~$ systemd-analyze
 Startup finished in 2.314s (firmware) + 505ms (loader) + 1.865s (kernel) + 4.035s (initrd) + 3.633s (userspace) = 12.354s 
 graphical.target reached after 3.557s in userspace.
 
+Boot time après blacklist, selinux-disabled et mitigations=off
+ogu@ogu-fedora:~$ systemd-analyze
+Startup finished in 2.306s (firmware) + 503ms (loader) + 1.771s (kernel) + 3.958s (initrd) + 3.336s (userspace) = 11.876s 
+graphical.target reached after 3.304s in userspace.
 
 
 
