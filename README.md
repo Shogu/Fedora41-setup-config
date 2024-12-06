@@ -471,7 +471,7 @@ sudo ufw default allow outgoing
   
 pour nicotine :
 ```
-sudo ufw allow in 2232/tcp
+sudo ufw allow in 2234/tcp
 ```
 
 pour Fragments :
