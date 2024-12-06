@@ -293,12 +293,10 @@ TAB: menu-complete
 
 
 * h - Alléger les journaux système et les mettre en RAM :
-  
 ```
-sudo gnome-text-editor /etc/systemd/journald.conf
+sudo gnome-text-editor /usr/lib/systemd/journald.conf
 ```
 puis remplacer le contenu du fichier par celui du fichier `journald.conf.txt` & relancer le service :
-  
 ```
 sudo systemctl restart systemd-journald
 ```
@@ -306,49 +304,62 @@ sudo systemctl restart systemd-journald
 * j - Supprimer les `coredump` en éditant systemd :
   
 ``` 
-sudo gnome-text-editor /etc/systemd/coredump.conf.d/
+sudo gnome-text-editor /usr/lib/systemd/coredump.conf
 ```
 Editer le fichier comme suit :
-  
 ```
 [Coredump]
 Storage=none
 ProcessSizeMax=0
 ```
-et supprimer le service dans le noyau ```kernel```  avec la commande :
 
-```
-sudo ln -sf /dev/null /usr/lib/sysctl.d/50-coredump.conf
-   
-```
-puis
-
-```
-sudo gnome-text-editor /etc/sysctl.d/50-coredump.conf
-```
-et y inscrire :
-
-```
-kernel.core_pattern=|/bin/false
-```
-  
-Enfin configurer `ulimit` pour désactiver les core dumps au niveau utilisateur :
-  
-```
-sudo gnome-text-editor /etc/security/limits.conf
-```
-puis coller : `* hard core 0`
 
 * k - Supprimer le `watchdog` et blacklister les pilotes inutiles `Nouveau` & `ELAN:Fingerprint` : éditer le fichier suivant :
   
-```
-sudo gnome-text-editor /etc/sysctl.conf
-```
-et ajouter :
-  
-```
+olution pour Fedora 41 : Utiliser /etc/sysctl.d/
+
+    Créer un fichier de configuration spécifique : Créez un fichier dans le répertoire /etc/sysctl.d/ pour ajouter votre modification. Ce répertoire est destiné aux fichiers de configuration sysctl personnalisés, et les fichiers qu'il contient sont chargés automatiquement au démarrage.
+
+    Voici la procédure :
+
+        Ouvrez un terminal et créez un fichier, par exemple 99-custom.conf, dans /etc/sysctl.d/ :
+
+sudo gnome-text-editor /etc/sysctl.d/99-custom.conf
+
+Ou, si vous préférez un éditeur en ligne de commande, utilisez nano :
+
+    sudo nano /etc/sysctl.d/99-custom.conf
+
+Ajouter la ligne pour désactiver le watchdog :
+
+Dans le fichier ouvert, ajoutez la ligne suivante pour désactiver le nmi_watchdog :
+
 kernel.nmi_watchdog=0
-```
+
+Sauvegarder et fermer :
+
+    Dans gnome-text-editor, cliquez sur "Enregistrer" et fermez.
+    Si vous utilisez nano, appuyez sur CTRL+O pour sauvegarder et CTRL+X pour quitter.
+
+Appliquer les changements immédiatement : Après avoir créé ce fichier, vous pouvez appliquer les modifications sans redémarrer en exécutant :
+
+    sudo sysctl --system
+
+    Cela rechargera toutes les configurations sysctl et appliquera vos changements.
+
+    Vérification des fichiers de configuration sysctl
+
+    Vérifier que la modification a été appliquée :
+
+    Pour vérifier que votre configuration a bien été appliquée, vous pouvez utiliser la commande suivante pour vérifier l'état de nmi_watchdog :
+
+sudo sysctl kernel.nmi_watchdog
+
+Si la configuration est correctement appliquée, la sortie devrait être :
+
+kernel.nmi_watchdog = 0
+
+
 Puis créer un fichier `blacklist` ```sudo gnome-text-editor /etc/modprobe.d/blacklist.conf``` et l'éditer :
   ```
 blacklist iTCO_vendor_support
@@ -357,44 +368,6 @@ blacklist intel_pmc_bxt
 blacklist nouveau
 blacklist ELAN:Fingerprint
 ```
-
-* l - EXPERIMENTAL : créer un initramfs plus petit et plus rapide en désactivant des modules inutiles : manipulation à faire à chaque màj du kernel : d'abord désactiver vconsole :
-
-  ```
-  cp /usr/bin/true /usr/lib/systemd/systemd-vconsole-setup
-
-  ```
-     puis créer un fichier de configuration `dracut` (ou dracut --regenerate-all), ou télécharger directement le fichier dracut.conf.
-
-  ```
-  sudo gnome-text-editor /etc/dracut.conf.d/dracut.conf
-  ```
-  
-     et copier-coller ces options de configuration :
-
-  ```
-  # Configuration du fichier dracut.conf pour obtenir un initrd le plus léger possible
-
-  omit_dracutmodules+=" multipath nss-softokn memstrack usrmount mdraid dmraid debug selinux fcoe fcoe-uefi terminfo 
-  watchdog crypt-gpg crypt-loop cdrom pollcdrom pcsc ecryptfs rescue watchdog-module network cifs nfs nbd brltty 
-  busybox rdma i18n isci wacom "
-  omit_drivers+=" nvidia amd nouveau "
-  filesystems+=" ext4 btrfs fat "
-  # Ne pas exécuter fsck
-  nofscks="yes"
-  # Niveau de journalisation
-  stdlog="0"
-  # Compression de l'initramfs
-  compress="zstd"
-  compress_options="-4"
-  # Mode silencieux
-  quiet="yes"
-  # Autres options
-  force="yes"
-  hostonly="yes"
-  ```
-  
-     Vérifier l'output après sudo dracut : `sudo lsinitrd -m`
 
 
   
@@ -554,6 +527,22 @@ nmcli dev show |grep DNS
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Boot time : avant optimisation :
 ogu@fedora-ogu:~$ systemd-analyze
 Startup finished in 2.213s (firmware) + 500ms (loader) + 1.806s (kernel) + 3.901s (initrd) + 28.363s (userspace) = 36.786s
@@ -590,6 +579,48 @@ echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/unbind > /
 ```
 echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/bind > /dev/null                         
 ```
+
+
+
+* l - EXPERIMENTAL : créer un initramfs plus petit et plus rapide en désactivant des modules inutiles : manipulation à faire à chaque màj du kernel : d'abord désactiver vconsole :
+
+  ```
+  cp /usr/bin/true /usr/lib/systemd/systemd-vconsole-setup
+
+  ```
+     puis créer un fichier de configuration `dracut` (ou dracut --regenerate-all), ou télécharger directement le fichier dracut.conf.
+
+  ```
+  sudo gnome-text-editor /etc/dracut.conf.d/dracut.conf
+  ```
+  
+     et copier-coller ces options de configuration :
+
+  ```
+  # Configuration du fichier dracut.conf pour obtenir un initrd le plus léger possible
+
+  omit_dracutmodules+=" multipath nss-softokn memstrack usrmount mdraid dmraid debug selinux fcoe fcoe-uefi terminfo 
+  watchdog crypt-gpg crypt-loop cdrom pollcdrom pcsc ecryptfs rescue watchdog-module network cifs nfs nbd brltty 
+  busybox rdma i18n isci wacom "
+  omit_drivers+=" nvidia amd nouveau "
+  filesystems+=" ext4 btrfs fat "
+  # Ne pas exécuter fsck
+  nofscks="yes"
+  # Niveau de journalisation
+  stdlog="0"
+  # Compression de l'initramfs
+  compress="zstd"
+  compress_options="-4"
+  # Mode silencieux
+  quiet="yes"
+  # Autres options
+  force="yes"
+  hostonly="yes"
+  ```
+  
+     Vérifier l'output après sudo dracut : `sudo lsinitrd -m`
+
+
 
 
 * e - Supprimer les flatpaks KDE :
