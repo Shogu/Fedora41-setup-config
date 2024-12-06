@@ -461,11 +461,11 @@ Contrôler avec `cat /etc/fstab` après un reboot.
 
 * g - Activer et régler le pare-feu :
   
-  ```sudo systemctl enable ufw```
-  ```sudo ufw logging off```
-  ```sudo systemctl start ufw```
-  ```sudo ufw default deny incoming```
-  ```sudo ufw default allow outgoing```
+  ```sudo systemctl enable ufw
+  sudo ufw logging off```
+  sudo systemctl start ufw
+  sudo ufw default deny incoming
+  sudo ufw default allow outgoing
   
      pour nicotine :
   ```sudo ufw allow in 2232/tcp```
