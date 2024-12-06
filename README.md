@@ -253,7 +253,23 @@ browser.sessionstore.interval
 
 * h - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
 
-* i - Régler Gnome-text-editor et Ptyxis; améliorer l'autocomplétion du terminal en téléchargeant le fichier`.inputrc` et le placer dans `~/`
+* i - Régler Gnome-text-editor et Ptyxis; améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
+```
+# Ignore la casse lors de la complétion
+set completion-ignore-case on
+
+# Affiche toutes les options si ambiguïté
+set show-all-if-ambiguous on
+
+# Affiche toutes les options si la ligne n'a pas changé
+set show-all-if-unmodified on
+
+# Montre des infos comme les permissions (ls-like)
+set visible-stats on
+
+# Permet de parcourir les suggestions avec TAB
+TAB: menu-complete
+```
 
   
 * j - Améliorer  Celluloid :
