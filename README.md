@@ -490,7 +490,7 @@ TAB: menu-complete
 
 * l - Activer ``openh264`` dans les plugins firefox.
 
-* m - Réduire l'intervalle de sauvegarde des sessions Firefox en la passant à `600000` avec `about:config`:
+* m - Réduire l'intervalle de sauvegarde des sessions Firefox en la passant à `150000` avec `about:config`:
 
 ```
 browser.sessionstore.interval
