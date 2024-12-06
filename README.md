@@ -391,7 +391,7 @@ sudo dnf install ufw -y
 
 * d - Changer le [wallpaper](https://github.com/CubeJ/LinuxWallpaper)
 
-* e - Régler HiDPI sur 200, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
+* e - Régler HiDPI sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
 
 * f - Installer diverses extensions (2 temporaires, 10 permanentes) :
   
@@ -467,7 +467,7 @@ TAB: menu-complete
    
 ## **6 - Réglages du navigateur Firefox**
 
-* a - Réglages internes de Firefox
+* a - Réglages internes de Firefox (penser à activer CTRL-TAB pour faire défiler dans l'ordre d'utilisation)
 
 * b - Changer le thème pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/)
   
