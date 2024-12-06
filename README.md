@@ -461,26 +461,32 @@ Contrôler avec `cat /etc/fstab` après un reboot.
 
 * g - Activer et régler le pare-feu :
   
-  ```sudo systemctl enable ufw
-  sudo ufw logging off```
-  sudo systemctl start ufw
-  sudo ufw default deny incoming
-  sudo ufw default allow outgoing
+```
+sudo systemctl enable ufw
+sudo systemctl start ufw
+sudo ufw logging off
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+```
   
-     pour nicotine :
-  ```sudo ufw allow in 2232/tcp```
+pour nicotine :
+```
+sudo ufw allow in 2232/tcp
+```
 
-     pour Fragments :
-  ```sudo ufw allow in 51413/tcp```
-  ```sudo ufw allow in 51413/udp```
+pour Fragments :
+```
+sudo ufw allow in 51413/tcp
+sudo ufw allow in 51413/udp
+```
 
-     pour le serveur FTP du SSD de la TV Android :
-  ```
-  sudo ufw allow 2121/tcp
-  sudo ufw allow 1024:1048/tcp
-  sudo ufw enable
-  sudo ufw status
-  ```
+pour le serveur FTP du SSD de la TV Android :
+```
+sudo ufw allow 2121/tcp
+sudo ufw allow 1024:1048/tcp
+sudo ufw enable
+sudo ufw status
+```
 
 
 * h - Modifier le `swappiness` :
