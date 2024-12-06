@@ -417,7 +417,7 @@ sudo dnf install ufw -y
     
 11 - [Hide Activities Button](https://extensions.gnome.org/extension/744/hide-activities-button/)
 
-12 - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/)
+12 - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/) & supprimer la luminosité automatique dans Settings de Gnome
 
 * g - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
 
