@@ -468,8 +468,10 @@ TAB: menu-complete
 ## **6 - Réglages du navigateur Firefox**
 
 * a - Réglages internes de Firefox
+
+* b - Changer le thème pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/)
   
-* b - Editer les raccourcis :
+* c - Editer les raccourcis :
 
   
    7 - [Disable HTML5](https://chromewebstore.google.com/detail/disable-html5-autoplay-re/cafckninonjkogajnihihlnnimmkndgf) et activer le preloading dans les options.
