@@ -42,6 +42,7 @@ sudo dnf remove brltty
 sudo dnf remove podman
 sudo dnf remove openvpn
 sudo dnf remove gnome-weather
+sudo dnf remove firewalld
 sudo dnf remove rygel
 sudo dnf remove totem
 sudo dnf remove avahi-tools
@@ -144,6 +145,7 @@ sudo dnf install ffmpegthumbnailer.x86_64 -y
 sudo dnf install profile-cleaner -y
 sudo dnf install btrfs-assistant -y
 sudo dnf install seahorse -y
+sudo dnf install ufw -y
 ```
 
 * h - Installer [Dropbox](https://www.dropbox.com/fr/install-linux)
