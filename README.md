@@ -155,8 +155,7 @@ sudo dnf install seahorse -y
 
 * a - Réglages internes de Firefox
   
-
-* c - Editer les raccourcis :
+* b - Editer les raccourcis :
 
 
 
@@ -208,9 +207,7 @@ browser.sessionstore.interval
 
 ## **5 - Réglages de l'UI Gnome Shell**
 
-
 * a - Régler le système avec Paramètres (penser à désactiver les animations dans Accessibilité??) puis Ajustements (Changer les polices d'écriture pour `Noto Sans` en 11 ?)
-  
 
 * b - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
   
