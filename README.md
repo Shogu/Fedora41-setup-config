@@ -471,36 +471,21 @@ TAB: menu-complete
 
 * b - Changer le thème pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/)
   
-* c - Editer les raccourcis :
-
+* c - Extensions
   
-   7 - [Disable HTML5](https://chromewebstore.google.com/detail/disable-html5-autoplay-re/cafckninonjkogajnihihlnnimmkndgf) et activer le preloading dans les options.
-  
-   8 - [h264ify](https://addons.opera.com/fr/extensions/details/h264ify/)
+  [Enhancer for Youtube](https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle?hl=fr) qui intègre leurs fonctions. Le configurer d'un coup en rentrant le code du fichier `youtube_enhancer_conf`
 
-   9 - [Simple Notepad](https://chromewebstore.google.com/detail/simple-notepad/ghnkdbkeniegahdcjeeikjoaapakeomf)
+  [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/)
   
-    ou remplacer Disable HTML5 & h264ify par 10 - [Enhancer for Youtube](https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle?hl=fr) qui intègre leurs fonctions. Le configurer d'un coup en rentrant le code du fichier `youtube_enhancer_conf`
+  [New Tab Suspender](https://addons.mozilla.org/en-US/firefox/addon/new-tab-suspender/)
+
+  [Raindrop](https://raindrop.io/r/extension/firefox) et supprimer `Pocket` de Firefox avec `extensions.pocket.enabled` dans `about:config` puis supprimer le raccourci dans la barre.
   
-
-
-* k - Extensions pour Firefox :
-
-     [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/)
+  [Clear Browsing Data](https://addons.mozilla.org/fr/firefox/addon/clear-browsing-data/)
   
-     [Autotab Discard](https://addons.mozilla.org/fr/firefox/addon/auto-tab-discard/)
+  [Undo Close Tab Button](https://addons.mozilla.org/firefox/addon/undoclosetabbutton)
 
-     [Raindrop](https://raindrop.io/r/extension/firefox) et supprimer `Pocket` de Firefox avec `extensions.pocket.enabled` dans `about:config` puis supprimer le raccourci dans la barre.
-  
-     [Keep Notes](https://addons.mozilla.org/fr/firefox/addon/google-keep-notes/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
-
-     [I Dont' Care About Cookies](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiH4djZpPWGAxVnVaQEHVC4Ah4QFnoECBwQAQ&url=https%3A%2F%2Faddons.mozilla.org%2Ffr%2Ffirefox%2Faddon%2Fi-dont-care-about-cookies%2F&usg=AOvVaw1V3SeotV2aYuif7_jcLW43&opi=89978449)
-  
-     [Clear Browsing Data](https://addons.mozilla.org/fr/firefox/addon/clear-browsing-data/)
-  
-     [Undo Close Tab Button](https://addons.mozilla.org/firefox/addon/undoclosetabbutton)
-
-     [LocalCDN](https://addons.mozilla.org/fr/firefox/addon/localcdn-fork-of-decentraleyes/)
+  [LocalCDN](https://addons.mozilla.org/fr/firefox/addon/localcdn-fork-of-decentraleyes/)
 
 
 * l - Activer ``openh264`` dans les plugins firefox.
