@@ -332,10 +332,12 @@ RMPFusion Non free
 sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 ```
     
-* c - Ajouter les codecs `FFMPEG`, `AV1`, & le `pilote Intel` d'accélération matérielle :
+* c - Ajouter les codecs `FFMPEG`, multimedia, `AV1`, & le `pilote Intel` d'accélération matérielle :
 
 ```
-sudo dnf install gstreamer1-plugins-bad-free-extras && sudo dnf swap ffmpeg-free ffmpeg --allowerasing && sudo dnf install intel-media-driver
+sudo dnf swap ffmpeg-free ffmpeg --allowerasing
+sudo dnf install intel-media-driver
+sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 ```
 
   
