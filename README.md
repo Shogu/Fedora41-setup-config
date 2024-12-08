@@ -498,19 +498,19 @@ Nota : vérifier si une release plus récente est disponible pour Bibata Ice NO 
   
 * c - Extensions
   
-  [Enhancer for Youtube](https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle?hl=fr) qui intègre leurs fonctions. Le configurer d'un coup en rentrant le code du fichier `youtube_enhancer_conf`
+[Enhancer for Youtube](https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle?hl=fr) qui intègre leurs fonctions. Le configurer d'un coup en rentrant le code du fichier `youtube_enhancer_conf`
 
-  [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/)
+[uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/)
   
-  [New Tab Suspender](https://addons.mozilla.org/en-US/firefox/addon/new-tab-suspender/)
+[New Tab Suspender](https://addons.mozilla.org/en-US/firefox/addon/new-tab-suspender/)
 
-  [Raindrop](https://raindrop.io/r/extension/firefox) et supprimer `Pocket` de Firefox avec `extensions.pocket.enabled` dans `about:config` puis supprimer le raccourci dans la barre.
+[Raindrop](https://raindrop.io/r/extension/firefox) et supprimer `Pocket` de Firefox avec `extensions.pocket.enabled` dans `about:config` puis supprimer le raccourci dans la barre.
   
-  [Clear Browsing Data](https://addons.mozilla.org/fr/firefox/addon/clear-browsing-data/)
+[Clear Browsing Data](https://addons.mozilla.org/fr/firefox/addon/clear-browsing-data/)
   
-  [Undo Close Tab Button](https://addons.mozilla.org/firefox/addon/undoclosetabbutton)
+[Undo Close Tab Button](https://addons.mozilla.org/firefox/addon/undoclosetabbutton) et mettre ALT-Z comme raccourci à partir du menu général de sextensions (roue dentée)
 
-  [LocalCDN](https://addons.mozilla.org/fr/firefox/addon/localcdn-fork-of-decentraleyes/)
+[LocalCDN](https://addons.mozilla.org/fr/firefox/addon/localcdn-fork-of-decentraleyes/)
 
 
 * l - Activer ``openh264`` dans les plugins firefox.
