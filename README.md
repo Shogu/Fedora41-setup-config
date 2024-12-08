@@ -493,6 +493,12 @@ Nota : vérifier si une release plus récente est disponible pour Bibata Ice NO 
 `devtools.f12_enabled` = false
 `accessibility.force_disabled` = 1 pour supprimer l'accessibilité
 `extensions.screenshots.disabled` = true pour désactiver le screenshot
+An alternative is to move the "disk" cache to a RAM disk, giving you a solution in between the two above. The cache will now be preserved between Firefox runs (including Firefox crash recovery), but will be discarded upon reboot (including OS crash).
+
+To do this, go to about:config and set browser.cache.disk.parent_directory to /run/user/UID/firefox, where UID is your user's ID which can be obtained by running id -u.
+
+Open about:cache to verify the new disk cache location. 
+
 
 
   
