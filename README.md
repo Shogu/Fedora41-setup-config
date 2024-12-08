@@ -482,6 +482,16 @@ TAB: menu-complete
 * a - Réglages internes de Firefox (penser à activer CTRL-TAB pour faire défiler dans l'ordre d'utilisation)
 
 * b - Changer le thème pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/)
+
+* c - Dans about:config :
+`nglayout.initialpaint.delay` = 1
+`browser.sessionstore.interval` à `600000` pour réduire l'intervalle de sauvegarde des sessions
+`extensions.pocket.enabled` = false et supprimer Pocket de la barre d'outil si besoin
+`devtools.f12_enabled` = false
+`accessibility.force_disabled` = 1 pour supprimer l'accessibilité
+`extensions.screenshots.disabled` = true pour désactiver le screenshot
+
+
   
 * c - Extensions
   
@@ -502,11 +512,6 @@ TAB: menu-complete
 
 * l - Activer ``openh264`` dans les plugins firefox.
 
-* m - Réduire l'intervalle de sauvegarde des sessions Firefox en la passant à `150000` avec `about:config`:
-
-```
-browser.sessionstore.interval
-```
 
 
 
