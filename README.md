@@ -531,6 +531,7 @@ about:cache` pour contrôle.
 sudo dnf autoremove
 sudo dnf -y upgrade --refresh
 flatpak update
+profile-cleaner f
 ```
 
 Unmask temporaire de fwupd puis 
