@@ -472,8 +472,7 @@ TAB: menu-complete
 
 * o - Mettre le thème [Adwaita-Darker](https://github.com/varunbpatil/Adwaita-darker)
 
-* p - Curseurs [Bibata Ice](https://objects.githubusercontent.com/github-production-release-asset-2e65be/108837747/0348a382-abba-45ca-9bea-e4ebd0865801?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=releaseassetproduction%2F20241208%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241208T153811Z&X-Amz-Expires=300&X-Amz-Signature=02308e1abe01f1bee052debfb0141a8ce43a03c40817ddc14f3607d0de73ff81&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3DBibata-Modern-Ice.tar.xz&response-content-type=application%2Foctet-stream) à copier-coller dans le dossier /home/ogu/.local/share/icons (dossier `icons` à créer), puis ferme rla session et activer avec Tweaks.
-Nota : vérifier si une release plus récente est disponible pour Bibata Ice NO RIGHT
+* p - Curseurs [Bibata Ice NO RIGHT](https://github.com/ful1e5/Bibata_Cursor/releases) à copier-coller dans le dossier /home/ogu/.local/share/icons (dossier `icons` à créer), puis ferme rla session et activer avec Tweaks.
 
 * q - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
 
