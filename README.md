@@ -489,11 +489,13 @@ Nota : vérifier si une release plus récente est disponible pour Bibata Ice NO 
 * c - Dans about:config :
 1 - `nglayout.initialpaint.delay` = 1
 2 - `browser.sessionstore.interval` à `600000` pour réduire l'intervalle de sauvegarde des sessions
-3 - `extensions.pocket.enabled` = false et supprimer Pocket de la barre d'outil si besoin
+3 - `extensions.pocket.enabled` = false, `browser.newtabpage.activity-stream.discoverystream.sendToPocket.enable` = false, et supprimer Pocket de la barre d'outils si besoin
 4 - `devtools.f12_enabled` = false
 5 - `accessibility.force_disabled` = 1 pour supprimer l'accessibilité
 6 - `extensions.screenshots.disabled` = true pour désactiver le screenshot
-7 - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
+7 - `privacy.userContext.enabled` pour désactiver les containers = false
+8 - `browser.tabs.crashReporting.sendReport` = false 
+8 - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
 about:cache` pour contrôle. 
 
 
