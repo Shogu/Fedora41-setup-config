@@ -504,7 +504,11 @@ browser.sessionstore.interval
 
 ## **7 - Maintenance de la distribution**
 
-A rédiger
+```
+sudo dnf autoremove
+sudo dnf update
+flatpak update
+```
 
    
 
