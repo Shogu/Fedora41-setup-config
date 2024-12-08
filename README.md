@@ -424,6 +424,10 @@ sudo dnf install ufw -y
 
 12 - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/) & supprimer la luminosité automatique dans Settings de Gnome
 
+13 - User Themes
+
+et désactiver l'extension native `Background logo`
+
 * g - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
 
 * h - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
@@ -464,6 +468,8 @@ TAB: menu-complete
 * m - Télécharger le script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à la volée : en faire un raccourci avec l'éditeur de menu e MenuLibre (Menu principal n'y parvient pas) et mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/phone.svg`.
 
 * n - Accélérer les animations :  saisir ```GNOME_SHELL_SLOWDOWN_FACTOR=0.5``` dans le fichier ```sudo gnome-text-editor /etc/environment```
+
+* o - Mettre le thème [Adwaita-Darker](https://github.com/varunbpatil/Adwaita-darker)
 
 * o - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
 
