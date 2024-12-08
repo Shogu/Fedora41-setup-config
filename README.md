@@ -305,12 +305,12 @@ sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
 
   ```
   
-* j - Diviser le nombre de `ttys` au boot par deux :
+* j - Passer à 1 le nombre de `ttys` au boot  :
   
 ```
-sudo gnome-text-editor /etc/systemd/logind.conf
+sudo gnome-text-editor /usr/lib/systemd/logind.conf
 ```
-puis editer `NautoVTS=3`
+puis décommenter et editer `NautoVTS=1`
 
 * k - Vérifier que le système utilise bien les DNS du routeur Xiaomi (192.168.31.1) :
 
