@@ -30,6 +30,7 @@ inst.sdboot
   
 ```
 sudo dnf remove speech-dispatcher
+sudo dnf vim*
 sudo dnf remove ibus-libzhuyin
 sudo dnf remove ibus-libpinyin
 sudo dnf remove ibus-typing-booster
@@ -508,7 +509,7 @@ browser.sessionstore.interval
 
 ```
 sudo dnf autoremove
-sudo dnf update
+sudo dnf -y upgrade --refresh
 flatpak update
 ```
 
