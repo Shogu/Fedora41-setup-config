@@ -487,17 +487,14 @@ Nota : vérifier si une release plus récente est disponible pour Bibata Ice NO 
 * b - Changer le thème pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/)
 
 * c - Dans about:config :
-`nglayout.initialpaint.delay` = 1
-`browser.sessionstore.interval` à `600000` pour réduire l'intervalle de sauvegarde des sessions
-`extensions.pocket.enabled` = false et supprimer Pocket de la barre d'outil si besoin
-`devtools.f12_enabled` = false
-`accessibility.force_disabled` = 1 pour supprimer l'accessibilité
-`extensions.screenshots.disabled` = true pour désactiver le screenshot
-An alternative is to move the "disk" cache to a RAM disk, giving you a solution in between the two above. The cache will now be preserved between Firefox runs (including Firefox crash recovery), but will be discarded upon reboot (including OS crash).
-
-To do this, go to about:config and set browser.cache.disk.parent_directory to /run/user/UID/firefox, where UID is your user's ID which can be obtained by running id -u.
-
-Open about:cache to verify the new disk cache location. 
+1 - `nglayout.initialpaint.delay` = 1
+2 - `browser.sessionstore.interval` à `600000` pour réduire l'intervalle de sauvegarde des sessions
+3 - `extensions.pocket.enabled` = false et supprimer Pocket de la barre d'outil si besoin
+4 - `devtools.f12_enabled` = false
+5 - `accessibility.force_disabled` = 1 pour supprimer l'accessibilité
+6 - `extensions.screenshots.disabled` = true pour désactiver le screenshot
+7 - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
+about:cache` pour contrôle. 
 
 
 
