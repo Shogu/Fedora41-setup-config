@@ -452,7 +452,7 @@ TAB: menu-complete
 - activer l'option `focus` et `toujours afficher les boutons de titre`
   
 
-* k - Modifier le thème de `Jdownloader` + tips
+* k - Modifier Jdownloader`: réglages de base, thème Dark Moon puis icones Flat, puis désactiver les éléments suivants : tooltip, help, Update Button Flashing, banner, Premium Alert, Donate, speed meter visible.
 
 
 * l - Télécharger le script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les vidéos vers Vidéos en supprimant le sous-dossier d'origine : en faire un raccourci avec l'éditeur de menu MenuLibre (Menu principal n'y parvient pas) et lui mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/drive-multidisk.svg`
@@ -461,7 +461,6 @@ TAB: menu-complete
 * m - Télécharger le script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à la volée : en faire un raccourci avec l'éditeur de menu e MenuLibre (Menu principal n'y parvient pas) et mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/phone.svg`.
 
 * n - Accélérer les animations :  saisir ```GNOME_SHELL_SLOWDOWN_FACTOR=0.5``` dans le fichier ```sudo gnome-text-editor /etc/environment```
-
 
 * o - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
 
