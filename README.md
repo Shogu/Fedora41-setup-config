@@ -115,6 +115,8 @@ Storage=none
 ProcessSizeMax=0
 ```
 
+* e - Supprimer le lancement au boot de gnome-software : dans dconf-editor, désactiver les deux options `update` dans org/gnome/software
+
 
 * f - Supprimer le `watchdog` et blacklister les pilotes inutiles `Nouveau` & `ELAN:Fingerprint` : éditer le fichier suivant :
   
