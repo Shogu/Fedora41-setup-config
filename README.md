@@ -529,6 +529,7 @@ about:cache` pour contrôle.
 ```
 sudo dnf autoremove
 sudo dnf -y upgrade --refresh
+sudo dnf clean all
 flatpak update
 profile-cleaner f
 ```
@@ -539,6 +540,9 @@ sudo fwupdmgr refresh --force
 sudo fwupdmgr get-updates 
 sudo fwupdmgr update
 ???
+
+
+Regarder script de F39
 
 
 
