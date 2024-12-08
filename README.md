@@ -30,6 +30,7 @@ inst.sdboot
   
 ```
 sudo dnf remove speech-dispatcher
+sudo dnf remove gnome-remote-desktop
 sudo dnf vim*
 sudo dnf remove ibus-libzhuyin
 sudo dnf remove ibus-libpinyin
