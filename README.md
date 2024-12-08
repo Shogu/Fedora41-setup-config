@@ -513,11 +513,12 @@ sudo dnf -y upgrade --refresh
 flatpak update
 ```
 
-   
-
-
-
-
+Unmask temporaire de fwupd puis 
+sudo fwupdmgr get-devices 
+sudo fwupdmgr refresh --force 
+sudo fwupdmgr get-updates 
+sudo fwupdmgr update
+???
 
 
 
