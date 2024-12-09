@@ -4,6 +4,7 @@ Mémo pour le setup complet de Fedora 41
    
 
 ## **1 - Installation**
+## **__1 - Installation__**
 
 * a - Désactiver `Secure Boot` dans le Bios (F2)
 
