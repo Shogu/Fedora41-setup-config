@@ -508,6 +508,8 @@ TAB: menu-complete
 
 11 - `browser.translations.enable` = false
 
+12 - `dom.battery.enabled` = false 
+
 10 - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
 about:cache` pour contrôle. 
 
