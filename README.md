@@ -350,7 +350,7 @@ sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=Package
 ```
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub io.github.giantpinkrobots.flatsweep -y
-flatpak install flathub io.missioncenter.MissionCenter flatpak run io.missioncenter.MissionCenter-y
+flatpak install flathub net.nokyan.Resources -y
 flatpak install flathub org.jdownloader.JDownloader -y
 flatpak install flathub org.onlyoffice.desktopeditors -y
 flatpak install flathub de.haeckerfelix.Fragments -y
@@ -431,7 +431,7 @@ et désactiver l'extension native `Background logo`
 
 * g - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
 
-* h - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run io.missioncenter.MissionCenter``` pour la combinaison `ctrl-alt-supp`.
+* h - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
 
 * i - Régler Gnome-text-editor et Ptyxis; améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
 ```
