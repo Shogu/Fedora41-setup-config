@@ -502,7 +502,7 @@ TAB: menu-complete
 
 8 - `browser.tabs.crashReporting.sendReport` = false
 
-9 - `network.http.max-persistent-connections-per-server` = 20  
+9 - `network.http.max-persistent-connections-per-server` = 10  
 
 10 - `image.mem.decode_bytes_at_a_time` = 131072
 
