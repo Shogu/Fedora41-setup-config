@@ -303,7 +303,7 @@ sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
 * i - Accélérer `DNF` : A MODIFIER POUR DNF5
   
   ```
-  echo 'max_parallel_downloads=20' | sudo tee -a /etc/dnf/dnf.conf
+  echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
 
   ```
   
