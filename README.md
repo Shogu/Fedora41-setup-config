@@ -395,7 +395,7 @@ sudo dnf install ufw -y
 
 * c - Modifier le mot de passe au démarrage avec le logiciel Mots de Passe, puis laisser les champs vides. Penser à reconnecter le compte Google dans Gnome.
 
-* d - Changer le [wallpaper](https://github.com/CubeJ/LinuxWallpaper)
+* d - Installer le [wallpaper Fedora 34](https://packages.fedoraproject.org/pkgs/f34-backgrounds/f34-backgrounds-base/)
 
 * e - Régler HiDPI sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
 
