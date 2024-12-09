@@ -504,6 +504,10 @@ TAB: menu-complete
 
 9 - `network.http.max-persistent-connections-per-server` = 20  
 
+10 - `image.mem.decode_bytes_at_a_time` = 131072
+
+11 - `browser.translations.enable` = false
+
 10 - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
 about:cache` pour contrôle. 
 
