@@ -44,7 +44,6 @@ sudo dnf remove brltty
 sudo dnf remove podman
 sudo dnf remove openvpn
 sudo dnf remove gnome-weather
-sudo dnf remove firewalld
 sudo dnf remove rygel
 sudo dnf remove totem
 sudo dnf remove avahi-tools
@@ -104,8 +103,33 @@ puis remplacer le contenu du fichier par celui du fichier `journald.conf.txt` & 
 ```
 sudo systemctl restart systemd-journald
 ```
+
+* e - Remplacer chronyd par systemd-timesyncd (plus rapide au boot)
+```
+sudo dnf remove chrony
+sudo systemctl enable systemd-timesyncd
+sudo gnome-text-editor /usr/lib/systemd/timesyncd/conf
+```
+et saisir :
+```
+[Time]
+NTP=0.fr.pool.ntp.org 1.fr.pool.ntp.org 2.fr.pool.ntp.org 3.fr.pool.ntp.org
+FallbackNTP=3.fr.pool.ntp.org 2.fr.pool.ntp.org 2.fr.pool.ntp.org 0.fr.pool.ntp.org
+```
+Puis 
+```
+sudo systemctl start systemd-timesyncd
+timedatectl set-ntp true
+```
+Au reboot, vérifier que le serveur de temps est bien en France et que le service est actif :
+```
+timedatectl status
+systemctl status systemd-timesyncd
+```
+
+
   
-* e - Supprimer les `coredump` en éditant systemd :
+* f - Supprimer les `coredump` en éditant systemd :
   
 ``` 
 sudo gnome-text-editor /usr/lib/systemd/coredump.conf
@@ -117,7 +141,7 @@ Storage=none
 ProcessSizeMax=0
 ```
 
-* e - Supprimer le lancement au boot de gnome-software : dans dconf-editor, désactiver les deux options `update` dans org/gnome/software
+* e - Supprimer le lancement au boot de gnome-software : dans dconf-editor, désactiver les deux options `update` dans org/gnome/software ou bien supprimer carrément Software?
 
 
 * f - Supprimer le `watchdog` et blacklister les pilotes inutiles `Nouveau` & `ELAN:Fingerprint` : éditer le fichier suivant :
@@ -374,7 +398,6 @@ sudo dnf install ffmpegthumbnailer.x86_64 -y
 sudo dnf install profile-cleaner -y
 sudo dnf install btrfs-assistant -y
 sudo dnf install seahorse -y
-sudo dnf install ufw -y
 ```
 
 * h - Installer [Dropbox](https://www.dropbox.com/fr/install-linux)
