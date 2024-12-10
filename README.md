@@ -104,7 +104,7 @@ puis remplacer le contenu du fichier par celui du fichier `journald.conf.txt` & 
 sudo systemctl restart systemd-journald
 ```
 
-* e - Remplacer chronyd par systemd-timesyncd (plus rapide au boot) ([source](https://www.dsfc.net/systeme/linux/ntp-passage-de-chrony-a-systemd-timesyncd/)
+* e - Remplacer chronyd par systemd-timesyncd (plus rapide au boot) ([source](https://www.dsfc.net/systeme/linux/ntp-passage-de-chrony-a-systemd-timesyncd/))
 ```
 sudo dnf remove chrony
 sudo systemctl enable systemd-timesyncd
