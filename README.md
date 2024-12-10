@@ -432,7 +432,7 @@ sudo dnf install seahorse -y
 
 * e - Régler HiDPI sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
 
-* f - Installer diverses extensions (2 temporaires, 10 permanentes) :
+* f - Installer diverses extensions (2 temporaires, 12 permanentes) :
   
 1 - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/) puis la supprimer : l'ordre alphabetique persistera.
 
@@ -459,6 +459,8 @@ sudo dnf install seahorse -y
 12 - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/) & supprimer la luminosité automatique dans Settings de Gnome
 
 13 - User Themes
+
+14 [Auto Power Profile](https://extensions.gnome.org/extension/6583/auto-power-profile/)
 
 et désactiver l'extension native `Background logo`
 
