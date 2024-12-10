@@ -555,7 +555,7 @@ about:cache` pour contrôle.
 
 2 - [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/)
   
-3 - [New Tab Suspender](https://addons.mozilla.org/en-US/firefox/addon/new-tab-suspender/)
+3 - [New Tab Suspender](https://addons.mozilla.org/en-US/firefox/addon/new-tab-suspender/) ou [Tab Suspender Mini}(https://addons.mozilla.org/en-US/firefox/addon/tab-suspender-mini/), ce dernier semblant plus réactif + icone d'hibernation dans chaque onglet.
 
 4 - [Raindrop](https://raindrop.io/r/extension/firefox) et supprimer `Pocket` de Firefox avec `extensions.pocket.enabled` dans `about:config` puis supprimer le raccourci dans la barre.
   
