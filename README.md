@@ -59,7 +59,7 @@ sudo systemctl mask NetworkManager-wait-online.service
 sudo systemctl mask auditd.service
 sudo systemctl mask ModemManager.service
 sudo systemctl mask avahi-daemon.service
-sudo systemctl mask plymouth-quit-wait.service
+sudo systemctl mask plymouth-qt-wait.service
 sudo systemctl mask switcheroo-control.service
 sudo systemctl mask sys-kernel-tracing.mount
 sudo systemctl mask sys-kernel-debug.mount
@@ -77,7 +77,7 @@ sudo systemctl mask pcscd.socket
 sudo systemctl mask sssd.service
 ```
   
-et désactiver le Bluetooth pour l'activer à la volée (voir script dans la rubrique UI Gnome) + cups :
+et désactiver le Bluetooth pour l'activer à la volée (voir script dans la rubrique  Gnome) + cups :
   
 ```
 sudo systemctl disable bluetooth.service
@@ -506,6 +506,8 @@ TAB: menu-complete
 * o - Mettre le thème [Adwaita-Darker](https://github.com/varunbpatil/Adwaita-darker)
 
 * p - Curseurs [Bibata Ice NO RIGHT](https://github.com/ful1e5/Bibata_Cursor/releases) à copier-coller dans le dossier /home/ogu/.local/share/icons (dossier `icons` à créer), puis ferme rla session et activer avec Tweaks.
+
+* q - Changer avec Menu Principal l'icone de Ptyxis, en la remplaçant par celle de [gnome-terminal](https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/GNOME_Terminal_icon_2019.svg/2048px-GNOME_Terminal_icon_2019.svg.png)
 
 * q - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
 
