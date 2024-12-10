@@ -285,33 +285,43 @@ tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=4196M 0 0
 ```
 Contrôler avec `cat /etc/fstab` après un reboot.  
 
-* g - Activer et régler le pare-feu :
+* g - Régler le pare-feu :
   
+Connaitre la zone par défaut du système (en général FedoraWorkstation) avec :
 ```
-sudo systemctl enable ufw
-sudo systemctl start ufw
-sudo ufw logging off
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
+sudo firewall-cmd --get-default-zone
+```
+Puis bloquer toutes les connexions entrantes par défaut
+```
+sudo firewall-cmd --permanent --zone=FedoraWorkstation --set-target=DROP
+sudo firewall-cmd --reload
 ```
   
-pour nicotine :
+pour Nicotine :
 ```
-sudo ufw allow in 2234/tcp
+sudo firewall-cmd --permanent --zone=FedoraWorkstation --add-port=2234/tcp
 ```
 
 pour Fragments :
 ```
-sudo ufw allow in 51413/tcp
-sudo ufw allow in 51413/udp
+sudo firewall-cmd --permanent --zone=FedoraWorkstation --add-port=51413/tcp
+sudo firewall-cmd --permanent --zone=FedoraWorkstation --add-port=51413/udp
 ```
 
 pour le serveur FTP du SSD de la TV Android :
 ```
-sudo ufw allow 2121/tcp
-sudo ufw allow 1024:1048/tcp
-sudo ufw enable
-sudo ufw status
+sudo firewall-cmd --permanent --zone=FedoraWorkstation --add-port=2121/tcp
+sudo firewall-cmd --permanent --zone=FedoraWorkstation --add-port=1024-1048/tcp
+```
+Redémarrer firewalld :
+```
+sudo firewall-cmd --reload
+```
+Enfin, vérifier les réglages :
+```
+sudo firewall-cmd --zone=FedoraWorkstation --list-all
+sudo firewall-cmd --get-active-zones
+
 ```
 
 
