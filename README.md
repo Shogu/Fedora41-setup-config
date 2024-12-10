@@ -547,6 +547,8 @@ TAB: menu-complete
 
 13 - `extensions.htmlaboutaddons.recommendations.enabled` = false pour désactiver l'affichage des "extensions recommandées" dans le menu de Firefox
 
+14 - ` sidebar.revamp` = true, puis régler la barre latérale
+
 14 - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
 about:cache` pour contrôle. 
 
