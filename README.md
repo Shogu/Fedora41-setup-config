@@ -137,54 +137,20 @@ ProcessSizeMax=0
 ```
 
 
-* f - Supprimer le `watchdog` et blacklister les pilotes inutiles `Nouveau` & `ELAN:Fingerprint` : éditer le fichier suivant :
-  
-olution pour Fedora 41 : Utiliser /etc/sysctl.d/
-
-    Créer un fichier de configuration spécifique : Créez un fichier dans le répertoire /etc/sysctl.d/ pour ajouter votre modification. Ce répertoire est destiné aux fichiers de configuration sysctl personnalisés, et les fichiers qu'il contient sont chargés automatiquement au démarrage.
-
-    Voici la procédure :
-
-        Ouvrez un terminal et créez un fichier, par exemple 99-custom.conf, dans /etc/sysctl.d/ :
-
+* f - Supprimer le `watchdog`
+```
 sudo gnome-text-editor /etc/sysctl.d/99-custom.conf
+```
 
-Ou, si vous préférez un éditeur en ligne de commande, utilisez nano :
+et saisir : `kernel.nmi_watchdog=0`, puis relancer avec : ```sudo sysctl --system```
 
-    sudo nano /etc/sysctl.d/99-custom.conf
-
-Ajouter la ligne pour désactiver le watchdog :
-
-Dans le fichier ouvert, ajoutez la ligne suivante pour désactiver le nmi_watchdog :
-
-kernel.nmi_watchdog=0
-
-Sauvegarder et fermer :
-
-    Dans gnome-text-editor, cliquez sur "Enregistrer" et fermez.
-    Si vous utilisez nano, appuyez sur CTRL+O pour sauvegarder et CTRL+X pour quitter.
-
-Appliquer les changements immédiatement : Après avoir créé ce fichier, vous pouvez appliquer les modifications sans redémarrer en exécutant :
-
-    sudo sysctl --system
-
-    Cela rechargera toutes les configurations sysctl et appliquera vos changements.
-
-    Vérification des fichiers de configuration sysctl
-
-    Vérifier que la modification a été appliquée :
-
-    Pour vérifier que votre configuration a bien été appliquée, vous pouvez utiliser la commande suivante pour vérifier l'état de nmi_watchdog :
-
+Reboot & contrôle avec :
+```
 sudo sysctl kernel.nmi_watchdog
+```
 
-Si la configuration est correctement appliquée, la sortie devrait être :
-
-kernel.nmi_watchdog = 0
-
-
-Puis créer un fichier `blacklist` ```sudo gnome-text-editor /etc/modprobe.d/blacklist.conf``` et l'éditer :
-  ```
+* g - Blacklister les pilotes inutiles `Nouveau` & `ELAN:Fingerprint` : créer un fichier `blacklist` ```sudo gnome-text-editor /etc/modprobe.d/blacklist.conf``` et l'éditer :
+```
 blacklist iTCO_vendor_support
 blacklist wdat_wdt
 blacklist intel_pmc_bxt
@@ -231,11 +197,9 @@ Puis saisir :
 mitigations=off selinux=0 cgroup_disable=rdma nmi_watchdog=0
 ```
 puis reinstaller le noyau avec la commande suivante :
-  
 ```
 sudo kernel-install add $(uname -r) /lib/modules/$(uname -r)/vmlinuz
 ```
-
 ```
 sudo dracut
 ```
@@ -276,6 +240,7 @@ tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=4196M 0 0
 ```
 Contrôler avec `cat /etc/fstab` après un reboot.  
 
+
 * g - Régler le pare-feu :
   
 Connaitre la zone par défaut du système (en général FedoraWorkstation) avec :
@@ -286,23 +251,6 @@ Puis bloquer toutes les connexions entrantes par défaut
 ```
 sudo firewall-cmd --permanent --zone=FedoraWorkstation --set-target=DROP
 sudo firewall-cmd --reload
-```
-  
-pour Nicotine :
-```
-sudo firewall-cmd --permanent --zone=FedoraWorkstation --add-port=2234/tcp
-```
-
-pour Fragments :
-```
-sudo firewall-cmd --permanent --zone=FedoraWorkstation --add-port=51413/tcp
-sudo firewall-cmd --permanent --zone=FedoraWorkstation --add-port=51413/udp
-```
-
-pour le serveur FTP du SSD de la TV Android :
-```
-sudo firewall-cmd --permanent --zone=FedoraWorkstation --add-port=2121/tcp
-sudo firewall-cmd --permanent --zone=FedoraWorkstation --add-port=1024-1048/tcp
 ```
 Redémarrer firewalld :
 ```
@@ -325,11 +273,10 @@ sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
 ```
 
   
-* i - Accélérer `DNF` : A MODIFIER POUR DNF5
+* i - Accélérer `DNF` : 
   
   ```
   echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
-
   ```
   
 * j - Passer à 1 le nombre de `ttys` au boot  :
@@ -338,6 +285,7 @@ sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
 sudo gnome-text-editor /usr/lib/systemd/logind.conf
 ```
 puis décommenter et editer `NautoVTS=1`
+
 
 * k - Vérifier que le système utilise bien les DNS du routeur Xiaomi (192.168.31.1) :
 
@@ -403,9 +351,9 @@ sudo dnf install btrfs-assistant -y
 sudo dnf install seahorse -y
 ```
 
-* h - Installer [Dropbox](https://www.dropbox.com/fr/install-linux)
+* h - Installer [Dropbox](https://www.dropbox.com/fr/install-linux) OU lui préférer MAestra, plus rapide et léger, mais sans le menu contextuel ni les emblèmes dans le dossier : à corriger avec ce [script Python](https://github.com/SamSchott/maestral/issues/334)
 
-* i - désisntaller `gnome-software` et `packagekit` pour éviter leur lancement au boot
+* i - désinstaller `gnome-software` et `packagekit` pour éviter leur lancement au boot
 
 
 
@@ -427,7 +375,7 @@ sudo dnf install seahorse -y
 
 * e - Régler HiDPI sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
 
-* f - Installer diverses extensions (2 temporaires, 12 permanentes) :
+* f - Installer diverses extensions (2 temporaires, 11 permanentes) :
   
 1 - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/) puis la supprimer : l'ordre alphabetique persistera.
 
@@ -453,9 +401,7 @@ sudo dnf install seahorse -y
 
 12 - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/) & supprimer la luminosité automatique dans Settings de Gnome
 
-13 - User Themes
-
-14 [Auto Power Profile](https://extensions.gnome.org/extension/6583/auto-power-profile/)
+13 - [Auto Power Profile](https://extensions.gnome.org/extension/6583/auto-power-profile/)
 
 et désactiver l'extension native `Background logo`
 
@@ -482,7 +428,7 @@ TAB: menu-complete
 ```
 
   
-* j - Améliorer  Celluloid :
+* j - Celluloid :
 - inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires
 - installer les deux scripts lua suivants pour la musique :
 [Visualizer](https://www.dropbox.com/scl/fi/bbwlvfhtjnu8sgr4yoai9/visualizer.lua?rlkey=gr3bmjnrlexj7onqrxzjqxafl&dl=0)
@@ -490,23 +436,19 @@ TAB: menu-complete
 - activer l'option `focus` et `toujours afficher les boutons de titre`
   
 
-* k - Modifier Jdownloader`: réglages de base, thème Dark Moon puis icones Flat, puis désactiver les éléments suivants : tooltip, help, Update Button Flashing, banner, Premium Alert, Donate, speed meter visible.
+* k - Jdownloader`: réglages de base, thème Dark Moon puis icones Flat, puis désactiver les éléments suivants : tooltip, help, Update Button Flashing, banner, Premium Alert, Donate, speed meter visible.
 
 
-* l - Télécharger le script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les vidéos vers Vidéos en supprimant le sous-dossier d'origine : en faire un raccourci avec l'éditeur de menu MenuLibre (Menu principal n'y parvient pas) et lui mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/drive-multidisk.svg`
+* l - Script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les vidéos vers Vidéos en supprimant le sous-dossier d'origine : en faire un raccourci avec l'éditeur de menu MenuLibre (Menu principal n'y parvient pas) et lui mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/drive-multidisk.svg`
 
 
-* m - Télécharger le script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à la volée : en faire un raccourci avec l'éditeur de menu e MenuLibre (Menu principal n'y parvient pas) et mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/phone.svg`.
+* m - Script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à la volée : en faire un raccourci avec l'éditeur de menu e MenuLibre (Menu principal n'y parvient pas) et mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/phone.svg`.
 
 * n - Accélérer les animations :  saisir ```GNOME_SHELL_SLOWDOWN_FACTOR=0.5``` dans le fichier ```sudo gnome-text-editor /etc/environment```
 
-* o - Mettre le thème [Adwaita-Darker](https://github.com/varunbpatil/Adwaita-darker)
+* o - Changer avec Menu Principal l'icone de Ptyxis, en la remplaçant par celle de [gnome-terminal](https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/GNOME_Terminal_icon_2019.svg/2048px-GNOME_Terminal_icon_2019.svg.png)
 
-* p - Curseurs [Bibata Ice NO RIGHT](https://github.com/ful1e5/Bibata_Cursor/releases) à copier-coller dans le dossier /home/ogu/.local/share/icons (dossier `icons` à créer), puis ferme rla session et activer avec Tweaks.
-
-* q - Changer avec Menu Principal l'icone de Ptyxis, en la remplaçant par celle de [gnome-terminal](https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/GNOME_Terminal_icon_2019.svg/2048px-GNOME_Terminal_icon_2019.svg.png)
-
-* q - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
+* p - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
 
 
 
@@ -544,7 +486,7 @@ TAB: menu-complete
 
 13 - `extensions.htmlaboutaddons.recommendations.enabled` = false pour désactiver l'affichage des "extensions recommandées" dans le menu de Firefox
 
-14 - ` sidebar.revamp` = true, puis régler la barre latérale
+14 - `sidebar.revamp` = true, puis régler la barre latérale
 
 14 - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
 about:cache` pour contrôle. 
@@ -558,7 +500,7 @@ about:cache` pour contrôle.
 
 2 - [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/)
   
-3 - [New Tab Suspender](https://addons.mozilla.org/en-US/firefox/addon/new-tab-suspender/) ou [Tab Suspender Mini}(https://addons.mozilla.org/en-US/firefox/addon/tab-suspender-mini/), ce dernier semblant plus réactif + icone d'hibernation dans chaque onglet.
+3 - [New Tab Suspender](https://addons.mozilla.org/en-US/firefox/addon/new-tab-suspender/) ou [Tab Suspender Mini}(https://addons.mozilla.org/en-US/firefox/addon/tab-suspender-mini/), ce dernier semblant plus réactif + icone d'hibernation dans chaque onglet mais possiblement cause de lags, ou bien le classique [Auto Tab Discard](https://addons.mozilla.org/fr/firefox/addon/auto-tab-discard/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured), bien plus configurable
 
 4 - [Raindrop](https://raindrop.io/r/extension/firefox) et supprimer `Pocket` de Firefox avec `extensions.pocket.enabled` dans `about:config` puis supprimer le raccourci dans la barre.
   
