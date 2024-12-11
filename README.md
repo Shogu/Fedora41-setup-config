@@ -61,7 +61,8 @@ sudo systemctl mask NetworkManager-wait-online.service
 sudo systemctl mask auditd.service
 sudo systemctl mask ModemManager.service
 sudo systemctl mask avahi-daemon.service
-sudo systemctl mask plymouth-qt-wait.service
+sudo systemctl mask avahi-daemon.socket
+sudo systemctl mask plymouth-quit-wait.service
 sudo systemctl mask switcheroo-control.service
 sudo systemctl mask sys-kernel-tracing.mount
 sudo systemctl mask sys-kernel-debug.mount
