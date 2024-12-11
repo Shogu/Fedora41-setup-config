@@ -354,7 +354,7 @@ sudo dnf install btrfs-assistant -y
 sudo dnf install seahorse -y
 ```
 
-* h - Installer [Dropbox](https://www.dropbox.com/fr/install-linux) OU lui préférer MAestra, plus rapide et léger, mais sans le menu contextuel ni les emblèmes dans le dossier : à corriger avec ce [script Python](https://github.com/SamSchott/maestral/issues/334)
+* h - Installer [Dropbox](https://www.dropbox.com/fr/install-linux)
 
 * i - désinstaller `gnome-software` et `packagekit` pour éviter leur lancement au boot
 
