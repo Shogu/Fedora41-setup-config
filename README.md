@@ -386,7 +386,7 @@ sudo dnf install seahorse -y
 
 4 - [AutoActivities](https://extensions.gnome.org/extension/5500/auto-activities/)
   
-5 - [Battery Time](https://extensions.gnome.org/extension/5425/battery-time/)
+5 - [Battery Time Percentage Compact](https://extensions.gnome.org/extension/2929/battery-time-percentage-compact/) ou [Battery Time](https://extensions.gnome.org/extension/5425/battery-time/)
     
 6 - [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
   
