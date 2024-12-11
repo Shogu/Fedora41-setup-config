@@ -321,7 +321,7 @@ sudo dnf install intel-media-driver
 sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 ```
 
-*d - Réglages de gnome-software
+* d - Réglages de gnome-software
 
   
 * e - Installer les logiciels Flatpak suivants : nota : utiliser prioritairement les flatpaks Fedora OU Flathub car les runtimes ne sont pas partagés entre les 2.
