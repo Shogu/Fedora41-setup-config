@@ -194,7 +194,7 @@ sudo gnome-text-editor /etc/kernel/cmdline
 
 Puis saisir :
 ```
-mitigations=off selinux=0 cgroup_disable=rdma nmi_watchdog=0
+mitigations=off selinux=0 cgroup_disable=rdma nmi_watchdog=0 loglevel=1
 ```
 puis reinstaller le noyau avec la commande suivante :
 ```
