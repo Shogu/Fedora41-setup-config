@@ -18,6 +18,8 @@ l'iso  d'installation (en pressant Espace au boot) juste avant QUIET
 inst.sdboot
 ```
 
+* e - Choisir le système de fichiers EXT4, plus rapide que BTRFS, en attendant une véritable prise en charge graphique des snapshots sur Fedora
+
 
 
 
