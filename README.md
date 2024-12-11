@@ -352,7 +352,7 @@ sudo dnf install btrfs-assistant -y
 sudo dnf install seahorse -y
 ```
 
-* h - Installer [Dropbox](https://www.dropbox.com/fr/install-linux)
+* h - Installer [Dropbox](https://www.dropbox.com/install-linux)
 
 * i - désinstaller `gnome-software` et `packagekit` pour éviter leur lancement au boot
 
