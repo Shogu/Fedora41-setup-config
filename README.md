@@ -129,8 +129,6 @@ timedatectl status
 systemctl status systemd-timesyncd
 ```
 
-
-  
 * f - Supprimer les `coredump` en éditant systemd :
   
 ``` 
@@ -201,7 +199,8 @@ blacklist nouveau
 blacklist ELAN:Fingerprint
 ```
 
-
+g - Supprimer l'autostart de gnome-software :
+https://www.reddit.com/r/gnome/comments/gn8rs4/how_to_disable_gnome_software_autostart/?rdt=49308
   
 
 
