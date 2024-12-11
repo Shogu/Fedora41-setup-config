@@ -68,15 +68,12 @@ sudo systemctl mask sys-kernel-tracing.mount
 sudo systemctl mask sys-kernel-debug.mount
 sudo systemctl mask httpd.service
 sudo systemctl mask mdmonitor.service
-sudo systemctl mask mdmonitor.service
 sudo systemctl mask raid-check.timer
 sudo systemctl mask sssd-kcm.service
 sudo systemctl mask pcscd
-sudo systemctl mask raid-check.timer
-sudo systemctl mask fwupd
-sudo systemctl mask avahi-daemon.socket
-sudo systemctl mask sssd-kcm.socket
 sudo systemctl mask pcscd.socket
+sudo systemctl mask fwupd
+sudo systemctl mask sssd-kcm.socket
 sudo systemctl mask sssd.service
 ```
   
@@ -111,7 +108,7 @@ sudo systemctl restart systemd-journald
 ```
 sudo dnf remove chrony
 sudo systemctl enable systemd-timesyncd
-sudo gnome-text-editor /usr/lib/systemd/timesyncd/conf
+sudo gnome-text-editor /usr/lib/systemd/timesyncd.conf
 ```
 et saisir :
 ```
