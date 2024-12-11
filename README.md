@@ -458,7 +458,7 @@ TAB: menu-complete
 
 * a - Réglages internes de Firefox (penser à activer CTRL-TAB pour faire défiler dans l'ordre d'utilisation)
 
-* b - Changer le thème pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/)
+* b - Changer le thème pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/) ou [Gnome Dark ](https://addons.mozilla.org/fr/firefox/addon/adwaita-gnome-dark/?utm_content=addons-manager-reviews-link&utm_medium=firefox-browser&utm_source=firefox-browser)
 
 * c - Dans about:config :
 1 - `nglayout.initialpaint.delay` = 1
