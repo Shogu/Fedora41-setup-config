@@ -335,7 +335,6 @@ flatpak install flathub org.onlyoffice.desktopeditors -y
 flatpak install flathub de.haeckerfelix.Fragments -y
 flatpak install flathub org.gnome.Papers -y
 flatpak install flathub page.codeberg.libre_menu_editor.LibreMenuEditor -y
-flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub io.github.celluloid_player.Celluloid -y
 flatpak install flathub org.gnome.Epiphany -y
 flatpak install flathub org.nicotine_plus.Nicotine -y
