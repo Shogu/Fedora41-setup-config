@@ -11,9 +11,7 @@ Mémo pour le setup complet de Fedora 41
 
 * c - Graver l'iso `Fedora-Everything-netinst`
 
-* d - Utiliser `systemd-boot` plutot que Grub : passer l'argument suivant dans le kernel de 
-l'iso  d'installation (en pressant Espace au boot) juste avant QUIET
-  
+* d - Utiliser `systemd-boot` plutot que Grub : passer l'argument suivant dans le kernel de l'iso  d'installation (en pressant Espace au boot) juste avant QUIET
 ```
 inst.sdboot
 ```
