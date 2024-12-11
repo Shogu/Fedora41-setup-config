@@ -18,9 +18,6 @@ l'iso  d'installation (en pressant Espace au boot) juste avant QUIET
 inst.sdboot
 ```
 
-* e - Choisir le système de fichiers EXT4, plus rapide que BTRFS, en attendant une véritable prise en charge graphique des snapshots sur Fedora
-
-
 
 
 ## **2 - Allégement du système**
@@ -139,8 +136,6 @@ Storage=none
 ProcessSizeMax=0
 ```
 
-* e - Supprimer le lancement au boot de gnome-software : dans dconf-editor, désactiver les deux options `update` dans org/gnome/software ou bien supprimer carrément Software?
-
 
 * f - Supprimer le `watchdog` et blacklister les pilotes inutiles `Nouveau` & `ELAN:Fingerprint` : éditer le fichier suivant :
   
@@ -197,9 +192,6 @@ blacklist nouveau
 blacklist ELAN:Fingerprint
 ```
 
-g - Supprimer l'autostart de gnome-software :
-https://www.reddit.com/r/gnome/comments/gn8rs4/how_to_disable_gnome_software_autostart/?rdt=49308
-  
 
 
 ## **3 - Optimisation du système**
@@ -377,6 +369,8 @@ sudo dnf install intel-media-driver
 sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 ```
 
+*d - Réglages de gnome-software
+
   
 * e - Installer les logiciels Flatpak suivants : nota : utiliser prioritairement les flatpaks Fedora OU Flathub car les runtimes ne sont pas partagés entre les 2.
 
@@ -410,6 +404,8 @@ sudo dnf install seahorse -y
 ```
 
 * h - Installer [Dropbox](https://www.dropbox.com/fr/install-linux)
+
+* i - désisntaller `gnome-software` et `packagekit` pour éviter leur lancement au boot
 
 
 
