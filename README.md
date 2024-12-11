@@ -255,7 +255,6 @@ sudo firewall-cmd --get-default-zone
 Puis bloquer toutes les connexions entrantes par défaut
 ```
 sudo firewall-cmd --permanent --zone=FedoraWorkstation --set-target=DROP
-sudo firewall-cmd --reload
 ```
 Redémarrer firewalld :
 ```
