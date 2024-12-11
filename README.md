@@ -222,8 +222,13 @@ sudo gnome-text-editor /etc/fstab
 ```
 puis saisir les flags suivants :
 
+Pour les volumes BTRFS :
 ```
 noatime,commit=120,discard=async,space_cache=v2
+```
+Pour les volumes EXT4 :
+```
+noatime
 ```
 Contrôler avec `cat /etc/fstab` après un reboot.
 
