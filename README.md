@@ -201,7 +201,7 @@ puis reinstaller le noyau avec la commande suivante :
 sudo kernel-install add $(uname -r) /lib/modules/$(uname -r)/vmlinuz
 ```
 ```
-sudo dracut
+sudo dracut --force
 ```
   
 Au reboot, contrôler le fichier de boot de `systemd-boot` avec la commande :
