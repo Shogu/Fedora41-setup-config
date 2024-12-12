@@ -439,7 +439,10 @@ inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires,
 
 * o - Changer avec Menu Principal l'icone de Ptyxis, en la remplaçant par celle de [gnome-terminal](https://upload.wikimedia.org/wikipedia/commons/d/da/GNOME_Terminal_icon_2019.svg)
 
+* p - `Scripts` Nautilus : Dropbox.py, Hide.py et Unhide.py à télécharger puis à coller dans le fichier /home/ogu/.local/share/nautilus/scripts/. Penser à les rendre exécutables!
+
 * p - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
+
 
 
 
