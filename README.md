@@ -387,7 +387,7 @@ sudo dnf remove gcc python3-devel python3-pip
 
 * e - Régler HiDPI sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
 
-* f - Installer diverses extensions (2 temporaires, 11 permanentes) :
+* f - Installer diverses extensions (2 temporaires, 12 permanentes) :
   
 1 - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/) puis la supprimer : l'ordre alphabetique persistera.
 
@@ -414,6 +414,8 @@ sudo dnf remove gcc python3-devel python3-pip
 12 - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/) & supprimer la luminosité automatique dans Settings de Gnome
 
 13 - [Auto Power Profile](https://extensions.gnome.org/extension/6583/auto-power-profile/)
+
+14 - [Remove World Clock](https://extensions.gnome.org/extension/6973/remove-world-clocks/)
 
 et désactiver l'extension native `Background logo`
 
