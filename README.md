@@ -437,7 +437,7 @@ inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires,
 
 * n - Accélérer les animations :  saisir ```GNOME_SHELL_SLOWDOWN_FACTOR=0.5``` dans le fichier ```sudo gnome-text-editor /etc/environment```
 
-* o - Changer avec Menu Principal l'icone de Ptyxis, en la remplaçant par celle de [gnome-terminal](https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/GNOME_Terminal_icon_2019.svg/2048px-GNOME_Terminal_icon_2019.svg.png)
+* o - Changer avec Menu Principal l'icone de Ptyxis, en la remplaçant par celle de [gnome-terminal](https://upload.wikimedia.org/wikipedia/commons/d/da/GNOME_Terminal_icon_2019.svg)
 
 * p - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
 
