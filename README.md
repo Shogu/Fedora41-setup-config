@@ -24,7 +24,6 @@ inst.sdboot
     
 
 * b - Supprimer les logiciels suivants avec le terminal :
-  
 ```
 sudo dnf remove speech-dispatcher
 sudo dnf remove gnome-remote-desktop
@@ -50,7 +49,6 @@ sudo dnf remove gnome-boxes
 
     
 * c - Supprimer et masquer les services inutiles :
-  
 ```
 sudo systemctl mask NetworkManager-wait-online.service
 sudo systemctl mask auditd.service
@@ -73,7 +71,6 @@ sudo systemctl mask sssd.service
 ```
   
 et désactiver le Bluetooth pour l'activer à la volée (voir script dans la rubrique  Gnome) + cups :
-  
 ```
 sudo systemctl disable bluetooth.service
 sudo systemctl disable cups
@@ -122,8 +119,7 @@ timedatectl status
 systemctl status systemd-timesyncd
 ```
 
-* f - Supprimer les `coredump` en éditant systemd :
-  
+* f - Supprimer les `coredump` en éditant systemd : 
 ``` 
 sudo gnome-text-editor /usr/lib/systemd/coredump.conf
 ```
@@ -162,7 +158,6 @@ blacklist ELAN:Fingerprint
 
 
 * a - Désactiver `SElinux` :
-  
 ```
 sudo gnome-text-editor /etc/selinux/config
 ```
@@ -171,21 +166,18 @@ et saisir ```SELINUX=disabled```
 Vérifier la désactivation après reboot avec la commande ```sestatus```
 
 Enfin supprimer les labels SElinux avec :
- 
 ```
 sudo find / -print0 | xargs -r0 setfattr -x security.selinux 2>/dev/null
 ```
   
 
 * b - Passer `xwayland` en autoclose : sur dconf-editor, modifier la clé suivante.
-  
 ```
 org.gnome.mutter experimental-features
 ```
 
 
 * c - Optimiser le kernel :
-  
 ```
 sudo gnome-text-editor /etc/kernel/cmdline
 ```
@@ -208,13 +200,11 @@ cat /proc/cmdline
 ```
 
 * d - Réduire le temps d'affichage du menu systemd-boot à 0 seconde ou une seconde, au choix:
-
 ```
 sudo bootctl set-timeout 0
 ```
 
 * e - Editer le mount des partitions BTRFS `/` et `/home` avec la commande :
-
 ```
 sudo gnome-text-editor /etc/fstab
 ```
@@ -232,7 +222,6 @@ Contrôler avec `cat /etc/fstab` après un reboot.
 
    
 * f - Mettre les fichiers temporaires en RAM :
-  
 ```
 sudo gnome-text-editor /etc/fstab
 ```
@@ -245,7 +234,6 @@ Contrôler avec `cat /etc/fstab` après un reboot.
 
 
 * g - Régler le pare-feu :
-  
 Connaitre la zone par défaut du système (en général FedoraWorkstation) avec :
 ```
 sudo firewall-cmd --get-default-zone
@@ -267,7 +255,6 @@ sudo firewall-cmd --get-active-zones
 
 
 * h - Modifier le `swappiness` :
-  
 ```
 echo vm.swappiness=5 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 echo vm.vfs_cache_pressure=50 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
@@ -276,13 +263,11 @@ sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
 
   
 * i - Accélérer `DNF` : 
+```
+echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
+```
   
-  ```
-  echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
-  ```
-  
-* j - Passer à 1 le nombre de `ttys` au boot  :
-  
+* j - Passer à 1 le nombre de `ttys` au boot  :  
 ```
 sudo gnome-text-editor /usr/lib/systemd/logind.conf
 ```
@@ -290,7 +275,6 @@ puis décommenter et editer `NautoVTS=1`
 
 
 * k - Vérifier que le système utilise bien les DNS du routeur Xiaomi (192.168.31.1) :
-
 ```
 nmcli dev show |grep DNS
 ```
@@ -300,7 +284,6 @@ nmcli dev show |grep DNS
 ## **4 - Remplacement et installation de logiciels et codecs**
 
 * a - Ajouter les sources `RPMFusion` :
-  
 RPMFusion Free
 ```
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E%fedora).noarch.rpm 
@@ -311,19 +294,17 @@ RMPFusion Non free
 sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 ```
     
-* c - Ajouter les codecs `FFMPEG`, multimedia, `AV1`, & le `pilote Intel` d'accélération matérielle :
-
+* b - Ajouter les codecs `FFMPEG`, multimedia, `AV1`, & le `pilote Intel` d'accélération matérielle :
 ```
 sudo dnf swap ffmpeg-free ffmpeg --allowerasing
 sudo dnf install intel-media-driver
 sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 ```
 
-* d - Réglages de gnome-software
+* c - Réglages de gnome-software
 
   
-* e - Installer les logiciels Flatpak suivants : nota : utiliser prioritairement les flatpaks Fedora OU Flathub car les runtimes ne sont pas partagés entre les 2.
-
+* d - Installer les logiciels Flatpak suivants : nota : utiliser prioritairement les flatpaks Fedora OU Flathub car les runtimes ne sont pas partagés entre les 2.
 ```
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub io.github.giantpinkrobots.flatsweep -y
@@ -339,8 +320,7 @@ flatpak install flathub org.nicotine_plus.Nicotine -y
 ```
 
     
-* f - Installer les logiciels suivants avec dnf :
-
+* e - Installer les logiciels suivants avec dnf :
 ```
 sudo dnf install dconf-editor -y
 sudo dnf install gnome-tweaks -y
@@ -352,7 +332,7 @@ sudo dnf install btrfs-assistant -y
 sudo dnf install seahorse -y
 ```
 
-* h - Installer `Dropbox` avec Maestral :
+* f - Installer `Dropbox` avec Maestral :
 ```
 sudo dnf install gcc
 sudo dnf install python3-devel
@@ -365,7 +345,7 @@ maestral gui
 sudo dnf remove gcc python3-devel python3-pip
 ```
 
-* i - désinstaller `gnome-software` et `packagekit` pour éviter leur lancement au boot
+* g - désinstaller `gnome-software` et `packagekit` pour éviter leur lancement au boot
 
 
 
@@ -443,14 +423,11 @@ TAB: menu-complete
 
   
 * j - Celluloid :
-- inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires
-- installer les deux scripts lua suivants pour la musique :
+- inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires, activer l'option `focus` et `toujours afficher les boutons de titre`, enfin installer les deux scripts lua suivants pour la musique :
 [Visualizer](https://www.dropbox.com/scl/fi/bbwlvfhtjnu8sgr4yoai9/visualizer.lua?rlkey=gr3bmjnrlexj7onqrxzjqxafl&dl=0)
 [Delete File avec traduction française](https://www.dropbox.com/scl/fi/c2cacmw2a815husriuvc1/delete_file.lua?rlkey=6b9d352xtvybu685ujx5mpv7v&dl=0)
-- activer l'option `focus` et `toujours afficher les boutons de titre`
-  
 
-* k - Jdownloader`: réglages de base, thème Dark Moon puis icones Flat, puis désactiver les éléments suivants : tooltip, help, Update Button Flashing, banner, Premium Alert, Donate, speed meter visible.
+* k - `Jdownloader`: réglages de base, thème Dark Moon puis icones Flat, puis désactiver les éléments suivants : tooltip, help, Update Button Flashing, banner, Premium Alert, Donate, speed meter visible.
 
 
 * l - Script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les vidéos vers Vidéos en supprimant le sous-dossier d'origine : en faire un raccourci avec l'éditeur de menu MenuLibre (Menu principal n'y parvient pas) et lui mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/drive-multidisk.svg`
@@ -506,10 +483,7 @@ TAB: menu-complete
 about:cache` pour contrôle. 
 
 
-
-  
-* c - Extensions
-  
+* d - Extensions
 1 - [Enhancer for Youtube](https://chromewebstore.google.com/detail/enhancer-for-youtube/ponfpcnoihfmfllpaingbgckeeldkhle?hl=fr) qui intègre leurs fonctions. Le configurer d'un coup en rentrant le code du fichier `youtube_enhancer_conf`
 
 2 - [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/)
@@ -520,13 +494,13 @@ about:cache` pour contrôle.
   
 5 - [Clear Browsing Data](https://addons.mozilla.org/fr/firefox/addon/clear-browsing-data/)
   
-6 - [Undo Close Tab Button](https://addons.mozilla.org/firefox/addon/undoclosetabbutton) et mettre ALT-Z comme raccourci à partir du menu général de sextensions (roue dentée)
+6 - [Undo Close Tab Button](https://addons.mozilla.org/firefox/addon/undoclosetabbutton) et mettre ALT-Z comme raccourci à partir du menu général des extensions (roue dentée)
 
 7 - [LocalCDN](https://addons.mozilla.org/fr/firefox/addon/localcdn-fork-of-decentraleyes/)
 
 8 - [Side View](https://addons.mozilla.org/fr/firefox/addon/side-view/]
 
-* l - Activer ``openh264`` dans les plugins firefox.
+* e - Activer ``openh264`` dans les plugins firefox.
 
 
 
@@ -571,14 +545,13 @@ Regarder script de F39
 
 
 Boot time : avant optimisation :
-Startup finished in 2.213s (firmware) + 500ms (loader) + 1.806s (kernel) + 3.901s (initrd) + 28.363s (userspace) = 36.786s
+Startup finished in 5.8s (firmware) + 508ms (loader) + 1.896s (kernel) + 4s (initrd) + 11.5s (userspace) = 23.7s
 
 
-Boot time après désactivation des services inutiles :
-Startup finished in 2.314s (firmware) + 505ms (loader) + 1.865s (kernel) + 4.035s (initrd) + 3.633s (userspace) = 12.354s 
+Boot time après optimisation :
+Startup finished in 2.324s (firmware) + 509ms (loader) + 1.986s (kernel) + 4.020s (initrd) + 3.234s (userspace) = 12.075s 
 
-Boot time après blacklist, selinux-disabled, mitigations=off, fstab etc...
-Startup finished in 2.306s (firmware) + 503ms (loader) + 1.771s (kernel) + 3.958s (initrd) + 3.336s (userspace) = 11.876s 
+
 
 
 
