@@ -352,7 +352,18 @@ sudo dnf install btrfs-assistant -y
 sudo dnf install seahorse -y
 ```
 
-* h - Installer [Dropbox](https://www.dropbox.com/install-linux)
+* h - Installer `Dropbox` avec Maestral :
+```
+sudo dnf install gcc
+sudo dnf install python3-devel
+sudo dnf install python3-pip  
+python3 -m venv maestral-venv
+mv maestral-venv .maestral-venv
+source .maestral-venv/bin/activate
+python3 -m pip install --upgrade 'maestral[gui]' ou python3 -m pip install --user maestral[gui]
+maestral gui
+sudo dnf remove gcc python3-devel python3-pip
+```
 
 * i - désinstaller `gnome-software` et `packagekit` pour éviter leur lancement au boot
 
