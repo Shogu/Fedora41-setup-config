@@ -451,6 +451,7 @@ inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires,
 * b - Changer le thème pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/) ou [Gnome Dark ](https://addons.mozilla.org/fr/firefox/addon/adwaita-gnome-dark/?utm_content=addons-manager-reviews-link&utm_medium=firefox-browser&utm_source=firefox-browser)
 
 * c - Dans about:config :
+  
 1 - `nglayout.initialpaint.delay` = 1
   
 2 - `browser.sessionstore.interval` à `600000` pour réduire l'intervalle de sauvegarde des sessions
