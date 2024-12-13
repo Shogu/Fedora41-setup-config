@@ -1,4 +1,4 @@
-# Fedora41_setup
+# Fedora 41 setup & config
 Mémo pour le setup complet de Fedora 41
 
    
