@@ -467,7 +467,7 @@ inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires,
 
 * c - Dans about:config :
   
-1 - `nglayout.initialpaint.delay` = 1
+1 - `ui.key.menuAccessKey` = 0 pour désactiver la touche Alt qui ouvre les menus
   
 2 - `browser.sessionstore.interval` à `600000` pour réduire l'intervalle de sauvegarde des sessions
 
