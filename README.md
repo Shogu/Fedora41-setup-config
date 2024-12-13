@@ -451,7 +451,9 @@ inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires,
 
 * p - `Scripts` Nautilus : Dropbox.py, Hide.py et Unhide.py à télécharger puis à coller dans le fichier /home/ogu/.local/share/nautilus/scripts/. Penser à les rendre exécutables!
 
-* p - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
+* `LibreOffice| : régler l'UI et les paramètres, désactiver Java, rajouter ```-nologo``` au raccouric avec l'éditeur de menu pour surpprimer le splash
+screen.
+* r - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
 
 
 
