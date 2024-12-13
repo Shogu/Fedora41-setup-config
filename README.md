@@ -501,7 +501,7 @@ about:cache` pour contrôle.
 
 * d - Extensions
   
-1 - [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/)
+1 - [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/) : réglages à faire + import des deux listes sauvegardées
   
 2 - [New Tab Suspender](https://addons.mozilla.org/en-US/firefox/addon/new-tab-suspender/) ou [Tab Suspender Mini}(https://addons.mozilla.org/en-US/firefox/addon/tab-suspender-mini/), ce dernier semblant plus réactif + icone d'hibernation dans chaque onglet mais possiblement cause de lags, ou bien le classique [Auto Tab Discard](https://addons.mozilla.org/fr/firefox/addon/auto-tab-discard/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured), bien plus configurable
 
