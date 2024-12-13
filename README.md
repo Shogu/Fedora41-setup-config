@@ -333,6 +333,7 @@ flatpak install flathub org.nicotine_plus.Nicotine -y
 * e - Installer les logiciels suivants avec dnf :
 ```
 sudo dnf install dconf-editor -y
+sudo dnf install evince-thumbnailer -y
 sudo dnf install gnome-tweaks -y
 sudo dnf install powertop -y
 sudo dnf install zstd -y
