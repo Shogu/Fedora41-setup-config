@@ -28,6 +28,12 @@ inst.sdboot
 sudo dnf remove libertas-firmware
 sudo dnf remove cirrus-audio-firmware
 sudo dnf remove amd-gpu-firmware
+sudo dnf remove amd-ucode-firmware
+sudo dnf remove atheros-firmware
+sudo dnf remove brcmfmac-firmware
+sudo dnf remove tiwilink-firmware
+sudo dnf remove nxpwireless-firmware
+sudo dnf remove mt7xxx-firmware
 sudo dnf remove nvidia-gpu-firmware 
 sudo dnf remove speech-dispatcher
 sudo dnf remove gnome-remote-desktop
