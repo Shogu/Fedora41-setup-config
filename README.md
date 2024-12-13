@@ -307,7 +307,7 @@ sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=Package
 * d - Installer les logiciels Flatpak suivants : nota : utiliser prioritairement les flatpaks Fedora OU Flathub car les runtimes ne sont pas partagés entre les 2.
 ```
 flatpak install flathub com.mattjakeman.ExtensionManager -y
-NE PAS INSTALLER FLATSWEEP : il mebarque la version 46 bde Gnome, soit 1 Go de contenu...flatpak install flathub io.github.giantpinkrobots.flatsweep -y
+NE PAS INSTALLER FLATSWEEP : il utilise la version obsolète 46 de Gnome, soit 1 Go de contenu...flatpak install flathub io.github.giantpinkrobots.flatsweep -y
 flatpak install flathub net.nokyan.Resources -y
 flatpak install flathub org.jdownloader.JDownloader -y
 flatpak install flathub org.onlyoffice.desktopeditors -y
@@ -528,6 +528,7 @@ sudo fwupdmgr get-updates
 sudo fwupdmgr update
 ???
 
+flatpak uninstall --unused
 
 Regarder script de F39
 
