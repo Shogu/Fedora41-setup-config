@@ -513,7 +513,7 @@ about:cache` pour contrôle.
 
 6 - [LocalCDN](https://addons.mozilla.org/fr/firefox/addon/localcdn-fork-of-decentraleyes/), puis faire le [test](https://decentraleyes.org/test/).
 
-7 - [Side View](https://addons.mozilla.org/fr/firefox/addon/side-view/]
+7 - [Side View](https://addons.mozilla.org/fr/firefox/addon/side-view/)
 
 * e - Activer ``openh264`` dans les plugins firefox.
 
