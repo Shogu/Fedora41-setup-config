@@ -480,7 +480,7 @@ inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires,
 
 6 - `extensions.screenshots.disabled` = true pour désactiver le screenshot
 
-7 - `privacy.userContext.enabled` pour désactiver les containers = false
+7 - `privacy.userContext.enabled` = false pour désactiver les containers
 
 8 - `browser.tabs.crashReporting.sendReport` = false
 
@@ -495,6 +495,8 @@ inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires,
 13 - `extensions.htmlaboutaddons.recommendations.enabled` = false pour désactiver l'affichage des "extensions recommandées" dans le menu de Firefox
 
 14 - `sidebar.revamp` = true, puis régler la barre latérale
+
+15 - `apz.overscroll.enabled` = false pour supprimer le rebonb lors d uscroll jusqu'en fin de page
 
 14 - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
 about:cache` pour contrôle. 
