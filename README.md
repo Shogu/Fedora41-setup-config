@@ -356,7 +356,14 @@ maestral gui
 sudo dnf remove gcc python3-devel python3-pip
 ```
 
-* g - désinstaller `gnome-software` et `packagekit` pour éviter leur lancement au boot OU désactiver l'autostart : copier le fichier `/etc/xdg/autostart/gnome-software-service.desktop` vers `~/.config/autostart/`, puis désactiver l'autostart et la recherche de logiciels à partir de l'overview (qui réactive automatiquement gnome-software) en rajoutant le code suivant en fin de fichier :
+* g - désinstaller `gnome-software` et `packagekit` (ainsi que le cache) pour éviter leur lancement au boot :
+  
+```
+sudo dnf remove PackageKit-gstreamer-plugin PackageKit PackageKit-command-not-found gnome-software
+sudo rm -rf /var/cache/PackageKit
+```
+
+OU désactiver l'autostart : copier le fichier `/etc/xdg/autostart/gnome-software-service.desktop` vers `~/.config/autostart/`, puis désactiver l'autostart et la recherche de logiciels à partir de l'overview (qui réactive automatiquement gnome-software) en rajoutant le code suivant en fin de fichier :
 ```
 X-GNOME-Autostart-enabled=false
 ```
@@ -364,8 +371,6 @@ Puis saisir dans un terminal :
 ```
 dconf write /org/gnome/desktop/search-providers/disabled "['org.gnome.Software.desktop']"
 ```
-
-
 
 
 
