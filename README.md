@@ -338,7 +338,7 @@ sudo dnf install btrfs-assistant -y
 sudo dnf install seahorse -y
 ```
 
-* **f** - Installer `Dropbox` avec Maestral :
+* **29** - Installer `Dropbox` avec Maestral :
 ```
 sudo dnf install gcc
 sudo dnf install python3-devel
@@ -351,7 +351,7 @@ maestral gui
 sudo dnf remove gcc python3-devel python3-pip
 ```
 
-* **29** - Désinstaller `gnome-software` et `packagekit` (ainsi que le cache) pour éviter leur lancement au boot :
+* **30** - Désinstaller `gnome-software` et `packagekit` (ainsi que le cache) pour éviter leur lancement au boot :
   
 ```
 sudo dnf remove PackageKit-gstreamer-plugin PackageKit PackageKit-command-not-found gnome-software
@@ -371,21 +371,21 @@ dconf write /org/gnome/desktop/search-providers/disabled "['org.gnome.Software.d
 
 ## 🐾 **E - Réglages de l'UI Gnome Shell** 
 
-* **30** - Régler le système avec Paramètres (penser à désactiver les animations dans Accessibilité??) puis Ajustements (Changer les polices d'écriture pour `Noto Sans` en 11 ?)
+* **31** - Régler le système avec Paramètres (penser à désactiver les animations dans Accessibilité??) puis Ajustements (Changer les polices d'écriture pour `Noto Sans` en 11 ?)
 
-* **b** - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
+* **32** - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
   
 ```
 192.168.31.68:2121
 ```
 
-* **31** - Modifier le mot de passe au démarrage avec le logiciel Mots de Passe, puis laisser les champs vides. Penser à reconnecter le compte Google dans Gnome!
+* **33** - Modifier le mot de passe au démarrage avec le logiciel Mots de Passe, puis laisser les champs vides. Penser à reconnecter le compte Google dans Gnome!
 
-* **32** - Installer le [wallpaper Fedora 34](https://fedoraproject.org/w/uploads/d/de/F34_default_wallpaper_night.jpg)
+* **34** - Installer le [wallpaper Fedora 34](https://fedoraproject.org/w/uploads/d/de/F34_default_wallpaper_night.jpg)
 
-* **33** - Régler HiDPI sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
+* **35** - Régler HiDPI sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
 
-* **34** - Installer diverses extensions :
+* **36** - Installer diverses extensions :
   
 a - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/)
 
@@ -417,11 +417,11 @@ n - [Remove World Clock](https://extensions.gnome.org/extension/6973/remove-worl
 
 et désactiver l'extension native `Background logo`
 
-* **35** - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
+* **37** - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
 
-* **36** - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
+* **38** - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
 
-* **37** - Régler Gnome-text-editor et Ptyxis; améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
+* **39** - Régler Gnome-text-editor et Ptyxis; améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
 ```
 # Ignore la casse lors de la complétion
 set completion-ignore-case on
@@ -439,36 +439,36 @@ set visible-stats on
 TAB: menu-complete
 ```
   
-* **38** - Celluloid :
+* **40** - Celluloid :
 inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires, activer l'option `focus` et `toujours afficher les boutons de titre`, enfin installer les deux scripts lua suivants pour la musique :
 [Visualizer](https://www.dropbox.com/scl/fi/bbwlvfhtjnu8sgr4yoai9/visualizer.lua?rlkey=gr3bmjnrlexj7onqrxzjqxafl&dl=0)
 [Delete File avec traduction française](https://www.dropbox.com/scl/fi/c2cacmw2a815husriuvc1/delete_file.lua?rlkey=6b9d352xtvybu685ujx5mpv7v&dl=0)
 
-* **39** - `Jdownloader`: réglages de base, thème Black Moon puis icones Flat; font Noto Sans Regular, désactivatioin du dpi et font sur 175; puis désactiver les éléments suivants : tooltip, help, Update Button Flashing, banner, Premium Alert, Donate, speed meter visible.
+* **41** - `Jdownloader`: réglages de base, thème Black Moon puis icones Flat; font Noto Sans Regular, désactivatioin du dpi et font sur 175; puis désactiver les éléments suivants : tooltip, help, Update Button Flashing, banner, Premium Alert, Donate, speed meter visible.
 
-* **40** - Script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les vidéos vers Vidéos en supprimant le sous-dossier d'origine : en faire un raccourci avec l'éditeur de menu, passer le chemin `sh /home/ogu/.transfert_videos.sh` et lui mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/drive-multidisk.svg`
+* **42** - Script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les vidéos vers Vidéos en supprimant le sous-dossier d'origine : en faire un raccourci avec l'éditeur de menu, passer le chemin `sh /home/ogu/.transfert_videos.sh` et lui mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/drive-multidisk.svg`
 
-* **41** - Script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à la volée : en faire un raccourci avec l'éditeur de menu, raccourci d'exécution `bash /home/ogu/.bluetooth_toggle.sh` & mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/phone.svg`.
+* **43** - Script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à la volée : en faire un raccourci avec l'éditeur de menu, raccourci d'exécution `bash /home/ogu/.bluetooth_toggle.sh` & mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/phone.svg`.
 
-* **42** - Accélérer les animations :  saisir ```GNOME_SHELL_SLOWDOWN_FACTOR=0.5``` dans le fichier ```sudo gnome-text-editor /etc/environment```
+* **44** - Accélérer les animations :  saisir ```GNOME_SHELL_SLOWDOWN_FACTOR=0.5``` dans le fichier ```sudo gnome-text-editor /etc/environment```
 
-* **43** - Changer avec Menu Principal l'icone de Ptyxis, en la remplaçant par celle de [gnome-terminal](https://upload.wikimedia.org/wikipedia/commons/d/da/GNOME_Terminal_icon_2019.svg)
+* **45** - Changer avec Menu Principal l'icone de Ptyxis, en la remplaçant par celle de [gnome-terminal](https://upload.wikimedia.org/wikipedia/commons/d/da/GNOME_Terminal_icon_2019.svg)
 
-* **44** - `Scripts` Nautilus : Dropbox.py, Hide.py et Unhide.py à télécharger puis à coller dans le fichier /home/ogu/.local/share/nautilus/scripts/. Penser à les rendre exécutables!
+* **46** - `Scripts` Nautilus : Dropbox.py, Hide.py et Unhide.py à télécharger puis à coller dans le fichier /home/ogu/.local/share/nautilus/scripts/. Penser à les rendre exécutables!
 
-* **45** - `LibreOffice` : régler l'UI et les paramètres, désactiver Java, rajouter `-nologo` au raccourci avec l'éditeur de menu pour supprimer le splash screen, passer à `600000000` la valeur de `Graphic Manager` + `UseOpenGL` = true + `UseSkia` = true dans la Configuration Avancée + désactiver l'enregistrement des données personnelles dans les fichiers (Menu Sécurité). 
+* **47** - `LibreOffice` : régler l'UI et les paramètres, désactiver Java, rajouter `-nologo` au raccourci avec l'éditeur de menu pour supprimer le splash screen, passer à `600000000` la valeur de `Graphic Manager` + `UseOpenGL` = true + `UseSkia` = true dans la Configuration Avancée + désactiver l'enregistrement des données personnelles dans les fichiers (Menu Sécurité). 
 
-* **46** - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
+* **48** - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
 
 
  
 ## 🌐 **F - Réglages du navigateur Firefox**
 
-* **47** - Réglages internes de Firefox (penser à activer CTRL-TAB pour faire défiler dans l'ordre d'utilisation)
+* **49** - Réglages internes de Firefox (penser à activer CTRL-TAB pour faire défiler dans l'ordre d'utilisation)
 
-* **48** - Changer le thème pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/) ou [Gnome Dark ](https://addons.mozilla.org/fr/firefox/addon/adwaita-gnome-dark/?utm_content=addons-manager-reviews-link&utm_medium=firefox-browser&utm_source=firefox-browser)
+* **50** - Changer le thème pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/) ou [Gnome Dark ](https://addons.mozilla.org/fr/firefox/addon/adwaita-gnome-dark/?utm_content=addons-manager-reviews-link&utm_medium=firefox-browser&utm_source=firefox-browser)
 
-* **49** - Dans about:config :
+* **51** - Dans about:config :
   
 a - `ui.key.menuAccessKey` = 0 pour désactiver la touche Alt qui ouvre les menus
   
@@ -503,11 +503,11 @@ o - `apz.overscroll.enabled` = false pour supprimer le rebonb lors d uscroll jus
 p - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
 about:cache` pour contrôle. 
 
-* **50** - Extensions
+* **52** - Extensions
   
 a - [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/) : réglages à faire + import des deux listes sauvegardées
   
-b - [New Tab Suspender](https://addons.mozilla.org/en-US/firefox/addon/new-tab-suspender/) ou [Tab Suspender Mini}(https://addons.mozilla.org/en-US/firefox/addon/tab-suspender-mini/), ce dernier semblant plus réactif + icone d'hibernation dans chaque onglet mais possiblement cause de lags, ou bien le classique [Auto Tab Discard](https://addons.mozilla.org/fr/firefox/addon/auto-tab-discard/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured), bien plus configurable : importer les réglages avec le fichier de backup.
+b - [New Tab Suspender](https://addons.mozilla.org/en-US/firefox/addon/new-tab-suspender/) ou [Tab Suspender Mini}(https://addons.mozilla.org/en-US/firefox/addon/tab-suspender-mini/), ce dernier semblant plus réactif + icone d'hibernation dans chaque onglet mais possiblement cause de lags, ou bien le classique [Auto Tab Discard](https://addons.mozilla.org/fr/firefox/addon/auto-tab-discard/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured), bien plus configurable : importer les réglages avec le fichier de backup et bien activer les 2 options de dégel des onglets à droite et à gauche de l'onglet courant.
 
 c - [Raindrop](https://raindrop.io/r/extension/firefox) et supprimer `Pocket` de Firefox avec `extensions.pocket.enabled` dans `about:config` puis supprimer le raccourci dans la barre.
   
@@ -519,12 +519,12 @@ f - [LocalCDN](https://addons.mozilla.org/fr/firefox/addon/localcdn-fork-of-dece
 
 g - [Side View](https://addons.mozilla.org/fr/firefox/addon/side-view/)
 
-* **51** - Activer `openh264` & `widevine` dans les plugins firefox.
+* **54** - Activer `openh264` & `widevine` dans les plugins firefox.
 
 
 
 ## 🪛 **G - Maintenance de la distribution**
-
+ en cours de rédaction
 ```
 sudo dnf autoremove
 sudo dnf -y upgrade --refresh
