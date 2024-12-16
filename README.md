@@ -1,30 +1,29 @@
-🐧 # ***Fedora 41 setup & config*** 
+# 🐧 ***Fedora 41 setup & config*** 
 
 Mémo pour le setup complet de Fedora 41 sur laptop ASUS ZENBOOK S13 FLIP OLED UP5302Z
 
    
 
-💾 ## **1 - Installation**
+## 💾 **A - Installation**
 
-* a - Désactiver `Secure Boot` dans le Bios (F2)
+* **1** - Désactiver `Secure Boot` dans le Bios (F2)
 
-* b - Désactiver la caméra et le lecteur de carte dans le bios
+* **2** - Désactiver la caméra et le lecteur de carte dans le bios
 
-* c - Graver l'iso `Fedora-Everything-netinst`
+* **3** - Graver l'iso `Fedora-Everything-netinst`
 
-* d - Utiliser `systemd-boot` plutot que Grub : passer l'argument suivant dans le kernel de l'iso  d'installation (en pressant Espace au boot) juste avant QUIET
+* **4** - Utiliser `systemd-boot` plutot que Grub : passer l'argument suivant dans le kernel de l'iso  d'installation (en pressant Espace au boot) juste avant QUIET
 ```
 inst.sdboot
 ```
 
 
 
-✨ ## **2 - Allégement du système**
+## ✨ **B - Allégement du système**
 
-* a - Supprimer les logiciels inutiles avec Gnome-software
-    
-
-* b - Supprimer les logiciels suivants avec le terminal :
+* **5** - Supprimer les logiciels inutiles avec Gnome-software
+  
+* **6** - Supprimer les logiciels suivants avec le terminal :
 ```
 sudo dnf remove libertas-firmware
 sudo dnf remove cirrus-audio-firmware
@@ -57,9 +56,8 @@ sudo dnf remove avahi-tools
 sudo dnf remove virtualbox-guest-additions
 sudo dnf remove gnome-boxes
 ```
-
     
-* c - Supprimer et masquer les services inutiles :
+* **7** - Supprimer et masquer les services inutiles :
 ```
 sudo systemctl mask NetworkManager-wait-online.service
 sudo systemctl mask auditd.service
@@ -97,8 +95,7 @@ et :
 systemctl list-unit-files --type=service --state=enabled
 ```
 
-
-* d - Alléger les journaux système et les mettre en RAM :
+* **8** - Alléger les journaux système et les mettre en RAM :
 ```
 sudo gnome-text-editor /usr/lib/systemd/journald.conf
 ```
@@ -107,7 +104,7 @@ puis remplacer le contenu du fichier par celui du fichier `journald.conf.txt` & 
 sudo systemctl restart systemd-journald
 ```
 
-* e - Remplacer chronyd par systemd-timesyncd (plus rapide au boot) ([source](https://www.dsfc.net/systeme/linux/ntp-passage-de-chrony-a-systemd-timesyncd/))
+* **9** - Remplacer chronyd par systemd-timesyncd (plus rapide au boot) ([source](https://www.dsfc.net/systeme/linux/ntp-passage-de-chrony-a-systemd-timesyncd/))
 ```
 sudo dnf remove chrony
 sudo systemctl enable systemd-timesyncd
@@ -130,7 +127,7 @@ timedatectl status
 systemctl status systemd-timesyncd
 ```
 
-* f - Supprimer les `coredump` en éditant systemd : 
+* **10** - Supprimer les `coredump` en éditant systemd : 
 ``` 
 sudo gnome-text-editor /usr/lib/systemd/coredump.conf
 ```
@@ -141,8 +138,7 @@ Storage=none
 ProcessSizeMax=0
 ```
 
-
-* f - Supprimer le `watchdog`
+* **11** - Supprimer le `watchdog`
 ```
 sudo gnome-text-editor /etc/sysctl.d/99-custom.conf
 ```
@@ -154,7 +150,7 @@ Reboot & contrôle avec :
 sudo sysctl kernel.nmi_watchdog
 ```
 
-* g - Blacklister les pilotes inutiles `Nouveau` & `ELAN:Fingerprint` : créer un fichier `blacklist` ```sudo gnome-text-editor /etc/modprobe.d/blacklist.conf``` et l'éditer :
+* **12** - Blacklister les pilotes inutiles `Nouveau` & `ELAN:Fingerprint` : créer un fichier `blacklist` ```sudo gnome-text-editor /etc/modprobe.d/blacklist.conf``` et l'éditer :
 ```
 blacklist iTCO_vendor_support
 blacklist wdat_wdt
@@ -165,10 +161,9 @@ blacklist ELAN:Fingerprint
 
 
 
-🚀 ## **3 - Optimisation du système**
+## 🚀 **C - Optimisation du système**
 
-
-* a - Désactiver `SElinux` :
+* **13** - Désactiver `SElinux` :
 ```
 sudo gnome-text-editor /etc/selinux/config
 ```
@@ -180,15 +175,13 @@ Enfin supprimer les labels SElinux avec :
 ```
 sudo find / -print0 | xargs -r0 setfattr -x security.selinux 2>/dev/null
 ```
-  
 
-* b - Passer `xwayland` en autoclose : sur dconf-editor, modifier la clé suivante.
+* **14** - Passer `xwayland` en autoclose : sur dconf-editor, modifier la clé suivante.
 ```
 org.gnome.mutter experimental-features
 ```
 
-
-* c - Optimiser le kernel :
+* **15** - Optimiser le kernel :
 ```
 sudo gnome-text-editor /etc/kernel/cmdline
 ```
@@ -210,12 +203,12 @@ Au reboot, contrôler le fichier de boot de `systemd-boot` avec la commande :
 cat /proc/cmdline
 ```
 
-* d - Réduire le temps d'affichage du menu systemd-boot à 0 seconde ou une seconde, au choix:
+* **16** - Réduire le temps d'affichage du menu systemd-boot à 0 seconde ou une seconde, au choix:
 ```
 sudo bootctl set-timeout 0
 ```
 
-* e - Editer le mount des partitions BTRFS `/` et `/home` avec la commande :
+* **17** - Editer le mount des partitions BTRFS `/` et `/home` avec la commande :
 ```
 sudo gnome-text-editor /etc/fstab
 ```
@@ -231,8 +224,7 @@ noatime
 ```
 Contrôler avec `cat /etc/fstab` après un reboot.
 
-   
-* f - Mettre les fichiers temporaires en RAM :
+* **18** - Mettre les fichiers temporaires en RAM :
 ```
 sudo gnome-text-editor /etc/fstab
 ```
@@ -243,8 +235,7 @@ tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=4196M 0 0
 ```
 Contrôler avec `cat /etc/fstab` après un reboot.  
 
-
-* g - Régler le pare-feu :
+* **19** - Régler le pare-feu :
 Connaitre la zone par défaut du système (en général FedoraWorkstation) avec :
 ```
 sudo firewall-cmd --get-default-zone
@@ -261,67 +252,62 @@ Enfin, vérifier les réglages :
 ```
 sudo firewall-cmd --zone=FedoraWorkstation --list-all
 sudo firewall-cmd --get-active-zones
-
 ```
 
-
-* h - Modifier le `swappiness` :
+* **20** - Modifier le `swappiness` :
 ```
 echo vm.swappiness=5 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 echo vm.vfs_cache_pressure=50 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
 ```
-
   
-* i - Accélérer `DNF` : 
+* **21** - Accélérer `DNF` : 
 ```
 echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
 ```
   
-* j - Passer à 1 le nombre de `ttys` au boot  :  
+* **22** - Passer à 1 le nombre de `ttys` au boot  :  
 ```
 sudo gnome-text-editor /usr/lib/systemd/logind.conf
 ```
 puis décommenter et editer `NautoVTS=1`
 
-
-* k - Vérifier que le système utilise bien les DNS du routeur Xiaomi (192.168.31.1) :
+* **23** - Vérifier que le système utilise bien les DNS du routeur Xiaomi (192.168.31.1) :
 ```
 nmcli dev show |grep DNS
 ```
 
-*Boot time : avant optimisation :
-Startup finished in 5.8s (firmware) + 508ms (loader) + 1.896s (kernel) + 4s (initrd) + 11.5s (userspace) = 23.7s
+**Boot time : avant optimisation :
+Startup finished in 5.8s (firmware) + 508ms (loader) + 1.896s (kernel) + 4s (initrd) + 11.5s (userspace) = 23.7s**
+
+**Boot time après optimisation :
+Startup finished in 2.324s (firmware) + 509ms (loader) + 1.986s (kernel) + 4.020s (initrd) + 3.234s (userspace) = 12.075s**
 
 
-Boot time après optimisation :
-Startup finished in 2.324s (firmware) + 509ms (loader) + 1.986s (kernel) + 4.020s (initrd) + 3.234s (userspace) = 12.075s *
 
+## 📦 **D - Remplacement et installation de logiciels et codecs**
 
-📦 ## **4 - Remplacement et installation de logiciels et codecs**
-
-* a - Ajouter les sources `RPMFusion` :
-RPMFusion Free
+* **24** - Ajouter les sources `RPMFusion` :
+**RPMFusion Free**
 ```
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E%fedora).noarch.rpm 
 ```
 
-RMPFusion Non free
+**RMPFusion Non free**
 ```
 sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 ```
     
-* b - Ajouter les codecs `FFMPEG`, multimedia, `AV1`, & le `pilote Intel` d'accélération matérielle :
+* **25** - Ajouter les codecs `FFMPEG`, multimedia, `AV1`, & le `pilote Intel` d'accélération matérielle :
 ```
 sudo dnf swap ffmpeg-free ffmpeg --allowerasing
 sudo dnf install intel-media-driver
 sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 ```
 
-* c - Réglages de gnome-software
+* **26** - Réglages de gnome-software
 
-  
-* d - Installer les logiciels Flatpak suivants : nota : utiliser prioritairement les flatpaks Fedora OU Flathub car les runtimes ne sont pas partagés entre les 2.
+* **27** - Installer les logiciels Flatpak suivants : nota : utiliser prioritairement les flatpaks Fedora OU Flathub car les runtimes ne sont pas partagés entre les 2.
 ```
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub io.github.flattool.Warehouse -y
@@ -337,8 +323,7 @@ flatpak install flathub org.gnome.Epiphany -y
 flatpak install flathub org.nicotine_plus.Nicotine -y
 ```
 
-    
-* e - Installer les logiciels suivants avec dnf :
+* **28** - Installer les logiciels suivants avec dnf :
 ```
 sudo dnf install dconf-editor -y
 sudo dnf install evince-thumbnailer -y
@@ -351,7 +336,7 @@ sudo dnf install btrfs-assistant -y
 sudo dnf install seahorse -y
 ```
 
-* f - Installer `Dropbox` avec Maestral :
+* **f** - Installer `Dropbox` avec Maestral :
 ```
 sudo dnf install gcc
 sudo dnf install python3-devel
@@ -364,7 +349,7 @@ maestral gui
 sudo dnf remove gcc python3-devel python3-pip
 ```
 
-* g - désinstaller `gnome-software` et `packagekit` (ainsi que le cache) pour éviter leur lancement au boot :
+* **29** - Désinstaller `gnome-software` et `packagekit` (ainsi que le cache) pour éviter leur lancement au boot :
   
 ```
 sudo dnf remove PackageKit-gstreamer-plugin PackageKit PackageKit-command-not-found gnome-software
@@ -382,59 +367,59 @@ dconf write /org/gnome/desktop/search-providers/disabled "['org.gnome.Software.d
 
 
 
-🐾 ## **5 - Réglages de l'UI Gnome Shell** 
+## 🐾 **E - Réglages de l'UI Gnome Shell** 
 
-* a - Régler le système avec Paramètres (penser à désactiver les animations dans Accessibilité??) puis Ajustements (Changer les polices d'écriture pour `Noto Sans` en 11 ?)
+* **30** - Régler le système avec Paramètres (penser à désactiver les animations dans Accessibilité??) puis Ajustements (Changer les polices d'écriture pour `Noto Sans` en 11 ?)
 
-* b - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
+* **b** - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
   
 ```
 192.168.31.68:2121
 ```
 
-* c - Modifier le mot de passe au démarrage avec le logiciel Mots de Passe, puis laisser les champs vides. Penser à reconnecter le compte Google dans Gnome!
+* **31** - Modifier le mot de passe au démarrage avec le logiciel Mots de Passe, puis laisser les champs vides. Penser à reconnecter le compte Google dans Gnome!
 
-* d - Installer le [wallpaper Fedora 34](https://fedoraproject.org/w/uploads/d/de/F34_default_wallpaper_night.jpg)
+* **32** - Installer le [wallpaper Fedora 34](https://fedoraproject.org/w/uploads/d/de/F34_default_wallpaper_night.jpg)
 
-* e - Régler HiDPI sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
+* **33** - Régler HiDPI sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
 
-* f - Installer diverses extensions :
+* **34** - Installer diverses extensions :
   
-1 - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/)
+a - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/)
 
-2 - [Privacy Quick Settings](https://extensions.gnome.org/extension/4491/privacy-settings-menu/) puis la supprimer une fois les réglages réalisés.
+b - [Privacy Quick Settings](https://extensions.gnome.org/extension/4491/privacy-settings-menu/) puis la supprimer une fois les réglages réalisés.
 
-3 - [Appindicator](https://extensions.gnome.org/extension/615/appindicator-support/)
+c - [Appindicator](https://extensions.gnome.org/extension/615/appindicator-support/)
 
-4 - [AutoActivities](https://extensions.gnome.org/extension/5500/auto-activities/)
+d - [AutoActivities](https://extensions.gnome.org/extension/5500/auto-activities/)
   
-5 - [Battery Time Percentage Compact](https://extensions.gnome.org/extension/2929/battery-time-percentage-compact/) ou [Battery Time](https://extensions.gnome.org/extension/5425/battery-time/)
+e - [Battery Time Percentage Compact](https://extensions.gnome.org/extension/2929/battery-time-percentage-compact/) ou [Battery Time](https://extensions.gnome.org/extension/5425/battery-time/)
     
-6 - [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
+f - [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
   
-7 - [Clipboard History](https://extensions.gnome.org/extension/4839/clipboard-history/)
+g - [Clipboard History](https://extensions.gnome.org/extension/4839/clipboard-history/)
   
-8 - [Frequency Boost Switch](https://extensions.gnome.org/extension/4792/frequency-boost-switch/)
+h - [Frequency Boost Switch](https://extensions.gnome.org/extension/4792/frequency-boost-switch/)
     
-9 - [Hot Edge](https://extensions.gnome.org/extension/4222/hot-edge/)
+i - [Hot Edge](https://extensions.gnome.org/extension/4222/hot-edge/)
     
-10 - [Grand Theft Focus](https://extensions.gnome.org/extension/5410/grand-theft-focus/)
+j - [Grand Theft Focus](https://extensions.gnome.org/extension/5410/grand-theft-focus/)
     
-11 - [Hide Activities Button](https://extensions.gnome.org/extension/744/hide-activities-button/)
+k - [Hide Activities Button](https://extensions.gnome.org/extension/744/hide-activities-button/)
 
-12 - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/) & supprimer la luminosité automatique dans Settings de Gnome
+l - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/) & supprimer la luminosité automatique dans Settings de Gnome
 
-13 - [Auto Power Profile](https://extensions.gnome.org/extension/6583/auto-power-profile/)
+m- [Auto Power Profile](https://extensions.gnome.org/extension/6583/auto-power-profile/)
 
-14 - [Remove World Clock](https://extensions.gnome.org/extension/6973/remove-world-clocks/)
+n - [Remove World Clock](https://extensions.gnome.org/extension/6973/remove-world-clocks/)
 
 et désactiver l'extension native `Background logo`
 
-* g - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
+* **35** - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
 
-* h - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
+* **36** - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
 
-* i - Régler Gnome-text-editor et Ptyxis; améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
+* **37** - Régler Gnome-text-editor et Ptyxis; améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
 ```
 # Ignore la casse lors de la complétion
 set completion-ignore-case on
@@ -452,99 +437,91 @@ set visible-stats on
 TAB: menu-complete
 ```
   
-* j - Celluloid :
+* **38** - Celluloid :
 inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires, activer l'option `focus` et `toujours afficher les boutons de titre`, enfin installer les deux scripts lua suivants pour la musique :
 [Visualizer](https://www.dropbox.com/scl/fi/bbwlvfhtjnu8sgr4yoai9/visualizer.lua?rlkey=gr3bmjnrlexj7onqrxzjqxafl&dl=0)
 [Delete File avec traduction française](https://www.dropbox.com/scl/fi/c2cacmw2a815husriuvc1/delete_file.lua?rlkey=6b9d352xtvybu685ujx5mpv7v&dl=0)
 
-* k - `Jdownloader`: réglages de base, thème Black Moon puis icones Flat; font Noto Sans Regular, désactivatioin du dpi et font sur 175; puis désactiver les éléments suivants : tooltip, help, Update Button Flashing, banner, Premium Alert, Donate, speed meter visible.
+* **39** - `Jdownloader`: réglages de base, thème Black Moon puis icones Flat; font Noto Sans Regular, désactivatioin du dpi et font sur 175; puis désactiver les éléments suivants : tooltip, help, Update Button Flashing, banner, Premium Alert, Donate, speed meter visible.
+
+* **40** - Script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les vidéos vers Vidéos en supprimant le sous-dossier d'origine : en faire un raccourci avec l'éditeur de menu, passer le chemin `sh /home/ogu/.transfert_videos.sh` et lui mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/drive-multidisk.svg`
+
+* **41** - Script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à la volée : en faire un raccourci avec l'éditeur de menu, raccourci d'exécution `bash /home/ogu/.bluetooth_toggle.sh` & mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/phone.svg`.
+
+* **42** - Accélérer les animations :  saisir ```GNOME_SHELL_SLOWDOWN_FACTOR=0.5``` dans le fichier ```sudo gnome-text-editor /etc/environment```
+
+* **43** - Changer avec Menu Principal l'icone de Ptyxis, en la remplaçant par celle de [gnome-terminal](https://upload.wikimedia.org/wikipedia/commons/d/da/GNOME_Terminal_icon_2019.svg)
+
+* **44** - `Scripts` Nautilus : Dropbox.py, Hide.py et Unhide.py à télécharger puis à coller dans le fichier /home/ogu/.local/share/nautilus/scripts/. Penser à les rendre exécutables!
+
+* **45** - `LibreOffice` : régler l'UI et les paramètres, désactiver Java, rajouter `-nologo` au raccourci avec l'éditeur de menu pour supprimer le splash screen, passer à `600000000` la valeur de `Graphic Manager` + `UseOpenGL` = true + `UseSkia` = true dans la Configuration Avancée + désactiver l'enregistrement des données personnelles dans les fichiers (Menu Sécurité). 
+
+* **46** - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
 
 
-* l - Script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les vidéos vers Vidéos en supprimant le sous-dossier d'origine : en faire un raccourci avec l'éditeur de menu, passer le chemin `sh /home/ogu/.transfert_videos.sh` et lui mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/drive-multidisk.svg`
+ 
+## 🌐 **F - Réglages du navigateur Firefox**
 
+* **47** - Réglages internes de Firefox (penser à activer CTRL-TAB pour faire défiler dans l'ordre d'utilisation)
 
-* m - Script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à la volée : en faire un raccourci avec l'éditeur de menu, raccourci d'exécution `bash /home/ogu/.bluetooth_toggle.sh` & mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/phone.svg`.
+* **48** - Changer le thème pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/) ou [Gnome Dark ](https://addons.mozilla.org/fr/firefox/addon/adwaita-gnome-dark/?utm_content=addons-manager-reviews-link&utm_medium=firefox-browser&utm_source=firefox-browser)
 
-* n - Accélérer les animations :  saisir ```GNOME_SHELL_SLOWDOWN_FACTOR=0.5``` dans le fichier ```sudo gnome-text-editor /etc/environment```
-
-* o - Changer avec Menu Principal l'icone de Ptyxis, en la remplaçant par celle de [gnome-terminal](https://upload.wikimedia.org/wikipedia/commons/d/da/GNOME_Terminal_icon_2019.svg)
-
-* p - `Scripts` Nautilus : Dropbox.py, Hide.py et Unhide.py à télécharger puis à coller dans le fichier /home/ogu/.local/share/nautilus/scripts/. Penser à les rendre exécutables!
-
-* `LibreOffice| : régler l'UI et les paramètres, désactiver Java, rajouter `-nologo` au raccourci avec l'éditeur de menu pour supprimer le splash screen, passer à `600000000` la valeur de `Graphic Manager` + `UseOpenGL` = true + `UseSkia` = true dans la Configuration Avancée + désactiver l'enregistrement des données personnelles dans les fichiers (Menu Sécurité). 
-
-* r - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
-
-
-
-
-   
-🌐 ## **6 - Réglages du navigateur Firefox**
-
-* a - Réglages internes de Firefox (penser à activer CTRL-TAB pour faire défiler dans l'ordre d'utilisation)
-
-* b - Changer le thème pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/) ou [Gnome Dark ](https://addons.mozilla.org/fr/firefox/addon/adwaita-gnome-dark/?utm_content=addons-manager-reviews-link&utm_medium=firefox-browser&utm_source=firefox-browser)
-
-* c - Dans about:config :
+* **49** - Dans about:config :
   
-1 - `ui.key.menuAccessKey` = 0 pour désactiver la touche Alt qui ouvre les menus
+a - `ui.key.menuAccessKey` = 0 pour désactiver la touche Alt qui ouvre les menus
   
-2 - `browser.sessionstore.interval` à `600000` pour réduire l'intervalle de sauvegarde des sessions
+b - `browser.sessionstore.interval` à `600000` pour réduire l'intervalle de sauvegarde des sessions
 
-3 - `extensions.pocket.enabled` = false, `browser.newtabpage.activity-stream.discoverystream.sendToPocket.enable` = false, et supprimer Pocket de la barre d'outils si besoin
+c - `extensions.pocket.enabled` = false, `browser.newtabpage.activity-stream.discoverystream.sendToPocket.enable` = false, et supprimer Pocket de la barre d'outils si besoin
 
-4 - `devtools.f12_enabled` = false
+d - `devtools.f12_enabled` = false
 
-5 - `accessibility.force_disabled` = 1 pour supprimer l'accessibilité
+e - `accessibility.force_disabled` = 1 pour supprimer l'accessibilité
 
-6 - `extensions.screenshots.disabled` = true pour désactiver le screenshot
+f - `extensions.screenshots.disabled` = true pour désactiver le screenshot
 
-7 - `privacy.userContext.enabled` = false pour désactiver les containers
+g - `privacy.userContext.enabled` = false pour désactiver les containers
 
-8 - `browser.tabs.crashReporting.sendReport` = false
+h - `browser.tabs.crashReporting.sendReport` = false
 
-9 - `network.http.max-persistent-connections-per-server` = 10  
+i - `network.http.max-persistent-connections-per-server` = 10  
 
-10 - `image.mem.decode_bytes_at_a_time` = 131072
+j - `image.mem.decode_bytes_at_a_time` = 131072
 
-11 - `browser.translations.enable` = false
+k - `browser.translations.enable` = false
 
-12 - `dom.battery.enabled` = false 
+l - `dom.battery.enabled` = false 
 
-13 - `extensions.htmlaboutaddons.recommendations.enabled` = false pour désactiver l'affichage des "extensions recommandées" dans le menu de Firefox
+m - `extensions.htmlaboutaddons.recommendations.enabled` = false pour désactiver l'affichage des "extensions recommandées" dans le menu de Firefox
 
-14 - `sidebar.revamp` = true, puis régler la barre latérale
+n - `sidebar.revamp` = true, puis régler la barre latérale
 
-15 - `apz.overscroll.enabled` = false pour supprimer le rebonb lors d uscroll jusqu'en fin de page
+o - `apz.overscroll.enabled` = false pour supprimer le rebonb lors d uscroll jusqu'en fin de page
 
-14 - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
+p - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
 about:cache` pour contrôle. 
 
-
-* d - Extensions
+* **50** - Extensions
   
-1 - [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/) : réglages à faire + import des deux listes sauvegardées
+a - [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/) : réglages à faire + import des deux listes sauvegardées
   
-2 - [New Tab Suspender](https://addons.mozilla.org/en-US/firefox/addon/new-tab-suspender/) ou [Tab Suspender Mini}(https://addons.mozilla.org/en-US/firefox/addon/tab-suspender-mini/), ce dernier semblant plus réactif + icone d'hibernation dans chaque onglet mais possiblement cause de lags, ou bien le classique [Auto Tab Discard](https://addons.mozilla.org/fr/firefox/addon/auto-tab-discard/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured), bien plus configurable : importer les réglages avec le fichier de backup.
+b - [New Tab Suspender](https://addons.mozilla.org/en-US/firefox/addon/new-tab-suspender/) ou [Tab Suspender Mini}(https://addons.mozilla.org/en-US/firefox/addon/tab-suspender-mini/), ce dernier semblant plus réactif + icone d'hibernation dans chaque onglet mais possiblement cause de lags, ou bien le classique [Auto Tab Discard](https://addons.mozilla.org/fr/firefox/addon/auto-tab-discard/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured), bien plus configurable : importer les réglages avec le fichier de backup.
 
-3 - [Raindrop](https://raindrop.io/r/extension/firefox) et supprimer `Pocket` de Firefox avec `extensions.pocket.enabled` dans `about:config` puis supprimer le raccourci dans la barre.
+c - [Raindrop](https://raindrop.io/r/extension/firefox) et supprimer `Pocket` de Firefox avec `extensions.pocket.enabled` dans `about:config` puis supprimer le raccourci dans la barre.
   
-4 - [Clear Browsing Data](https://addons.mozilla.org/fr/firefox/addon/clear-browsing-data/)
+d - [Clear Browsing Data](https://addons.mozilla.org/fr/firefox/addon/clear-browsing-data/)
   
-5 - [Undo Close Tab Button](https://addons.mozilla.org/firefox/addon/undoclosetabbutton) et mettre ALT-Z comme raccourci à partir du menu général des extensions (roue dentée)
+e - [Undo Close Tab Button](https://addons.mozilla.org/firefox/addon/undoclosetabbutton) et mettre ALT-Z comme raccourci à partir du menu général des extensions (roue dentée)
 
-6 - [LocalCDN](https://addons.mozilla.org/fr/firefox/addon/localcdn-fork-of-decentraleyes/), puis faire le [test](https://decentraleyes.org/test/).
+f - [LocalCDN](https://addons.mozilla.org/fr/firefox/addon/localcdn-fork-of-decentraleyes/), puis faire le [test](https://decentraleyes.org/test/).
 
-7 - [Side View](https://addons.mozilla.org/fr/firefox/addon/side-view/)
+g - [Side View](https://addons.mozilla.org/fr/firefox/addon/side-view/)
 
-* e - Activer ``openh264`` dans les plugins firefox.
-
-
+* **51** - Activer `openh264` & `widevine` dans les plugins firefox.
 
 
 
-
-🪛 ## **7 - Maintenance de la distribution**
+## 🪛 **G - Maintenance de la distribution**
 
 ```
 sudo dnf autoremove
