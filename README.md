@@ -172,6 +172,7 @@ blacklist wdat_wdt
 blacklist intel_pmc_bxt
 blacklist nouveau
 blacklist ELAN:Fingerprint
+blacklist btusb
 ```
 
 
