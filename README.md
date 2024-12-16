@@ -236,6 +236,7 @@ tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=4196M 0 0
 Contrôler avec `cat /etc/fstab` après un reboot.  
 
 * **19** - Régler le pare-feu :
+  
 Connaitre la zone par défaut du système (en général FedoraWorkstation) avec :
 ```
 sudo firewall-cmd --get-default-zone
@@ -288,6 +289,7 @@ Startup finished in 2.324s (firmware) + 509ms (loader) + 1.986s (kernel) + 4.020
 ## 📦 **D - Remplacement et installation de logiciels et codecs**
 
 * **24** - Ajouter les sources `RPMFusion` :
+  
 **RPMFusion Free**
 ```
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E%fedora).noarch.rpm 
