@@ -319,6 +319,7 @@ sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-
 ```
 sudo dnf swap ffmpeg-free ffmpeg --allowerasing
 sudo dnf install intel-media-driver
+sudo dnf swap libva-intel-media-driver intel-media-driver --allowerasing
 sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 ```
 
