@@ -1,10 +1,10 @@
-🐧 ***Fedora 41 setup & config*** 
+🐧 # ***Fedora 41 setup & config*** 
 
 Mémo pour le setup complet de Fedora 41 sur laptop ASUS ZENBOOK S13 FLIP OLED UP5302Z
 
    
 
-💾 **1 - Installation**
+💾 ## **1 - Installation**
 
 * a - Désactiver `Secure Boot` dans le Bios (F2)
 
@@ -19,7 +19,7 @@ inst.sdboot
 
 
 
-✨ **2 - Allégement du système**
+✨ ## **2 - Allégement du système**
 
 * a - Supprimer les logiciels inutiles avec Gnome-software
     
@@ -165,7 +165,7 @@ blacklist ELAN:Fingerprint
 
 
 
-🚀 **3 - Optimisation du système**
+🚀 ## **3 - Optimisation du système**
 
 
 * a - Désactiver `SElinux` :
@@ -298,7 +298,7 @@ Boot time après optimisation :
 Startup finished in 2.324s (firmware) + 509ms (loader) + 1.986s (kernel) + 4.020s (initrd) + 3.234s (userspace) = 12.075s *
 
 
-📦 **4 - Remplacement et installation de logiciels et codecs**
+📦 ## **4 - Remplacement et installation de logiciels et codecs**
 
 * a - Ajouter les sources `RPMFusion` :
 RPMFusion Free
@@ -382,7 +382,7 @@ dconf write /org/gnome/desktop/search-providers/disabled "['org.gnome.Software.d
 
 
 
-🐾 **5 - Réglages de l'UI Gnome Shell** 
+🐾 ## **5 - Réglages de l'UI Gnome Shell** 
 
 * a - Régler le système avec Paramètres (penser à désactiver les animations dans Accessibilité??) puis Ajustements (Changer les polices d'écriture pour `Noto Sans` en 11 ?)
 
@@ -451,7 +451,6 @@ set visible-stats on
 # Permet de parcourir les suggestions avec TAB
 TAB: menu-complete
 ```
-
   
 * j - Celluloid :
 inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires, activer l'option `focus` et `toujours afficher les boutons de titre`, enfin installer les deux scripts lua suivants pour la musique :
@@ -480,7 +479,7 @@ inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires,
 
 
    
-🌐 **6 - Réglages du navigateur Firefox**
+🌐 ## **6 - Réglages du navigateur Firefox**
 
 * a - Réglages internes de Firefox (penser à activer CTRL-TAB pour faire défiler dans l'ordre d'utilisation)
 
@@ -545,7 +544,7 @@ about:cache` pour contrôle.
 
 
 
-🪛 **7 - Maintenance de la distribution**
+🪛 ## **7 - Maintenance de la distribution**
 
 ```
 sudo dnf autoremove
