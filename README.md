@@ -14,7 +14,7 @@ D - [Remplacement et installation de logiciels](https://github.com/Shogu/Fedora4
 
 E - [Réglages de l'UI Gnome Shell](https://github.com/Shogu/Fedora41-setup-config/blob/main/README.md#-e---r%C3%A9glages-de-lui-gnome-shell)
 
-F - [Réglages de Firefox](https://github.com/Shogu/Fedora41-setup-config/blob/main/README.md#-f---r%C3%A9glages-du-navigateur-firefox)
+F - [Réglages de Firefox](https://github.com/Shogu/Fedora41-setup-config/blob/main/README.md#-f---r%C3%A9glages-du-navigateur-ox)
 
 G - [Maintenance et mises à jour](https://github.com/Shogu/Fedora41-setup-config/blob/main/README.md#-g---maintenance-de-la-distribution)
    
@@ -533,6 +533,8 @@ e - [Undo Close Tab Button](https://addons.mozilla.org/firefox/addon/undocloseta
 f - [LocalCDN](https://addons.mozilla.org/fr/firefox/addon/localcdn-fork-of-decentraleyes/), puis faire le [test](https://decentraleyes.org/test/).
 
 g - [Side View](https://addons.mozilla.org/fr/firefox/addon/side-view/)
+
+h - Scroll To Top Lite(https://addons.mozilla.org/fr/firefox/addon/scroll-to-top-lite/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 
 * **54** - Activer `openh264` & `widevine` dans les plugins firefox.
 
