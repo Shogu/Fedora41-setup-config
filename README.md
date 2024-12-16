@@ -1,9 +1,9 @@
-# Fedora 41 setup & config 
+🐧 ***Fedora 41 setup & config*** 
 Mémo pour le setup complet de Fedora 41 sur laptop ASUS ZENBOOK S13 FLIP OLED UP5302Z
 
    
 
-## **1 - Installation**
+💾 **1 - Installation**
 
 * a - Désactiver `Secure Boot` dans le Bios (F2)
 
@@ -18,7 +18,7 @@ inst.sdboot
 
 
 
-## **2 - Allégement du système**
+✨ **2 - Allégement du système**
 
 * a - Supprimer les logiciels inutiles avec Gnome-software
     
@@ -164,7 +164,7 @@ blacklist ELAN:Fingerprint
 
 
 
-## **3 - Optimisation du système**
+🚀 **3 - Optimisation du système**
 
 
 * a - Désactiver `SElinux` :
@@ -289,9 +289,15 @@ puis décommenter et editer `NautoVTS=1`
 nmcli dev show |grep DNS
 ```
 
+*Boot time : avant optimisation :
+Startup finished in 5.8s (firmware) + 508ms (loader) + 1.896s (kernel) + 4s (initrd) + 11.5s (userspace) = 23.7s
 
 
-## **4 - Remplacement et installation de logiciels et codecs**
+Boot time après optimisation :
+Startup finished in 2.324s (firmware) + 509ms (loader) + 1.986s (kernel) + 4.020s (initrd) + 3.234s (userspace) = 12.075s *
+
+
+📦 **4 - Remplacement et installation de logiciels et codecs**
 
 * a - Ajouter les sources `RPMFusion` :
 RPMFusion Free
@@ -375,7 +381,7 @@ dconf write /org/gnome/desktop/search-providers/disabled "['org.gnome.Software.d
 
 
 
-## **5 - Réglages de l'UI Gnome Shell**
+🐾 **5 - Réglages de l'UI Gnome Shell** 
 
 * a - Régler le système avec Paramètres (penser à désactiver les animations dans Accessibilité??) puis Ajustements (Changer les polices d'écriture pour `Noto Sans` en 11 ?)
 
@@ -473,7 +479,7 @@ inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires,
 
 
    
-## **6 - Réglages du navigateur Firefox**
+🌐 **6 - Réglages du navigateur Firefox**
 
 * a - Réglages internes de Firefox (penser à activer CTRL-TAB pour faire défiler dans l'ordre d'utilisation)
 
@@ -538,7 +544,7 @@ about:cache` pour contrôle.
 
 
 
-## **7 - Maintenance de la distribution**
+🪛 **7 - Maintenance de la distribution**
 
 ```
 sudo dnf autoremove
@@ -577,22 +583,15 @@ Regarder script de F39
 
 
 
-Boot time : avant optimisation :
-Startup finished in 5.8s (firmware) + 508ms (loader) + 1.896s (kernel) + 4s (initrd) + 11.5s (userspace) = 23.7s
-
-
-Boot time après optimisation :
-Startup finished in 2.324s (firmware) + 509ms (loader) + 1.986s (kernel) + 4.020s (initrd) + 3.234s (userspace) = 12.075s 
 
 
 
 
 
 
-
-   A TESTER :
+  💡 A TESTER :
     
-* n - Créer un toggle `Powertop` qui va lancer powertop en `auto-tune` pour économiser encore plus de batterie, et baisser la luminosité sur 5% : rentrer cette commande pour le toggle activé :
+* Créer un toggle `Powertop` qui va lancer powertop en `auto-tune` pour économiser encore plus de batterie, et baisser la luminosité sur 5% : rentrer cette commande pour le toggle activé :
 ```
 pkexec powertop --auto-tune && gdbus call --session --dest org.gnome.SettingsDaemon.Power --object-path /org/gnome/SettingsDaemon/Power --method org.freedesktop.DBus.Properties.Set org.gnome.SettingsDaemon.Power.Screen Brightness " <int32 5>"()
 ```
@@ -603,7 +602,7 @@ gdbus call --session --dest org.gnome.SettingsDaemon.Power --object-path /org/gn
 ```
 Enfin rentrer le nom de l'icone : `thunderbolt-symbolic` 
 
-* o - Créer un toggle "No Touchscreen" et le rendre permanent au boot :
+* Créer un toggle "No Touchscreen" et le rendre permanent au boot :
     
 ```
 echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/unbind > /dev/null
@@ -612,9 +611,7 @@ echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/unbind > /
 echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/bind > /dev/null                         
 ```
 
-
-
-* l - EXPERIMENTAL : créer un initramfs plus petit et plus rapide en désactivant des modules inutiles : manipulation à faire à chaque màj du kernel : d'abord désactiver vconsole :
+* EXPERIMENTAL : créer un initramfs plus petit et plus rapide en désactivant des modules inutiles : manipulation à faire à chaque màj du kernel : d'abord désactiver vconsole :
 
   ```
   cp /usr/bin/true /usr/lib/systemd/systemd-vconsole-setup
@@ -655,7 +652,7 @@ echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/bind > /de
 
 
 
-* e - Supprimer les flatpaks KDE :
+* Supprimer les flatpaks KDE :
   
   ```
   flatpak remove org.kde.KStyle.Adwaita org.kde.PlatformTheme.QGnomePlatform     
