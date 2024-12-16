@@ -16,7 +16,7 @@ E - [Réglages de l'UI Gnome Shell](https://github.com/Shogu/Fedora41-setup-conf
 
 F - [Réglages de Firefox](https://github.com/Shogu/Fedora41-setup-config/blob/main/README.md#-f---r%C3%A9glages-du-navigateur-firefox)
 
-E - [Maintenance et mises à jour](https://github.com/Shogu/Fedora41-setup-config/blob/main/README.md#-g---maintenance-de-la-distribution)
+G - [Maintenance et mises à jour](https://github.com/Shogu/Fedora41-setup-config/blob/main/README.md#-g---maintenance-de-la-distribution)
    
 
 ## 💾 **A - Installation**
