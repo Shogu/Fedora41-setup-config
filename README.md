@@ -608,7 +608,7 @@ echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/unbind > /
 echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/bind > /dev/null                         
 ```
 
-* EXPERIMENTAL : créer un initramfs plus petit et plus rapide en désactivant des modules inutiles : manipulation à faire à chaque màj du kernel : d'abord désactiver vconsole :
+* EXPERIMENTAL : créer un initramfs plus petit et plus rapide en désactivant des modules inutiles : manipulation à faire à chaque màj du kernel : d'abord désactiver vconsole : + jeter un oeil ici : https://wiki.realmofespionage.xyz/distros:fedora_workstation_gnome?rev=1694557001#dracut
 
   ```
   cp /usr/bin/true /usr/lib/systemd/systemd-vconsole-setup
