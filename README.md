@@ -351,6 +351,7 @@ sudo dnf install ffmpegthumbnailer.x86_64 -y
 sudo dnf install profile-cleaner -y
 sudo dnf install btrfs-assistant -y
 sudo dnf install seahorse -y
+sudo dnf install dnfdragora -y
 ```
 
 * **29** - Installer `Dropbox` avec Maestral :
@@ -366,7 +367,7 @@ maestral gui
 sudo dnf remove gcc python3-devel python3-pip
 ```
 
-* **30** - Désinstaller `gnome-software` et `packagekit` (ainsi que le cache) pour éviter leur lancement au boot :
+* **30** - Désinstaller `gnome-software` et `packagekit` (ainsi que le cache) pour éviter leur lancement au boot, et les remplacer par `DNFdragora` :
   
 ```
 sudo dnf remove PackageKit-gstreamer-plugin PackageKit PackageKit-command-not-found gnome-software
