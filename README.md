@@ -338,6 +338,7 @@ flatpak install flathub page.codeberg.libre_menu_editor.LibreMenuEditor -y
 flatpak install flathub io.github.celluloid_player.Celluloid -y
 flatpak install flathub org.gnome.Epiphany -y
 flatpak install flathub org.nicotine_plus.Nicotine -y
+flatpak install flathub de.schmidhuberj.tubefeeder -y
 ```
 
 * **28** - Installer les logiciels suivants avec dnf :
