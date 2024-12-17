@@ -338,10 +338,11 @@ flatpak install flathub de.haeckerfelix.Fragments -y
 flatpak install flathub org.gnome.Papers -y
 flatpak install flathub page.codeberg.libre_menu_editor.LibreMenuEditor -y
 flatpak install flathub io.github.celluloid_player.Celluloid -y
-flatpak install flathub org.gnome.Epiphany -y
 flatpak install flathub org.nicotine_plus.Nicotine -y
 flatpak install flathub de.schmidhuberj.tubefeeder -y
+flatpak install flathub org.gnome.Epiphany -y
 ```
+Noita : penser à décocher "Exécuter en arrière plan" dans les réglages de Gnome (rubrique `applications`) pour le navigateur secondaire `Web`, sans quoi il semble se lancer au boot.
 
 * **28** - Installer les logiciels suivants avec dnf :
 ```
