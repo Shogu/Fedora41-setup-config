@@ -70,6 +70,11 @@ sudo dnf remove totem
 sudo dnf remove avahi-tools
 sudo dnf remove virtualbox-guest-additions
 sudo dnf remove gnome-boxes
+sudo dnf remove fedora-bookmarks
+sudo dnf remove gnome-user-docs
+sudo dnf remove hplip*
+sudo dnf remove sane*
+sudo dnf remove avahi
 ```
     
 * **7** - Supprimer et masquer les services inutiles :
