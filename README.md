@@ -75,6 +75,7 @@ sudo dnf remove gnome-user-docs
 sudo dnf remove hplip*
 sudo dnf remove sane*
 sudo dnf remove avahi
+sudo dnf remove cups
 ```
     
 * **7** - Supprimer et masquer les services inutiles :
@@ -99,10 +100,9 @@ sudo systemctl mask sssd-kcm.socket
 sudo systemctl mask sssd.service
 ```
   
-et désactiver le Bluetooth pour l'activer à la volée (voir script dans la rubrique  Gnome) + cups :
+et désactiver le Bluetooth pour l'activer à la volée (voir script dans la rubrique  Gnome) :
 ```
 sudo systemctl disable bluetooth.service
-sudo systemctl disable cups
 ```
   
 Enfin, reboot puis controle de l'état des services avec :
@@ -361,6 +361,7 @@ sudo dnf install profile-cleaner -y
 sudo dnf install btrfs-assistant -y
 sudo dnf install seahorse -y
 sudo dnf install dnfdragora -y
+sudo dnf install ImageMagick -y
 ```
 
 * **29** - Installer `Dropbox` avec Maestral :
