@@ -224,10 +224,25 @@ Au reboot, contrôler le fichier de boot de `systemd-boot` avec la commande :
 cat /proc/cmdline
 ```
 
-* **16** - Réduire le temps d'affichage du menu systemd-boot à 0 seconde ou une seconde, au choix:
+* **16** - Réduire le temps d'affichage du menu systemd-boot à 0 seconde  (appuyer sur MAJ pour le faire apparaitre au boot):
 ```
 sudo bootctl set-timeout 0
 ```
+Reboot, puis vérifioer que le fichier loader.conf soit à 0 :
+```
+sudo cat /boot/efi/loader/loader.conf
+timeout 5
+#console-mode keep
+```
+Si non, l'éditer et passer le timeout à 0 :
+```
+sudo gnome-text-editor /boot/efi/loader/loader.conf
+```
+Puis reconstruire le kernel avec :
+```
+sudo kernel-install add $(uname -r) /lib/modules/$(uname -r)/vmlinuz && sudo dracut --force
+```
+
 
 * **17** - Editer le mount des partitions BTRFS `/` et `/home` avec la commande :
 ```
