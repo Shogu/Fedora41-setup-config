@@ -206,6 +206,18 @@ blacklist nouveau
 blacklist ELAN:Fingerprint
 blacklist btusb
 ```
+* **13** Autosuspendre le capteur de luminosité et d'accéléromètre (en complément de son maskage)
+```
+echo 'ACTION=="add", SUBSYSTEM=="pci", KERNEL=="0000:00:12.0", ATTR{power/control}="auto"' | sudo tee /etc/udev/rules.d/99-pci-autosuspend.rules > /dev/null
+```
+Puis
+```
+sudo udevadm control --reload-rules
+```
+Et contrôler avec :
+```
+cat /etc/udev/rules.d/99-pci-autosuspend.rules
+```
 ----------------------------------------------------------------------------------------------
 
 
@@ -317,11 +329,11 @@ sudo firewall-cmd --zone=FedoraWorkstation --list-all
 sudo firewall-cmd --get-active-zones
 ```
 
-* **20** - Modifier le `swappiness` et le `dirty_writeback`:
+* **20** - Modifier le `swappiness` & le `dirty_writeback` (conformément aux réglages de Powertop):
 ```
 echo vm.swappiness=5 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 echo vm.vfs_cache_pressure=50 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
-echo "vm.dirty_writeback_centisecs=1000" | sudo tee -a /sysctl.d/99-sysctl.conf
+echo "vm.dirty_writeback_centisecs=1500" | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
 ```
 
