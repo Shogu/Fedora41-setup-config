@@ -117,13 +117,13 @@ systemctl list-unit-files --type=service --state=enabled
 **USER**
 ```
 systemctl --user mask evolution-addressbook-factory.service #contacts d'Evolution
-systemctl --user disable org.gnome.SettingsDaemon.Wacom.service #Wacom
-systemctl --user disable org.gnome.SettingsDaemon.Keyboard.service #paramètres du clavier
-systemctl --user disable org.freedesktop.IBus.session.GNOME.service #saisie multilingue
-systemctl --user disable org.gnome.SettingsDaemon.PrintNotifications.service #imprimante
-systemctl --user disable org.gnome.SettingsDaemon.A11ySettings.service #accessibilité
-systemctl --user disable at-spi-dbus-bus.service #accessibilité type lecteur d'écran
-systemctl --user disable org.gnome.SettingsDaemon.Smartcard.service #carte à puce
+systemctl --user mask org.gnome.SettingsDaemon.Wacom.service #Wacom
+systemctl --user mask org.gnome.SettingsDaemon.Keyboard.service #paramètres du clavier
+systemctl --user mask org.freedesktop.IBus.session.GNOME.service #saisie multilingue
+systemctl --user mask org.gnome.SettingsDaemon.PrintNotifications.service #imprimante
+systemctl --user mask org.gnome.SettingsDaemon.A11ySettings.service #accessibilité
+systemctl --user mask at-spi-dbus-bus.service #accessibilité type lecteur d'écran
+systemctl --user mask org.gnome.SettingsDaemon.Smartcard.service #carte à puce
 ```
 Puis contrôler avec :
 ```
