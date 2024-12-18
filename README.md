@@ -129,6 +129,15 @@ Puis contrôler avec :
 ```
 systemd-analyze --user blame
 ```
+---> boot time userspace avant optimisation :
+`systemd-analyze --user
+Startup finished in 3.800s (userspace)
+default.target reached after 293ms in userspace.`
+
+---> boot time userspace après optimisation :
+`systemd-analyze --user
+Startup finished in 3.007s (userspace)
+default.target reached after 232ms in userspace.`
 
 * **8** - Alléger les journaux système et les mettre en RAM :
 ```
@@ -332,8 +341,9 @@ nmcli dev show |grep DNS
 **Boot time : avant optimisation :
 Startup finished in 5.8s (firmware) + 508ms (loader) + 1.896s (kernel) + 4s (initrd) + 11.5s (userspace) = 23.7s**
 
-**Boot time après optimisation :
-Startup finished in 2.324s (firmware) + 509ms (loader) + 1.986s (kernel) + 4.020s (initrd) + 3.234s (userspace) = 12.075s**
+**ogu@fedora-ogu:~$ systemd-analyze
+Startup finished in 2.307s (firmware) + 496ms (loader) + 1.805s (kernel) + 3.978s (initrd) + 3.264s (userspace) = 11.853s
+graphical.target reached after 3.242s in userspace**
 
 ----------------------------------------------------------------------------------------------
 
