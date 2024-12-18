@@ -2,7 +2,7 @@
 
 Mémo pour le setup complet de Fedora 41 sur laptop ASUS ZENBOOK S13 FLIP OLED UP5302Z
 
-Table des matières:
+***Table des matières:***
 
 A - [Installation](https://github.com/Shogu/Fedora41-setup-config/blob/main/README.md#-a---installation)
 
@@ -39,7 +39,7 @@ inst.sdboot
 
 * **5** - Supprimer les logiciels inutiles avec Gnome-software
   
-* **6** - Supprimer les logiciels suivants avec le terminal :
+* **6** - COmpléter en supprimant les logiciels inutiles suivants avec dnf :
 ```
 sudo dnf remove libertas-firmware
 sudo dnf remove cirrus-audio-firmware
