@@ -17,7 +17,8 @@ E - [Réglages de l'UI Gnome Shell](https://github.com/Shogu/Fedora41-setup-conf
 F - [Réglages de Firefox](https://github.com/Shogu/Fedora41-setup-config/blob/main/README.md#-f---r%C3%A9glages-du-navigateur-ox)
 
 G - [Maintenance et mises à jour](https://github.com/Shogu/Fedora41-setup-config/blob/main/README.md#-g---maintenance-de-la-distribution)
-   
+
+----------------------------------------------------------------------------------------------
 
 ## 💾 **A - Installation**
 
@@ -31,7 +32,7 @@ G - [Maintenance et mises à jour](https://github.com/Shogu/Fedora41-setup-confi
 ```
 inst.sdboot
 ```
-
+----------------------------------------------------------------------------------------------
 
 
 ## ✨ **B - Allégement du système**
@@ -179,7 +180,7 @@ blacklist nouveau
 blacklist ELAN:Fingerprint
 blacklist btusb
 ```
-
+----------------------------------------------------------------------------------------------
 
 
 ## 🚀 **C - Optimisation du système**
@@ -319,7 +320,7 @@ Startup finished in 5.8s (firmware) + 508ms (loader) + 1.896s (kernel) + 4s (ini
 
 **Boot time après optimisation :
 Startup finished in 2.324s (firmware) + 509ms (loader) + 1.986s (kernel) + 4.020s (initrd) + 3.234s (userspace) = 12.075s**
-
+----------------------------------------------------------------------------------------------
 
 
 ## 📦 **D - Remplacement et installation de logiciels et codecs**
@@ -407,7 +408,7 @@ Puis saisir dans un terminal :
 ```
 dconf write /org/gnome/desktop/search-providers/disabled "['org.gnome.Software.desktop']"
 ```
-
+----------------------------------------------------------------------------------------------
 
 
 ## 🐾 **E - Réglages de l'UI Gnome Shell** 
@@ -500,7 +501,7 @@ inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires,
 * **47** - `LibreOffice` : régler l'UI et les paramètres, désactiver Java, rajouter `-nologo` au raccourci avec l'éditeur de menu pour supprimer le splash screen, passer à `600000000` la valeur de `Graphic Manager` + `UseOpenGL` = true + `UseSkia` = true dans la Configuration Avancée + désactiver l'enregistrement des données personnelles dans les fichiers (Menu Sécurité). 
 
 * **48** - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
-
+----------------------------------------------------------------------------------------------
 
  
 ## 🌐 **F - Réglages du navigateur Firefox**
