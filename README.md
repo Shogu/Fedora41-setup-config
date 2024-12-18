@@ -621,8 +621,10 @@ g - [Side View](https://addons.mozilla.org/fr/firefox/addon/side-view/)
 h - Scroll To Top Lite(https://addons.mozilla.org/fr/firefox/addon/scroll-to-top-lite/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 
 * **54** - Activer `openh264` & `widevine` dans les plugins firefox.
+  
+* **55** - Désactiver les `recherches populaires` : dans la barre d'adresse, cliquer en bas sur la roue dentée correspondant à Recherches populaires et les désactiver.
 
-* **55** - Mettre le profil de Firefox en RAM avec `profile-sync-daemon` :
+* **56** - Mettre le profil de Firefox en RAM avec `profile-sync-daemon` :
 * ATTENTION : suivre ces consignes avec **Firefox fermé** - utiliser le browser secondaire WEB
   
 Installer psd (avec dnf `sudo dnf install profile-sync-daemon`, ou avec make en cas d'échec - voir le fichier INSTALL sur le Github), puis l'activer avec les commandes suivantes (sans quoi le service échoue à démarrer) :
