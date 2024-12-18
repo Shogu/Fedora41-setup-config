@@ -37,9 +37,9 @@ inst.sdboot
 
 ## ✨ **B - Allégement du système**
 
-* **5** - Supprimer les logiciels inutiles avec Gnome-software
+* **5** - Supprimer les `logiciels inutiles` avec Gnome-software
   
-* **6** - COmpléter en supprimant les logiciels inutiles suivants avec dnf :
+* **6** - COmpléter en supprimant les `logiciels inutiles` suivants avec dnf :
 ```
 sudo dnf remove libertas-firmware
 sudo dnf remove cirrus-audio-firmware
@@ -136,13 +136,13 @@ systemd-analyze --user blame
 Startup finished in 3.800s (userspace)
 default.target reached after 293ms in userspace.`
 
----> boot time userspace après optimisation : 3 secondes / userspace 232 ms
+---> boot time --user après optimisation : 3 secondes / userspace 232 ms
 
 `systemd-analyze --user
 Startup finished in 3.007s (userspace)
 default.target reached after 232ms in userspace.`
 
-* **8** - Alléger les journaux système et les mettre en RAM :
+* **8** - Alléger les `journaux système` et les mettre en RAM :
 ```
 sudo gnome-text-editor /usr/lib/systemd/journald.conf
 ```
@@ -151,7 +151,7 @@ puis remplacer le contenu du fichier par celui du fichier `journald.conf.txt` & 
 sudo systemctl restart systemd-journald
 ```
 
-* **9** - Remplacer chronyd par systemd-timesyncd (plus rapide au boot) ([source](https://www.dsfc.net/systeme/linux/ntp-passage-de-chrony-a-systemd-timesyncd/))
+* **9** - Remplacer chronyd par `systemd-timesyncd` (plus rapide au boot) ([source](https://www.dsfc.net/systeme/linux/ntp-passage-de-chrony-a-systemd-timesyncd/))
 ```
 sudo dnf remove chrony
 sudo systemctl enable systemd-timesyncd
@@ -206,7 +206,8 @@ blacklist nouveau
 blacklist ELAN:Fingerprint
 blacklist btusb
 ```
-* **13** Autosuspendre le capteur de luminosité et d'accéléromètre (en complément de son maskage)
+
+* **13** Autosuspendre le `capteur de luminosité et d'accéléromètre` (en complément de son maskage)
 ```
 echo 'ACTION=="add", SUBSYSTEM=="pci", KERNEL=="0000:00:12.0", ATTR{power/control}="auto"' | sudo tee /etc/udev/rules.d/99-pci-autosuspend.rules > /dev/null
 ```
@@ -223,7 +224,7 @@ cat /etc/udev/rules.d/99-pci-autosuspend.rules
 
 ## 🚀 **C - Optimisation du système**
 
-* **13** - Désactiver `SElinux` :
+* **14** - Désactiver `SElinux` :
 ```
 sudo gnome-text-editor /etc/selinux/config
 ```
@@ -236,12 +237,12 @@ Enfin supprimer les labels SElinux avec :
 sudo find / -print0 | xargs -r0 setfattr -x security.selinux 2>/dev/null
 ```
 
-* **14** - Passer `xwayland` en autoclose : sur dconf-editor, modifier la clé suivante.
+* **15** - Passer `xwayland` en autoclose : sur dconf-editor, modifier la clé suivante.
 ```
 org.gnome.mutter experimental-features
 ```
 
-* **15** - Optimiser le kernel :
+* **16** - Optimiser le `kernel` :
 ```
 sudo gnome-text-editor /etc/kernel/cmdline
 ```
@@ -263,7 +264,7 @@ Au reboot, contrôler le fichier de boot de `systemd-boot` avec la commande :
 cat /proc/cmdline
 ```
 
-* **16** - Réduire le temps d'affichage du menu systemd-boot à 0 seconde  (appuyer sur MAJ pour le faire apparaitre au boot):
+* **17** - Réduire le `temps d'affichage du menu systemd-boot` à 0 seconde  (appuyer sur MAJ pour le faire apparaitre au boot):
 ```
 sudo bootctl set-timeout 0
 ```
@@ -282,7 +283,7 @@ Puis reconstruire le kernel avec :
 sudo kernel-install add $(uname -r) /lib/modules/$(uname -r)/vmlinuz && sudo dracut --force
 ```
 
-* **17** - Editer le mount des partitions BTRFS `/` et `/home` avec la commande :
+* **18** - Editer le mount des `partitions BTRFS` **/** et **/home** avec la commande :
 ```
 sudo gnome-text-editor /etc/fstab
 ```
@@ -298,7 +299,7 @@ noatime
 ```
 Contrôler avec `cat /etc/fstab` après un reboot.
 
-* **18** - Mettre les fichiers temporaires en RAM :
+* **19** - Mettre les `fichiers temporaires en RAM` :
 ```
 sudo gnome-text-editor /etc/fstab
 ```
@@ -309,7 +310,7 @@ tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=4196M 0 0
 ```
 Contrôler avec `cat /etc/fstab` après un reboot.  
 
-* **19** - Régler le pare-feu :
+* **20** - Régler le `pare-feu` :
   
 Connaitre la zone par défaut du système (en général FedoraWorkstation) avec :
 ```
@@ -329,7 +330,7 @@ sudo firewall-cmd --zone=FedoraWorkstation --list-all
 sudo firewall-cmd --get-active-zones
 ```
 
-* **20** - Modifier le `swappiness` & le `dirty_writeback` (conformément aux réglages de Powertop):
+* **21** - Modifier le `swappiness` & le `dirty_writeback` (conformément aux réglages de Powertop):
 ```
 echo vm.swappiness=5 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 echo vm.vfs_cache_pressure=50 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
@@ -344,18 +345,18 @@ cat /proc/sys/vm/vfs_cache_pressure
 cat /proc/sys/vm/dirty_writeback_centisecs
 ```
   
-* **21** - Accélérer `DNF` : 
+* **22** - Accélérer `DNF` : 
 ```
 echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
 ```
   
-* **22** - Passer à 1 le nombre de `ttys` au boot  :  
+* **23** - Passer à 1 le nombre de `ttys` au boot  :  
 ```
 sudo gnome-text-editor /usr/lib/systemd/logind.conf
 ```
 puis décommenter et editer `NautoVTS=1`
 
-* **23** - Vérifier que le système utilise bien les DNS du routeur Xiaomi (192.168.31.1) :
+* **24** - Vérifier que le système utilise bien les DNS du `routeur Xiaomi` (192.168.31.1) :
 ```
 nmcli dev show |grep DNS
 ```
@@ -374,7 +375,7 @@ nmcli dev show |grep DNS
 
 ## 📦 **D - Remplacement et installation de logiciels et codecs**
 
-* **24** - Ajouter les sources `RPMFusion` :
+* **25** - Ajouter les sources `RPMFusion` :
   
 **RPMFusion Free**
 ```
@@ -386,7 +387,7 @@ sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-releas
 sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 ```
     
-* **25** - Ajouter les codecs `FFMPEG`, multimedia, `AV1`, & le `pilote Intel` d'accélération matérielle :
+* **26** - Ajouter les codecs `FFMPEG`, multimedia, `AV1`, & le `pilote Intel` d'accélération matérielle :
 ```
 sudo dnf swap ffmpeg-free ffmpeg --allowerasing
 sudo dnf install intel-media-driver
@@ -394,9 +395,9 @@ sudo dnf swap libva-intel-media-driver intel-media-driver --allowerasing
 sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 ```
 
-* **26** - Réglages de gnome-software
+* **27** - Réglages de `gnome-software`
 
-* **27** - Installer les logiciels Flatpak suivants : nota : utiliser prioritairement les flatpaks Fedora OU Flathub car les runtimes ne sont pas partagés entre les 2.
+* **28** - Installer les logiciels `Flatpak` suivants : nota : utiliser prioritairement les flatpaks Fedora OU Flathub car les runtimes ne sont pas partagés entre les 2.
 ```
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub io.github.flattool.Warehouse -y
@@ -412,9 +413,9 @@ flatpak install flathub org.nicotine_plus.Nicotine -y
 flatpak install flathub de.schmidhuberj.tubefeeder -y
 flatpak install flathub org.gnome.Epiphany -y
 ```
-Noita : penser à décocher "Exécuter en arrière plan" dans les réglages de Gnome (rubrique `applications`) pour le navigateur secondaire `Web`, sans quoi il semble se lancer au boot.
+Nota : penser à décocher "Exécuter en arrière plan" dans les réglages de Gnome (rubrique `applications`) pour le navigateur secondaire `Web`, sans quoi il semble se lancer au boot.
 
-* **28** - Installer les logiciels suivants avec dnf :
+* **29** - Installer les `logiciels` suivants avec dnf :
 ```
 sudo dnf install dconf-editor -y
 sudo dnf install evince-thumbnailer -y
@@ -429,7 +430,7 @@ sudo dnf install dnfdragora -y
 sudo dnf install ImageMagick -y
 ```
 
-* **29** - Installer `Dropbox` avec Maestral :
+* **30** - Installer `Dropbox` avec **Maestral** :
 ```
 sudo dnf install gcc
 sudo dnf install python3-devel
@@ -442,7 +443,7 @@ maestral gui
 sudo dnf remove gcc python3-devel python3-pip
 ```
 
-* **30** - Désinstaller `gnome-software` et `packagekit` (ainsi que le cache) pour éviter leur lancement au boot, et les remplacer par `DNFdragora` :
+* **31** - Désinstaller `gnome-software` et `packagekit` (ainsi que le cache) pour éviter leur lancement au boot, et les remplacer par `DNFdragora` :
   
 ```
 sudo dnf remove PackageKit-gstreamer-plugin PackageKit PackageKit-command-not-found gnome-software
@@ -462,21 +463,23 @@ dconf write /org/gnome/desktop/search-providers/disabled "['org.gnome.Software.d
 
 ## 🐾 **E - Réglages de l'UI Gnome Shell** 
 
-* **31** - Régler le système avec Paramètres (penser à désactiver les animations dans Accessibilité??) puis Ajustements (Changer les polices d'écriture pour `Noto Sans` en 11 ?)
+* **32** - Régler le système avec `Paramètres` puis `Ajustements` (Changer les polices d'écriture pour `Noto Sans` en 11)
 
-* **32** - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
-  
+* **33** - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
 ```
 192.168.31.68:2121
 ```
 
-* **33** - Modifier le mot de passe au démarrage avec le logiciel Mots de Passe, puis laisser les champs vides. Penser à reconnecter le compte Google dans Gnome!
+* **34** - Modifier le mot de passe au démarrage avec le logiciel `Mots de Passe`, puis laisser les champs vides. Penser à reconnecter le compte Google dans Gnome!
 
-* **34** - Installer le [wallpaper Fedora 34](https://fedoraproject.org/w/uploads/d/de/F34_default_wallpaper_night.jpg) et le thème de curseurs [Phinger NO LEFT Light](https://github.com/phisch/phinger-cursors?tab=readme-ov-file) et utiliser DCONF pour les passer en taille 32.
+* **35** - Installer le [wallpaper Fedora 34](https://fedoraproject.org/w/uploads/d/de/F34_default_wallpaper_night.jpg) et le thème de curseurs [Phinger NO LEFT Light](https://github.com/phisch/phinger-cursors?tab=readme-ov-file) et utiliser `DCONF` pour les passer en taille 32.
 
-* **35** - Régler HiDPI sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
+* **36** - Régler `HiDPI` sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
+  
+* **37** Renommer les `logiciels dans l'overview`, cacher ceux qui sont inutiles de faàon à n'avoir qu'une seule et unique page, en utilisant le logiciel `Menu Principal`.
+En profiter pour changer avec Menu Principal l'icone de `Ptyxis`, en la remplaçant par celle de [gnome-terminal](https://upload.wikimedia.org/wikipedia/commons/d/da/GNOME_Terminal_icon_2019.svg)
 
-* **36** - Installer diverses extensions :
+* **38** - Installer diverses `extensions` :
   
 a - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/)
 
@@ -508,11 +511,11 @@ n - [Remove World Clock](https://extensions.gnome.org/extension/6973/remove-worl
 
 et désactiver l'extension native `Background logo`
 
-* **37** - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
+* **39** - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
 
-* **38** - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
+* **40** - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
 
-* **39** - Régler Gnome-text-editor et Ptyxis; améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
+* **41** - Régler `Gnome-text-editor` et `Ptyxis`; améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
 ```
 # Ignore la casse lors de la complétion
 set completion-ignore-case on
@@ -530,36 +533,41 @@ set visible-stats on
 TAB: menu-complete
 ```
   
-* **40** - Celluloid :
+* **42** - `Celluloid` :
 inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires, activer l'option `focus` et `toujours afficher les boutons de titre`, enfin installer les deux scripts lua suivants pour la musique :
 [Visualizer](https://www.dropbox.com/scl/fi/bbwlvfhtjnu8sgr4yoai9/visualizer.lua?rlkey=gr3bmjnrlexj7onqrxzjqxafl&dl=0)
 [Delete File avec traduction française](https://www.dropbox.com/scl/fi/c2cacmw2a815husriuvc1/delete_file.lua?rlkey=6b9d352xtvybu685ujx5mpv7v&dl=0)
 
-* **41** - `Jdownloader`: réglages de base, thème Black Moon puis icones Flat; font Noto Sans Regular, désactivatioin du dpi et font sur 175; puis désactiver les éléments suivants : tooltip, help, Update Button Flashing, banner, Premium Alert, Donate, speed meter visible.
+* **43** - `Jdownloader`: réglages de base, thème Black Moon puis icones Flat; font Noto Sans Regular, désactivatioin du dpi et font sur 175; puis désactiver les éléments suivants : tooltip, help, Update Button Flashing, banner, Premium Alert, Donate, speed meter visible.
 
-* **42** - Script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les vidéos vers Vidéos en supprimant le sous-dossier d'origine : en faire un raccourci avec l'éditeur de menu, passer le chemin `sh /home/ogu/.transfert_videos.sh` et lui mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/drive-multidisk.svg`
+* **44** - Script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les vidéos vers Vidéos en supprimant le sous-dossier d'origine : en faire un raccourci avec l'éditeur de menu, passer le chemin `sh /home/ogu/.transfert_videos.sh` et lui mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/drive-multidisk.svg`
 
-* **43** - Script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à la volée : en faire un raccourci avec l'éditeur de menu, raccourci d'exécution `bash /home/ogu/.bluetooth_toggle.sh` & mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/phone.svg`.
+* **45** - Script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à la volée : en faire un raccourci avec l'éditeur de menu, raccourci d'exécution `bash /home/ogu/.bluetooth_toggle.sh` & mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/phone.svg`.
 
-* **44** - Accélérer les animations :  saisir ```GNOME_SHELL_SLOWDOWN_FACTOR=0.5``` dans le fichier ```sudo gnome-text-editor /etc/environment```
+* **46** - Accélérer les `animations` :  saisir
+```
+GNOME_SHELL_SLOWDOWN_FACTOR=0.5
+```
+dans le fichier 
+```
+sudo gnome-text-editor /etc/environment
+```
 
-* **45** - Changer avec Menu Principal l'icone de Ptyxis, en la remplaçant par celle de [gnome-terminal](https://upload.wikimedia.org/wikipedia/commons/d/da/GNOME_Terminal_icon_2019.svg)
+* **47** - `Scripts` Nautilus : `Dropbox.py`, `Hide.py` et `Unhide.py` à télécharger puis à coller dans le fichier /home/ogu/.local/share/nautilus/scripts/. Penser à les rendre exécutables!
 
-* **46** - `Scripts` Nautilus : `Dropbox.py`, `Hide.py` et `Unhide.py` à télécharger puis à coller dans le fichier /home/ogu/.local/share/nautilus/scripts/. Penser à les rendre exécutables!
+* **48** - `LibreOffice` : régler l'UI et les paramètres, désactiver Java, rajouter `-nologo` au raccourci avec l'éditeur de menu pour supprimer le splash screen, passer à `600000000` la valeur de `Graphic Manager` + `UseOpenGL` = true + `UseSkia` = true dans la Configuration Avancée + désactiver l'enregistrement des données personnelles dans les fichiers (Menu Sécurité). 
 
-* **47** - `LibreOffice` : régler l'UI et les paramètres, désactiver Java, rajouter `-nologo` au raccourci avec l'éditeur de menu pour supprimer le splash screen, passer à `600000000` la valeur de `Graphic Manager` + `UseOpenGL` = true + `UseSkia` = true dans la Configuration Avancée + désactiver l'enregistrement des données personnelles dans les fichiers (Menu Sécurité). 
-
-* **48** - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
+* **49** - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
 ----------------------------------------------------------------------------------------------
 
  
 ## 🌐 **F - Réglages du navigateur Firefox**
 
-* **49** - Réglages internes de Firefox (penser à activer CTRL-TAB pour faire défiler dans l'ordre d'utilisation)
+* **50** - Réglages internes de `Firefox` (penser à activer CTRL-TAB pour faire défiler dans l'ordre d'utilisation)
 
-* **50** - Changer le thème pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/) ou [Gnome Dark ](https://addons.mozilla.org/fr/firefox/addon/adwaita-gnome-dark/?utm_content=addons-manager-reviews-link&utm_medium=firefox-browser&utm_source=firefox-browser)
+* **51** - Changer le `thème` pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/) ou [Gnome Dark ](https://addons.mozilla.org/fr/firefox/addon/adwaita-gnome-dark/?utm_content=addons-manager-reviews-link&utm_medium=firefox-browser&utm_source=firefox-browser)
 
-* **51** - Dans about:config :
+* **52** - Dans `about:config` :
   
 a - `ui.key.menuAccessKey` = 0 pour désactiver la touche Alt qui ouvre les menus
   
@@ -594,7 +602,7 @@ o - `apz.overscroll.enabled` = false pour supprimer le rebonb lors d uscroll jus
 p - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
 about:cache` pour contrôle. 
 
-* **52** - Extensions
+* **53** - **Extensions**
   
 a - [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/) : réglages à faire + import des deux listes sauvegardées
   
