@@ -129,12 +129,14 @@ Puis contrôler avec :
 ```
 systemd-analyze --user blame
 ```
----> boot time userspace avant optimisation :
+---> boot time --user avant optimisation : 3.8 secondes / userspace 293 ms
+
 `systemd-analyze --user
 Startup finished in 3.800s (userspace)
 default.target reached after 293ms in userspace.`
 
----> boot time userspace après optimisation :
+---> boot time userspace après optimisation : 3 secondes / userspace 232 ms
+
 `systemd-analyze --user
 Startup finished in 3.007s (userspace)
 default.target reached after 232ms in userspace.`
@@ -252,7 +254,7 @@ cat /proc/cmdline
 ```
 sudo bootctl set-timeout 0
 ```
-Reboot, puis vérifioer que le fichier loader.conf soit à 0 :
+Reboot, puis vérifier que le fichier loader.conf soit à 0 :
 ```
 sudo cat /boot/efi/loader/loader.conf
 timeout 5
@@ -338,12 +340,13 @@ puis décommenter et editer `NautoVTS=1`
 nmcli dev show |grep DNS
 ```
 
-**Boot time : avant optimisation :
-Startup finished in 5.8s (firmware) + 508ms (loader) + 1.896s (kernel) + 4s (initrd) + 11.5s (userspace) = 23.7s**
+**Boot time : avant optimisation : 23.7 secondes**
 
-**ogu@fedora-ogu:~$ systemd-analyze
-Startup finished in 2.307s (firmware) + 496ms (loader) + 1.805s (kernel) + 3.978s (initrd) + 3.264s (userspace) = 11.853s
-graphical.target reached after 3.242s in userspace**
+`Startup finished in 5.8s (firmware) + 508ms (loader) + 1.896s (kernel) + 4s (initrd) + 11.5s (userspace) = 23.7s`
+
+**Boot time : après optimisation : 11.8 secondes
+
+`Startup finished in 2.307s (firmware) + 496ms (loader) + 1.805s (kernel) + 3.978s (initrd) + 3.264s (userspace) = 11.853s**
 
 ----------------------------------------------------------------------------------------------
 
