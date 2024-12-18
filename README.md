@@ -100,6 +100,7 @@ sudo systemctl mask pcscd.socket
 sudo systemctl mask fwupd
 sudo systemctl mask sssd-kcm.socket
 sudo systemctl mask sssd.service
+sudo systemctl mask iio-sensor-proxy #accéléromètre qui ne répond pas sur Fedora41 (mais marchait sur F39 en étant trop sensible...) + détecteur de luminosité auto pour le réglage de Gnome-settings qui est désactivé. Nota : l'extension gnome-shell `Screen Rotate` remplace avantageusement le capteur pour passer Fedora en mode tablette)
 ```
 puis désactiver le Bluetooth pour l'activer à la volée (voir script dans la rubrique  Gnome) :
 ```
@@ -269,7 +270,6 @@ Puis reconstruire le kernel avec :
 sudo kernel-install add $(uname -r) /lib/modules/$(uname -r)/vmlinuz && sudo dracut --force
 ```
 
-
 * **17** - Editer le mount des partitions BTRFS `/` et `/home` avec la commande :
 ```
 sudo gnome-text-editor /etc/fstab
@@ -317,11 +317,19 @@ sudo firewall-cmd --zone=FedoraWorkstation --list-all
 sudo firewall-cmd --get-active-zones
 ```
 
-* **20** - Modifier le `swappiness` :
+* **20** - Modifier le `swappiness` et le `dirty_writeback`:
 ```
 echo vm.swappiness=5 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 echo vm.vfs_cache_pressure=50 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
+echo "vm.dirty_writeback_centisecs=1000" | sudo tee -a /sysctl.d/99-sysctl.conf
 sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
+```
+
+Reboot et vérifier avec :
+```
+cat /proc/sys/vm/swappiness
+cat /proc/sys/vm/vfs_cache_pressure
+cat /proc/sys/vm/dirty_writeback_centisecs
 ```
   
 * **21** - Accélérer `DNF` : 
