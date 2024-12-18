@@ -564,6 +564,45 @@ h - Scroll To Top Lite(https://addons.mozilla.org/fr/firefox/addon/scroll-to-top
 
 * **54** - Activer `openh264` & `widevine` dans les plugins firefox.
 
+* **55** - Mettre le profil de Firefox en RAM avec `profile-sync-daemon`
+Installer psd (avec dnf `sudo dnf install profile-sync-daemon, ou avec make en cas d'échec - voir le fichier INSTALL sur le Github), puis l'activer avec les commandes suivantes (sans quoi le service échoue à démarrer) :
+```
+psd
+systemctl --user daemon-reload
+sytemctl --user enable psd
+reboot
+```
+Puis vérifier que psd fonctionne en contrôlant d'abord les profils Firefox :
+```
+cat ~/.mozilla/firefox/profiles.ini  #default=1 correspond au profil par défaut
+cd ~/.mozilla/firefox/
+ls ~/.mozilla/firefox/
+```
+Puis se rendre dans le dossier `~/.mozilla/firefox/` et copier-coller les profils dans un dossier de sauvegarde. Les supprimer un par un en relançant Firefox pour contrôle. Une fois le dossier unique par défaut établi, le renommer avec
+```
+firefox --ProfileManager #renommer le profil par défaut et eventuellement supprimer le profil en double  
+```
+Enfin régler & contrôler le bon fonctionnement de psd : passer à 2 le nombre de backups au lieu de 5 avec BACKUP_LIMIT=2, & circonscrire psd au seul Firefox avec `BROWSERS=(firefox)`:
+```
+psd -p
+sudo gnome-text-editor /home/ogu/.config/psd/psd.conf *# The default is to save the most recent 5 crash recovery snapshots BACKUP_LIMIT=2 & BROWSERS=(firefox)
+```
+Lancer Firefox et s'assurer que le profil originel ne pèse que quelques Ko :
+```
+cd ~/.mozilla/firefox
+du -sh ~/.mozilla/firefox/
+```
+Puis s'assurer que les centaines de Mo du profil sont bien en ram :
+```
+cd /run/user/1000
+ls /run/user/1000
+cd psd
+ls
+cd firefox
+ls
+du -sh /run/user/1000/psd/nom du profil/
+```
+
 
 
 ## 🪛 **G - Maintenance de la distribution**
