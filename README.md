@@ -344,9 +344,10 @@ nmcli dev show |grep DNS
 
 `Startup finished in 5.8s (firmware) + 508ms (loader) + 1.896s (kernel) + 4s (initrd) + 11.5s (userspace) = 23.7s`
 
-**Boot time : après optimisation : 11.8 secondes
+**Boot time : après optimisation : 11.5 secondes**
 
-`Startup finished in 2.307s (firmware) + 496ms (loader) + 1.805s (kernel) + 3.978s (initrd) + 3.264s (userspace) = 11.853s**
+`Startup finished in 2.190s (firmware) + 497ms (loader) + 1.805s (kernel) + 3.806s (initrd) + 3.192s (userspace)`
+
 
 ----------------------------------------------------------------------------------------------
 
