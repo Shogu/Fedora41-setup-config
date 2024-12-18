@@ -584,7 +584,7 @@ Puis se rendre dans le dossier `~/.mozilla/firefox/` et copier-coller les profil
 ```
 firefox --ProfileManager #renommer le profil par défaut et eventuellement supprimer le profil en double  
 ```
-Enfin régler & contrôler le bon fonctionnement de psd : passer à 2 le nombre de backups au lieu de 5 avec BACKUP_LIMIT=2, & circonscrire psd au seul Firefox avec `BROWSERS=(firefox)`:
+Enfin régler & contrôler le bon fonctionnement de psd : passer à 2 le nombre de backups au lieu de 5 avec `BACKUP_LIMIT=2`, & circonscrire psd au seul Firefox avec `BROWSERS=(firefox)`:
 ```
 psd -p
 sudo gnome-text-editor /home/ogu/.config/psd/psd.conf *# The default is to save the most recent 5 crash recovery snapshots BACKUP_LIMIT=2 & BROWSERS=(firefox)
