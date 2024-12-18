@@ -564,8 +564,10 @@ h - Scroll To Top Lite(https://addons.mozilla.org/fr/firefox/addon/scroll-to-top
 
 * **54** - Activer `openh264` & `widevine` dans les plugins firefox.
 
-* **55** - Mettre le profil de Firefox en RAM avec `profile-sync-daemon`
-Installer psd (avec dnf `sudo dnf install profile-sync-daemon, ou avec make en cas d'échec - voir le fichier INSTALL sur le Github), puis l'activer avec les commandes suivantes (sans quoi le service échoue à démarrer) :
+* **55** - Mettre le profil de Firefox en RAM avec `profile-sync-daemon` :
+* ATTENTION : suivre ces consignes avec *Firefox fermé* - utiliser le browser secondaire WEB
+* 
+Installer psd (avec dnf `sudo dnf install profile-sync-daemon`, ou avec make en cas d'échec - voir le fichier INSTALL sur le Github), puis l'activer avec les commandes suivantes (sans quoi le service échoue à démarrer) :
 ```
 psd
 systemctl --user daemon-reload
