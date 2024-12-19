@@ -553,7 +553,11 @@ dans le fichier
 sudo gnome-text-editor /etc/environment
 ```
 
-* **47** - `Scripts` Nautilus : `Dropbox.py`, `Hide.py` et `Unhide.py` à télécharger puis à coller dans le fichier /home/ogu/.local/share/nautilus/scripts/. Penser à les rendre exécutables!
+* **47** - `Scripts` Nautilus :
+a - `Dropbox.py` pour imiter l'extension nautilus-dropbox avec Maestral (édition et lecture du fichier sur le site Dropbox & copie de l'url de partage)
+b - `Hide.py` et `Unhide.py` pour masquer/rendre visibles les fichiers
+A télécharger depuis le dossier `SCRIPTS` puis à coller dans le dossier `/home/ogu/.local/share/nautilus/scripts/.
+Penser à les rendre exécutables!
 
 * **48** - `LibreOffice` : régler l'UI et les paramètres, désactiver Java, rajouter `-nologo` au raccourci avec l'éditeur de menu pour supprimer le splash screen, passer à `600000000` la valeur de `Graphic Manager` + `UseOpenGL` = true + `UseSkia` = true dans la Configuration Avancée + désactiver l'enregistrement des données personnelles dans les fichiers (Menu Sécurité). 
 
