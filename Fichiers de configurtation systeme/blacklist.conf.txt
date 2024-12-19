@@ -1,6 +1,0 @@
-blacklist iTCO_vendor_support
-blacklist wdat_wdt
-blacklist intel_pmc_bxt
-blacklist nouveau
-blacklist btusb
-
