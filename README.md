@@ -50,7 +50,7 @@ inst.sdboot
 
 * **5** - Supprimer les `logiciels inutiles` avec Gnome-software
   
-* **6** - COmpléter en supprimant les `logiciels inutiles` suivants avec dnf :
+* **6** - Compléter en supprimant les `logiciels inutiles` suivants avec dnf :
 ```
 sudo dnf remove libertas-firmware
 sudo dnf remove cirrus-audio-firmware
@@ -166,7 +166,7 @@ sudo systemctl restart systemd-journald
 ```
 sudo dnf remove chrony
 sudo systemctl enable systemd-timesyncd
-sudo gnome-text-editor /usr/lib/systemd/timesyncd.conf
+sudo gnome-text-editor /etc/systemd/timesyncd.conf
 ```
 et saisir :
 ```
