@@ -1,6 +1,17 @@
-# 🐧 ***Fedora 41 setup & config*** 
+<table>
+  <tr>
+    <td style="vertical-align: middle;">
+      <img src="https://github.com/Shogu/Fedora41-setup-config/blob/main/Images%20USER/user-astronaut.jpg" alt="logo_user" width="150">
+    </td>
+    <td style="vertical-align: middle; padding-left: 10px;">
+      <h2 style="margin: 0;">Fedora 41 setup & config</h2>
+    </td>
+  </tr>
+</table>
 
-Mémo pour le setup complet de **Fedora 41** sur laptop **ASUS ZENBOOK S13 FLIP OLED UP5302Z**
+
+
+🐧 Mémo pour le setup complet de **Fedora 41** sur laptop **ASUS ZENBOOK S13 FLIP OLED UP5302Z** 
 
 ***Table des matières:***
 
