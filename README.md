@@ -380,6 +380,28 @@ puis saisir : `NautoVTS=1`
 nmcli dev show |grep DNS
 ```
 
+* **26** - Amélioration d uréseau : après plusieurs test comparatifs, améliorer le ping, la latence, et un peu le débit avec :
+```
+sudo gnome-text-editor /etc/sysctl.d/99-sysctl.conf
+```
+Puis saisir :
+```
+# Optimisation TCP pour minimiser ping et latence tout en conservant un bon débit
+net.ipv4.tcp_congestion_control = cubic
+net.ipv4.tcp_rmem = 4096 87380 8388608
+net.ipv4.tcp_wmem = 4096 87380 8388608
+net.core.rmem_default = 8388608
+net.core.rmem_max = 8388608
+net.core.wmem_default = 8388608
+net.core.wmem_max = 8388608
+net.ipv4.tcp_mtu_probing = 0
+net.ipv4.tcp_low_latency = 1
+```
+Relancer avec :
+```
+sudo sysctl -p
+```
+
 **Boot time : avant optimisation : 23.7 secondes**
 
 `Startup finished in 5.8s (firmware) + 508ms (loader) + 1.896s (kernel) + 4s (initrd) + 11.5s (userspace) = 23.7s`
