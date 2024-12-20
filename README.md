@@ -363,9 +363,9 @@ echo 'max_parallel_downloads=10' | sudo tee -a /etc/dnf/dnf.conf
   
 * **23** - Passer à 1 le nombre de `ttys` au boot  :  
 ```
-sudo gnome-text-editor /usr/lib/systemd/logind.conf
+sudo gnome-text-editor /etc/systemd/logind.conf
 ```
-puis décommenter et editer `NautoVTS=1`
+puis saisir : `NautoVTS=1`
 
 * **24** - Vérifier que le système utilise bien les DNS du `routeur Xiaomi` (192.168.31.1) :
 ```
