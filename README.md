@@ -226,7 +226,7 @@ blacklist ELAN:Fingerprint
 blacklist btusb
 ```
 
-* **14** Autosuspendre le `capteur de luminosité et d'accéléromètre` (en complément de son maskage)
+* **14** - Autosuspendre le `capteur de luminosité et l'accéléromètre` (en complément de son maskage)
 ```
 echo 'ACTION=="add", SUBSYSTEM=="pci", KERNEL=="0000:00:12.0", ATTR{power/control}="auto"' | sudo tee /etc/udev/rules.d/99-pci-autosuspend.rules > /dev/null
 ```
