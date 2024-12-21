@@ -785,46 +785,53 @@ echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/unbind > /
 echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/bind > /dev/null                         
 ```
 
-* EXPERIMENTAL : créer un initramfs plus petit et plus rapide en désactivant des modules inutiles : manipulation à faire à chaque màj du kernel : d'abord désactiver vconsole : + jeter un oeil ici : https://wiki.realmofespionage.xyz/distros:fedora_workstation_gnome?rev=1694557001#dracut
-+fips fips-crypto-policies systemd-journald
-do_strip="yes"
-aggressive_strip="yes"
+* EXPERIMENTAL : créer un initramfs plus petit et plus rapide en désactivant des modules inutiles : manipulation à faire à chaque màj du kernel : créer un fichier de configuration `dracut`
+
+```
+sudo gnome-text-editor /etc/dracut.conf.d/dracut.conf
+```
+et copier-coller ces options de configuration :
+```
+# Configuration du fichier dracut.conf pour obtenir un initrd le plus léger possible
+
+# Suppression des modules inutiles
+omit_dracutmodules+=" multipath nss-softokn memstrack usrmount mdraid dmraid debug selinux fcoe fcoe-uefi terminfo watchdog crypt-gpg crypt-loop cdrom pollcdrom pcsc ecryptfs rescue watchdog-module network cifs nfs nbd brltty fips fips-crypto-policies busybox rdma i18n isci pcmcia wacom "
+
+omit_modules+=" systemd-vconsole-setup "
+
+omit_drivers+=" nvidia amd nouveau "
+
+# Système de fichiers utilisés
+filesystems+=" ext4 btrfs fat "
+
+# Ne pas exécuter fsck
+nofscks="yes"
+  
+# Suppression de la journalisation
+stdlog="0"
+  
+# Compression de l'initramfs
+compress="zstd"
+compress_options="-4"
+
+# Mode silencieux
+quiet="yes"
+  
+# Autres options
+force="yes"
+hostonly="yes"
 hostonly_mode="strict"
-  ```
-  cp /usr/bin/true /usr/lib/systemd/systemd-vconsole-setup
+ ```
 
-  ```
-     puis créer un fichier de configuration `dracut` (ou dracut --regenerate-all), ou télécharger directement le fichier dracut.conf.
+Recréer l'initram avec :
+```
+sudo dracut --force --verbose
+```
+Vérifier l'output après sudo dracut : `sudo lsinitrd -m`
 
-  ```
-  sudo gnome-text-editor /etc/dracut.conf.d/dracut.conf
-  ```
-  
-     et copier-coller ces options de configuration :
+--> Réduction de l'initram de 30 à 25 mo
+Bootloader avant réduction : 3.835 s
 
-  ```
-  # Configuration du fichier dracut.conf pour obtenir un initrd le plus léger possible
-
-  omit_dracutmodules+=" multipath nss-softokn memstrack usrmount mdraid dmraid debug selinux fcoe fcoe-uefi terminfo 
-  watchdog crypt-gpg crypt-loop cdrom pollcdrom pcsc ecryptfs rescue watchdog-module network cifs nfs nbd brltty 
-  busybox rdma i18n isci wacom "
-  omit_drivers+=" nvidia amd nouveau "
-  filesystems+=" ext4 btrfs fat "
-  # Ne pas exécuter fsck
-  nofscks="yes"
-  # Niveau de journalisation
-  stdlog="0"
-  # Compression de l'initramfs
-  compress="zstd"
-  compress_options="-4"
-  # Mode silencieux
-  quiet="yes"
-  # Autres options
-  force="yes"
-  hostonly="yes"
-  ```
-  
-     Vérifier l'output après sudo dracut : `sudo lsinitrd -m`
 
 
 
