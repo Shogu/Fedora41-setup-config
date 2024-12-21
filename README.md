@@ -384,7 +384,7 @@ puis saisir : `NautoVTS=1`
 nmcli dev show |grep DNS
 ```
 
-* **26** - Amélioration d uréseau : après plusieurs test comparatifs, améliorer le ping, la latence, et un peu le débit avec :
+* **26** - Amélioration du réseau : après plusieurs test comparatifs, améliorer le ping, la latence, et un peu le débit avec :
 ```
 sudo gnome-text-editor /etc/sysctl.d/99-sysctl.conf
 ```
@@ -420,7 +420,7 @@ sudo sysctl -p
 
 ## 📦 **D - Remplacement et installation de logiciels et codecs**
 
-* **26** - Ajouter les sources `RPMFusion` :
+* **27** - Ajouter les sources `RPMFusion` :
   
 **RPMFusion Free**
 ```
@@ -432,7 +432,7 @@ sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-releas
 sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 ```
     
-* **27** - Ajouter les codecs `FFMPEG`, multimedia, `AV1`, & le `pilote Intel` d'accélération matérielle :
+* **28** - Ajouter les codecs `FFMPEG`, multimedia, `AV1`, & le `pilote Intel` d'accélération matérielle :
 ```
 sudo dnf swap ffmpeg-free ffmpeg --allowerasing
 sudo dnf install intel-media-driver
@@ -440,9 +440,9 @@ sudo dnf swap libva-intel-media-driver intel-media-driver --allowerasing
 sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 ```
 
-* **28** - Réglages de `gnome-software`
+* **29** - Réglages de `gnome-software`
 
-* **29** - Installer les logiciels `Flatpak` suivants : nota : utiliser prioritairement les flatpaks Fedora OU Flathub car les runtimes ne sont pas partagés entre les 2.
+* **30** - Installer les logiciels `Flatpak` suivants : nota : utiliser prioritairement les flatpaks Fedora OU Flathub car les runtimes ne sont pas partagés entre les 2.
 ```
 flatpak install flathub com.mattjakeman.ExtensionManager -y
 flatpak install flathub io.github.flattool.Warehouse -y
@@ -460,7 +460,7 @@ flatpak install flathub org.gnome.Epiphany -y
 ```
 Nota : penser à décocher "Exécuter en arrière plan" dans les réglages de Gnome (rubrique `applications`) pour le navigateur secondaire `Web`, sans quoi il semble se lancer au boot.
 
-* **30** - Installer les `logiciels` suivants avec dnf :
+* **31** - Installer les `logiciels` suivants avec dnf :
 ```
 sudo dnf install dconf-editor -y
 sudo dnf install evince-thumbnailer -y
@@ -475,7 +475,7 @@ sudo dnf install dnfdragora -y
 sudo dnf install ImageMagick -y
 ```
 
-* **31** - Installer `Dropbox` avec **Maestral** :
+* **32** - Installer `Dropbox` avec **Maestral** :
 ```
 sudo dnf install gcc
 sudo dnf install python3-devel
@@ -488,7 +488,7 @@ maestral gui
 sudo dnf remove gcc python3-devel python3-pip
 ```
 
-* **32** - Désinstaller `gnome-software` et `packagekit` (ainsi que le cache) pour éviter leur lancement au boot, et les remplacer par `DNFdragora` :
+* **33** - Désinstaller `gnome-software` et `packagekit` (ainsi que le cache) pour éviter leur lancement au boot, et les remplacer par `DNFdragora` :
   
 ```
 sudo dnf remove PackageKit-gstreamer-plugin PackageKit PackageKit-command-not-found gnome-software
@@ -508,23 +508,23 @@ dconf write /org/gnome/desktop/search-providers/disabled "['org.gnome.Software.d
 
 ## 🐾 **E - Réglages de l'UI Gnome Shell** 
 
-* **33** - Régler le système avec `Paramètres` puis `Ajustements` (Changer les polices d'écriture pour `Noto Sans` en 11)
+* **34** - Régler le système avec `Paramètres` puis `Ajustements` (Changer les polices d'écriture pour `Noto Sans` en 11)
 
-* **34** - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
+* **35** - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
 ```
 192.168.31.68:2121
 ```
 
-* **35** - Modifier le mot de passe au démarrage avec le logiciel `Mots de Passe`, puis laisser les champs vides. Penser à reconnecter le compte Google dans Gnome!
+* **36** - Modifier le mot de passe au démarrage avec le logiciel `Mots de Passe`, puis laisser les champs vides. Penser à reconnecter le compte Google dans Gnome!
 
-* **36** - Installer le [wallpaper Fedora 34](https://fedoraproject.org/w/uploads/d/de/F34_default_wallpaper_night.jpg) et le thème de curseurs [Phinger NO LEFT Light](https://github.com/phisch/phinger-cursors?tab=readme-ov-file) et utiliser `DCONF` pour les passer en taille 32.
+* **37** - Installer le [wallpaper Fedora 34](https://fedoraproject.org/w/uploads/d/de/F34_default_wallpaper_night.jpg) et le thème de curseurs [Phinger NO LEFT Light](https://github.com/phisch/phinger-cursors?tab=readme-ov-file) et utiliser `DCONF` pour les passer en taille 32.
 
-* **37** - Régler `HiDPI` sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
+* **38** - Régler `HiDPI` sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
   
-* **38** Renommer les `logiciels dans l'overview`, cacher ceux qui sont inutiles de faàon à n'avoir qu'une seule et unique page, en utilisant le logiciel `Menu Principal`.
+* **39** Renommer les `logiciels dans l'overview`, cacher ceux qui sont inutiles de faàon à n'avoir qu'une seule et unique page, en utilisant le logiciel `Menu Principal`.
 En profiter pour changer avec Menu Principal l'icone de `Ptyxis`, en la remplaçant par celle de [gnome-terminal](https://upload.wikimedia.org/wikipedia/commons/d/da/GNOME_Terminal_icon_2019.svg)
 
-* **39** - Installer diverses `extensions` :
+* **40** - Installer diverses `extensions` :
   
 a - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/)
 
@@ -556,11 +556,11 @@ n - [Remove World Clock](https://extensions.gnome.org/extension/6973/remove-worl
 
 et désactiver l'extension native `Background logo`
 
-* **40** - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
+* **41** - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
 
-* **41** - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
+* **42** - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
 
-* **42** - Régler `Gnome-text-editor` et `Ptyxis`; améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
+* **43** - Régler `Gnome-text-editor` et `Ptyxis`; améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
 ```
 # Ignore la casse lors de la complétion
 set completion-ignore-case on
@@ -578,20 +578,20 @@ set visible-stats on
 TAB: menu-complete
 ```
   
-* **43** - `Celluloid` :
+* **44** - `Celluloid` :
 inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires, activer l'option `focus` et `toujours afficher les boutons de titre`, enfin installer les deux scripts lua suivants pour la musique :
 [Visualizer](https://www.dropbox.com/scl/fi/bbwlvfhtjnu8sgr4yoai9/visualizer.lua?rlkey=gr3bmjnrlexj7onqrxzjqxafl&dl=0)
 [Delete File avec traduction française](https://www.dropbox.com/scl/fi/c2cacmw2a815husriuvc1/delete_file.lua?rlkey=6b9d352xtvybu685ujx5mpv7v&dl=0)
 
-* **44** - `Jdownloader`: réglages de base, thème Black Moon puis icones Flat; font Noto Sans Regular, désactivatioin du dpi et font sur 175; puis désactiver les éléments suivants : tooltip, help, Update Button Flashing, banner, Premium Alert, Donate, speed meter visible.
+* **45** - `Jdownloader`: réglages de base, thème Black Moon puis icones Flat; font Noto Sans Regular, désactivatioin du dpi et font sur 175; puis désactiver les éléments suivants : tooltip, help, Update Button Flashing, banner, Premium Alert, Donate, speed meter visible.
 
-* **45** - Script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les vidéos vers Vidéos en supprimant le sous-dossier d'origine.
+* **46** - Script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les vidéos vers Vidéos en supprimant le sous-dossier d'origine.
 Le télécharger depuis le dossier `SCRIPTS`, en faire un raccourci avec l'éditeur de menu, passer le chemin `sh /home/ogu/.transfert_videos.sh` et lui mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/drive-multidisk.svg`
 
-* **46** - Script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à la volée.
+* **47** - Script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à la volée.
 Le télécharger depuis le dossier `SCRIPTS`, en faire un raccourci avec l'éditeur de menu, raccourci d'exécution `bash /home/ogu/.bluetooth_toggle.sh` & mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/phone.svg`.
 
-* **47** - Accélérer les `animations` :  saisir
+* **48** - Accélérer les `animations` :  saisir
 ```
 GNOME_SHELL_SLOWDOWN_FACTOR=0.5
 ```
@@ -600,25 +600,25 @@ dans le fichier
 sudo gnome-text-editor /etc/environment
 ```
 
-* **48** - `Scripts` Nautilus :
+* **49** - `Scripts` Nautilus :
 a - `Dropbox.py` pour imiter l'extension nautilus-dropbox avec Maestral (édition et lecture du fichier sur le site Dropbox & copie de l'url de partage)
 b - `Hide.py` et `Unhide.py` pour masquer/rendre visibles les fichiers
 A télécharger depuis le dossier `SCRIPTS` puis à coller dans le dossier `/home/ogu/.local/share/nautilus/scripts/.
 Penser à les rendre exécutables!
 
-* **49** - `LibreOffice` : régler l'UI et les paramètres, désactiver Java, rajouter `-nologo` au raccourci avec l'éditeur de menu pour supprimer le splash screen, passer à `600000000` la valeur de `Graphic Manager` + `UseOpenGL` = true + `UseSkia` = true dans la Configuration Avancée + désactiver l'enregistrement des données personnelles dans les fichiers (Menu Sécurité). 
+* **50** - `LibreOffice` : régler l'UI et les paramètres, désactiver Java, rajouter `-nologo` au raccourci avec l'éditeur de menu pour supprimer le splash screen, passer à `600000000` la valeur de `Graphic Manager` + `UseOpenGL` = true + `UseSkia` = true dans la Configuration Avancée + désactiver l'enregistrement des données personnelles dans les fichiers (Menu Sécurité). 
 
-* **50** - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
+* **51** - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
 ----------------------------------------------------------------------------------------------
 
  
 ## 🌐 **F - Réglages du navigateur Firefox**
 
-* **51** - Réglages internes de `Firefox` (penser à activer CTRL-TAB pour faire défiler dans l'ordre d'utilisation & à passer sur `Sombre` plutot qu'`auto` le paramètre `Apparence des sites web`)
+* **52** - Réglages internes de `Firefox` (penser à activer CTRL-TAB pour faire défiler dans l'ordre d'utilisation & à passer sur `Sombre` plutot qu'`auto` le paramètre `Apparence des sites web`)
 
-* **52** - Changer le `thème` pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/) ou [Gnome Dark ](https://addons.mozilla.org/fr/firefox/addon/adwaita-gnome-dark/?utm_content=addons-manager-reviews-link&utm_medium=firefox-browser&utm_source=firefox-browser)
+* **53** - Changer le `thème` pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/) ou [Gnome Dark ](https://addons.mozilla.org/fr/firefox/addon/adwaita-gnome-dark/?utm_content=addons-manager-reviews-link&utm_medium=firefox-browser&utm_source=firefox-browser)
 
-* **53** - Dans `about:config` :
+* **54** - Dans `about:config` :
   
 a - `ui.key.menuAccessKey` = 0 pour désactiver la touche Alt qui ouvre les menus
   
@@ -653,7 +653,7 @@ o - `apz.overscroll.enabled` = false pour supprimer le rebonb lors d uscroll jus
 p - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
 about:cache` pour contrôle. 
 
-* **54** - **Extensions**
+* **55** - **Extensions**
   
 a - [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/) : réglages à faire + import des deux listes sauvegardées
   
@@ -671,11 +671,11 @@ g - [Side View](https://addons.mozilla.org/fr/firefox/addon/side-view/)
 
 h - Scroll To Top Lite(https://addons.mozilla.org/fr/firefox/addon/scroll-to-top-lite/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 
-* **55** - Activer `openh264` & `widevine` dans les plugins firefox.
+* **56** - Activer `openh264` & `widevine` dans les plugins firefox.
   
-* **56** - Désactiver les `recherches populaires` : dans la barre d'adresse, cliquer en bas sur la roue dentée correspondant à Recherches populaires et les désactiver.
+* **57** - Désactiver les `recherches populaires` : dans la barre d'adresse, cliquer en bas sur la roue dentée correspondant à Recherches populaires et les désactiver.
 
-* **57** - Mettre le profil de Firefox en RAM avec `profile-sync-daemon` :
+* **58** - Mettre le profil de Firefox en RAM avec `profile-sync-daemon` :
 * ATTENTION : suivre ces consignes avec **Firefox fermé** - utiliser le browser secondaire WEB
   
 Installer psd (avec dnf `sudo dnf install profile-sync-daemon`, ou avec make en cas d'échec - voir le fichier INSTALL sur le Github), puis l'activer avec les commandes suivantes (sans quoi le service échoue à démarrer) :
