@@ -349,12 +349,16 @@ sudo firewall-cmd --zone=FedoraWorkstation --list-all
 sudo firewall-cmd --get-active-zones
 ```
 
-* **22** - Modifier le `swappiness` & le `dirty_writeback` (conformément aux réglages de Powertop):
+* **22** - Modifier les réglages d'accès au `swap` & le `dirty_writeback` (conformément aux réglages de Powertop):
 ```
 echo vm.swappiness=5 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 echo vm.vfs_cache_pressure=50 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
+echo vm.watermark_boost_factor=0 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
+echo vm.watermark_scale_factor=50 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
+echo vm.page-cluster=1 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 echo "vm.dirty_writeback_centisecs=1500" | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
+sudo sysctl --system
 ```
 
 Reboot et vérifier avec :
