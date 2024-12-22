@@ -337,7 +337,7 @@ sudo gnome-text-editor /etc/kernel/cmdline
 
 Puis saisir :
 ```
-mitigations=off selinux=0 cgroup_disable=rdma nmi_watchdog=0 loglevel=1 noresume
+mitigations=off selinux=0 cgroup_disable=rdma nmi_watchdog=0 loglevel=0 systemd.show_status=false noresume
 ```
 Relancer systemd conformément au conseil dans les commentaires de fstab :
 ```
