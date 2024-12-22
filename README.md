@@ -247,6 +247,62 @@ Et contrôler avec :
 ```
 cat /etc/udev/rules.d/99-pci-autosuspend.rules
 ```
+
+* **EXPERIMENTAL** : réduire l`initramfs` en désactivant des modules inutiles (manipulation à faire à chaque màj du kernel)
+Créer un fichier de configuration `dracut` :
+```
+sudo gnome-text-editor /etc/dracut.conf.d/dracut.conf
+```
+et copier-coller ces options de configuration :
+```
+# Configuration du fichier dracut.conf pour obtenir un initrd le plus léger possible
+
+# Suppression des modules inutiles
+omit_dracutmodules+=" multipath nss-softokn memstrack usrmount mdraid dmraid debug selinux fcoe fcoe-uefi terminfo watchdog crypt-gpg crypt-loop cdrom pollcdrom pcsc ecryptfs rescue watchdog-module network cifs nfs nbd brltty fips fips-crypto-policies busybox rdma i18n isci pcmcia wacom "
+
+omit_modules+=" systemd-vconsole-setup "
+
+omit_drivers+=" nvidia amd nouveau "
+
+# Système de fichiers utilisés
+filesystems+=" ext4 btrfs fat "
+
+# Ne pas exécuter fsck
+nofscks="yes"
+  
+# Suppression de la journalisation
+stdlog="0"
+
+# Suppression des symboles de debogage
+do_strip="yes"
+aggressive_strip="yes"
+
+# Compression de l'initramfs
+compress="lz4"
+compress_options="-1"
+
+# Mode silencieux
+quiet="yes"
+  
+# Autres options
+force="yes"
+hostonly="yes"
+hostonly_mode="strict"
+```
+
+Installer binutils pour obtenir le module `strip`, et `lz4` pour la compression :
+```
+sudo dnf install binutils lz4 -y
+```
+
+Recréer l'initramfs avec :
+```
+sudo dracut --force --verbose
+```
+Vérifier l'output après sudo dracut :
+```
+sudo lsinitrd -m
+```
 ----------------------------------------------------------------------------------------------
 
 
@@ -427,61 +483,6 @@ sudo sysctl -p
 
 `Startup finished in 2.315s (firmware) + 486ms (loader) + 1.742s (kernel) + 3.863s (initrd) + 3.174s (userspace) = 11.583s`
 
-* **EXPERIMENTAL** : créer un `initramfs plus petit et plus rapide en désactivant des modules inutiles : manipulation à faire à chaque màj du kernel : créer un fichier de configuration `dracut`
-
-```
-sudo gnome-text-editor /etc/dracut.conf.d/dracut.conf
-```
-et copier-coller ces options de configuration :
-```
-# Configuration du fichier dracut.conf pour obtenir un initrd le plus léger possible
-
-# Suppression des modules inutiles
-omit_dracutmodules+=" multipath nss-softokn memstrack usrmount mdraid dmraid debug selinux fcoe fcoe-uefi terminfo watchdog crypt-gpg crypt-loop cdrom pollcdrom pcsc ecryptfs rescue watchdog-module network cifs nfs nbd brltty fips fips-crypto-policies busybox rdma i18n isci pcmcia wacom "
-
-omit_modules+=" systemd-vconsole-setup "
-
-omit_drivers+=" nvidia amd nouveau "
-
-# Système de fichiers utilisés
-filesystems+=" ext4 btrfs fat "
-
-# Ne pas exécuter fsck
-nofscks="yes"
-  
-# Suppression de la journalisation
-stdlog="0"
-
-# Suppression des symboles de debogage
-do_strip="yes"
-aggressive_strip="yes"
-
-# Compression de l'initramfs
-compress="lz4"
-compress_options="-1"
-
-# Mode silencieux
-quiet="yes"
-  
-# Autres options
-force="yes"
-hostonly="yes"
-hostonly_mode="strict"
- ```
-
-Installer binutils pour obtenir le module `strip`, et `lz4` pour la compression :
-```
-sudo dnf install binutils lz4 -y
-```
-
-Recréer l'initramfs avec :
-```
-sudo dracut --force --verbose
-```
-
-Vérifier l'output après sudo dracut : `sudo lsinitrd -m`
-
---> Réduction de l'initram de 30 à 28 mo
 ----------------------------------------------------------------------------------------------
 
 
