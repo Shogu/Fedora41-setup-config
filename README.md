@@ -335,7 +335,7 @@ Puis saisir :
 ```
 mitigations=off selinux=0 cgroup_disable=rdma nmi_watchdog=0 loglevel=1 noresume
 ```
-Relancer systemd conformément au cosneil dans les commentaires de fstab :
+Relancer systemd conformément au conseil dans les commentaires de fstab :
 ```
 systemctl daemon-reload
 ```
@@ -394,9 +394,9 @@ sudo gnome-text-editor /etc/fstab
 puis saisir :
   
 ```
-tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=2048M 0 0
+tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=1024M 0 0
 ```
-Contrôler avec `cat /etc/fstab` après un reboot.  
+Contrôler avec `cat /etc/fstab` après un reboot, et `df -h /tmp`
 
 * **21** - Régler le `pare-feu` :
   
