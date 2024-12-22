@@ -525,36 +525,40 @@ dconf write /org/gnome/desktop/search-providers/disabled "['org.gnome.Software.d
 En profiter pour changer avec Menu Principal l'icone de `Ptyxis`, en la remplaçant par celle de [gnome-terminal](https://upload.wikimedia.org/wikipedia/commons/d/da/GNOME_Terminal_icon_2019.svg)
 
 * **40** - Installer diverses `extensions` :
-  
+
 a - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/)
 
-b - [Privacy Quick Settings](https://extensions.gnome.org/extension/4491/privacy-settings-menu/) puis la supprimer une fois les réglages réalisés.
+b - [Panel Corners](https://extensions.gnome.org/extension/4805/panel-corners/)
 
-c - [Appindicator](https://extensions.gnome.org/extension/615/appindicator-support/)
+c - [Hide Activities Button](https://extensions.gnome.org/extension/744/hide-activities-button/)
 
-d - [AutoActivities](https://extensions.gnome.org/extension/5500/auto-activities/)
+d - [Remove World Clock](https://extensions.gnome.org/extension/6973/remove-world-clocks/)
+
+e - [Appindicator](https://extensions.gnome.org/extension/615/appindicator-support/)
   
-e - [Battery Time Percentage Compact](https://extensions.gnome.org/extension/2929/battery-time-percentage-compact/) ou [Battery Time](https://extensions.gnome.org/extension/5425/battery-time/)
+f - [Battery Time Percentage Compact](https://extensions.gnome.org/extension/2929/battery-time-percentage-compact/) ou [Battery Time](https://extensions.gnome.org/extension/5425/battery-time/)
+
+g - [Hot Edge](https://extensions.gnome.org/extension/4222/hot-edge/)
+
+h - [Grand Theft Focus](https://extensions.gnome.org/extension/5410/grand-theft-focus/)
     
-f - [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
+i - [AutoActivities](https://extensions.gnome.org/extension/5500/auto-activities/)
+
+j - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/) & supprimer la luminosité automatique dans Settings de Gnome
+
+k - [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
   
-g - [Clipboard History](https://extensions.gnome.org/extension/4839/clipboard-history/)
+l - [Clipboard History](https://extensions.gnome.org/extension/4839/clipboard-history/)
+
+m - [Auto Power Profile](https://extensions.gnome.org/extension/6583/auto-power-profile/)
   
-h - [Frequency Boost Switch](https://extensions.gnome.org/extension/4792/frequency-boost-switch/)
+n - [Frequency Boost Switch](https://extensions.gnome.org/extension/4792/frequency-boost-switch/)
     
-i - [Hot Edge](https://extensions.gnome.org/extension/4222/hot-edge/)
-    
-j - [Grand Theft Focus](https://extensions.gnome.org/extension/5410/grand-theft-focus/)
-    
-k - [Hide Activities Button](https://extensions.gnome.org/extension/744/hide-activities-button/)
+o - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/) & supprimer la luminosité automatique dans Settings de Gnome
 
-l - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/) & supprimer la luminosité automatique dans Settings de Gnome
+p - [Privacy Quick Settings](https://extensions.gnome.org/extension/4491/privacy-settings-menu/) puis la supprimer une fois les réglages réalisés.
 
-m- [Auto Power Profile](https://extensions.gnome.org/extension/6583/auto-power-profile/)
-
-n - [Remove World Clock](https://extensions.gnome.org/extension/6973/remove-world-clocks/)
-
-et désactiver l'extension native `Background logo`
+q - désactiver l'extension native `Background logo`
 
 * **41** - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
 
@@ -809,7 +813,11 @@ nofscks="yes"
   
 # Suppression de la journalisation
 stdlog="0"
-  
+
+# Suppression des symboles de debogage
+do_strip="yes"
+aggressive_strip="yes"
+
 # Compression de l'initramfs
 compress="zstd"
 compress_options="-4"
@@ -823,24 +831,23 @@ hostonly="yes"
 hostonly_mode="strict"
  ```
 
+Installer binutils pour obtenir le module `strip`:
+```
+sudo dnf install binutils
+```
+
 Recréer l'initram avec :
 ```
 sudo dracut --force --verbose
 ```
+
 Vérifier l'output après sudo dracut : `sudo lsinitrd -m`
 
---> Réduction de l'initram de 30 à 25 mo
+--> Réduction de l'initram de 30 à 24 mo
 Bootloader avant réduction : 3.835 s
 
 
 
 
-
-* Supprimer les flatpaks KDE :
-  
-  ```
-  flatpak remove org.kde.KStyle.Adwaita org.kde.PlatformTheme.QGnomePlatform     
-  org.kde.WaylandDecoration.QAdwaitaDecorations QGnomePlatform-decoration  
-  org.kde.WaylandDecoration.QGnomePlatform-decoration   org.kde.Platform 
   ```
 
