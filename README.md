@@ -102,7 +102,7 @@ sudo dnf remove cups
 **SYSTEM**
 ```
 sudo systemctl mask serial-getty@ttyS2.service
-
+sudo systemctl mask systemd-vconsole-setup.service #attention, cela crée parfois un message d'erreur au boot!
 sudo systemctl mask NetworkManager-wait-online.service
 sudo systemctl mask auditd.service
 sudo systemctl mask ModemManager.service
