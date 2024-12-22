@@ -273,7 +273,11 @@ Puis saisir :
 ```
 mitigations=off selinux=0 cgroup_disable=rdma nmi_watchdog=0 loglevel=1 noresume
 ```
-puis reinstaller le noyau avec la commande suivante :
+Relancer systemd conformément au cosneil dans les commentaires de fstab :
+```
+systemctl daemon-reload
+```
+Actualiser le kernel et l'initramfs avec les commandes suivantes :
 ```
 sudo kernel-install add $(uname -r) /lib/modules/$(uname -r)/vmlinuz
 ```
