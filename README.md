@@ -427,6 +427,61 @@ sudo sysctl -p
 
 `Startup finished in 2.315s (firmware) + 486ms (loader) + 1.742s (kernel) + 3.863s (initrd) + 3.174s (userspace) = 11.583s`
 
+* **EXPERIMENTAL** : créer un `initramfs plus petit et plus rapide en désactivant des modules inutiles : manipulation à faire à chaque màj du kernel : créer un fichier de configuration `dracut`
+
+```
+sudo gnome-text-editor /etc/dracut.conf.d/dracut.conf
+```
+et copier-coller ces options de configuration :
+```
+# Configuration du fichier dracut.conf pour obtenir un initrd le plus léger possible
+
+# Suppression des modules inutiles
+omit_dracutmodules+=" multipath nss-softokn memstrack usrmount mdraid dmraid debug selinux fcoe fcoe-uefi terminfo watchdog crypt-gpg crypt-loop cdrom pollcdrom pcsc ecryptfs rescue watchdog-module network cifs nfs nbd brltty fips fips-crypto-policies busybox rdma i18n isci pcmcia wacom "
+
+omit_modules+=" systemd-vconsole-setup "
+
+omit_drivers+=" nvidia amd nouveau "
+
+# Système de fichiers utilisés
+filesystems+=" ext4 btrfs fat "
+
+# Ne pas exécuter fsck
+nofscks="yes"
+  
+# Suppression de la journalisation
+stdlog="0"
+
+# Suppression des symboles de debogage
+do_strip="yes"
+aggressive_strip="yes"
+
+# Compression de l'initramfs
+compress="lz4"
+compress_options="-1"
+
+# Mode silencieux
+quiet="yes"
+  
+# Autres options
+force="yes"
+hostonly="yes"
+hostonly_mode="strict"
+ ```
+
+Installer binutils pour obtenir le module `strip`, et `lz4` pour la compression :
+```
+sudo dnf install binutils lz4 -y
+```
+
+Recréer l'initramfs avec :
+```
+sudo dracut --force --verbose
+```
+
+Vérifier l'output après sudo dracut : `sudo lsinitrd -m`
+
+--> Réduction de l'initram de 30 à 28 mo
 ----------------------------------------------------------------------------------------------
 
 
@@ -673,7 +728,7 @@ about:cache` pour contrôle.
   
 a - [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/) : réglages à faire + import des deux listes sauvegardées
   
-b - [New Tab Suspender](https://addons.mozilla.org/en-US/firefox/addon/new-tab-suspender/) ou [Tab Suspender Mini}(https://addons.mozilla.org/en-US/firefox/addon/tab-suspender-mini/), ce dernier semblant plus réactif + icone d'hibernation dans chaque onglet mais possiblement cause de lags, ou bien le classique [Auto Tab Discard](https://addons.mozilla.org/fr/firefox/addon/auto-tab-discard/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured), bien plus configurable : importer les réglages avec le fichier de backup et bien activer les 2 options de dégel des onglets à droite et à gauche de l'onglet courant.
+b - [Auto Tab Discard](https://addons.mozilla.org/fr/firefox/addon/auto-tab-discard/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=featured) : importer les réglages avec le fichier de backup et bien activer les 2 options de dégel des onglets à droite et à gauche de l'onglet courant.
 
 c - [Raindrop](https://raindrop.io/r/extension/firefox) et supprimer `Pocket` de Firefox avec `extensions.pocket.enabled` dans `about:config` puis supprimer le raccourci dans la barre.
   
@@ -776,10 +831,10 @@ Regarder script de F39
 
 
 
+****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
 
 
-
-  💡 A TESTER :
+💡 A TESTER :
     
 * Créer un toggle `Powertop` qui va lancer powertop en `auto-tune` pour économiser encore plus de batterie, et baisser la luminosité sur 5% : rentrer cette commande pour le toggle activé :
 ```
@@ -801,62 +856,7 @@ echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/unbind > /
 echo 'i2c-ELAN9008:00' | pkexec tee /sys/bus/i2c/drivers/i2c_hid_acpi/bind > /dev/null                         
 ```
 
-* EXPERIMENTAL : créer un initramfs plus petit et plus rapide en désactivant des modules inutiles : manipulation à faire à chaque màj du kernel : créer un fichier de configuration `dracut`
 
-```
-sudo gnome-text-editor /etc/dracut.conf.d/dracut.conf
-```
-et copier-coller ces options de configuration :
-```
-# Configuration du fichier dracut.conf pour obtenir un initrd le plus léger possible
-
-# Suppression des modules inutiles
-omit_dracutmodules+=" multipath nss-softokn memstrack usrmount mdraid dmraid debug selinux fcoe fcoe-uefi terminfo watchdog crypt-gpg crypt-loop cdrom pollcdrom pcsc ecryptfs rescue watchdog-module network cifs nfs nbd brltty fips fips-crypto-policies busybox rdma i18n isci pcmcia wacom "
-
-omit_modules+=" systemd-vconsole-setup "
-
-omit_drivers+=" nvidia amd nouveau "
-
-# Système de fichiers utilisés
-filesystems+=" ext4 btrfs fat "
-
-# Ne pas exécuter fsck
-nofscks="yes"
-  
-# Suppression de la journalisation
-stdlog="0"
-
-# Suppression des symboles de debogage
-do_strip="yes"
-aggressive_strip="yes"
-
-# Compression de l'initramfs
-compress="lz4"
-compress_options="-1"
-
-# Mode silencieux
-quiet="yes"
-  
-# Autres options
-force="yes"
-hostonly="yes"
-hostonly_mode="strict"
- ```
-
-Installer binutils pour obtenir le module `strip`, et `lz4` pour la compression :
-```
-sudo dnf install binutils lz4 -y
-```
-
-Recréer l'initramfs avec :
-```
-sudo dracut --force --verbose
-```
-
-Vérifier l'output après sudo dracut : `sudo lsinitrd -m`
-
---> Réduction de l'initram de 30 à 28 mo
-Bootloader avant réduction : 3.835 s
 
 
 
