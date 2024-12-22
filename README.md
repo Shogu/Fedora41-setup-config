@@ -216,7 +216,7 @@ Reboot & contrôle avec :
 sudo sysctl kernel.nmi_watchdog
 ```
 
-* **13** - Blacklister les pilotes inutiles `Nouveau` & `ELAN:Fingerprint` : créer un fichier `blacklist` ```sudo gnome-text-editor /etc/modprobe.d/blacklist.conf``` et l'éditer :
+* **13** - Blacklister les pilotes inutiles : créer un fichier `blacklist` ```sudo gnome-text-editor /etc/modprobe.d/blacklist.conf``` et l'éditer :
 ```
 blacklist iTCO_vendor_support
 blacklist wdat_wdt
@@ -224,7 +224,10 @@ blacklist intel_pmc_bxt
 blacklist nouveau
 blacklist ELAN:Fingerprint
 blacklist btusb
+blacklist joydev
+blacklist hid-sensor_*
 ```
+Puis lancer `sudo dracut --force`
 
 * **14** - Autosuspendre le `capteur de luminosité et l'accéléromètre` (en complément de son maskage)
 ```
@@ -268,7 +271,7 @@ sudo gnome-text-editor /etc/kernel/cmdline
 
 Puis saisir :
 ```
-mitigations=off selinux=0 cgroup_disable=rdma nmi_watchdog=0 loglevel=1
+mitigations=off selinux=0 cgroup_disable=rdma nmi_watchdog=0 loglevel=1 noresume
 ```
 puis reinstaller le noyau avec la commande suivante :
 ```
@@ -819,8 +822,8 @@ do_strip="yes"
 aggressive_strip="yes"
 
 # Compression de l'initramfs
-compress="zstd"
-compress_options="-4"
+compress="lz4"
+compress_options="-1"
 
 # Mode silencieux
 quiet="yes"
@@ -831,19 +834,19 @@ hostonly="yes"
 hostonly_mode="strict"
  ```
 
-Installer binutils pour obtenir le module `strip`:
+Installer binutils pour obtenir le module `strip`, et `lz4` pour la compression :
 ```
-sudo dnf install binutils
+sudo dnf install binutils lz4 -y
 ```
 
-Recréer l'initram avec :
+Recréer l'initramfs avec :
 ```
 sudo dracut --force --verbose
 ```
 
 Vérifier l'output après sudo dracut : `sudo lsinitrd -m`
 
---> Réduction de l'initram de 30 à 24 mo
+--> Réduction de l'initram de 30 à 28 mo
 Bootloader avant réduction : 3.835 s
 
 
