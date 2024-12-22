@@ -602,6 +602,12 @@ Installer iwd :
 ```
 sudo dnf install iwd -y
 ```
+Lancer le service iwd et désactiver temporairement wpa_supplicant
+```
+sudo systemctl start iwd
+sudo systemctl stop wpa_supplicant
+sudo systemctl disable wpa_supplicant
+```
 Puis créer le fichier de configuration de NetworkManager : 
 ```
 sudo gnome-text-editor /etc/NetworkManager/conf.d/00-iwd.conf
@@ -614,11 +620,11 @@ wifi.backend=iwd
 [main]
 dns=systemd-resolved
 ```
-Redémarrer NetworkManager pour appliquer la configuration, et lancer le service iwd
+Redémarrer NetworkManager pour appliquer la configuration :
 ```
-sudo systemctl restart NetworkManager && sudo systemctl start iwd
+sudo systemctl restart NetworkManager
 ```
-Se reconnecter & vérifier l'état des connexions Wi-Fi avec nmcli :
+Se reconnecter & vérifier l'état des connexions Wi-Fi avec `nmcli` :
 ```
 nmcli device status
 ```
