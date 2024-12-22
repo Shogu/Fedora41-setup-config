@@ -235,6 +235,8 @@ blacklist hid_sensor_iio_common
 blacklist hid_sensor_hub
 blacklist industrialio
 blacklist industrialio_triggered_buffer
+blacklist snd_hda_codec_realtek
+blacklist snd_hda_codec_generic
 ```
 Puis lancer `sudo dracut --force`
 Au reboot, vérifier avec la commande `lsmod | grep hid_sensor`
