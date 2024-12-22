@@ -101,7 +101,6 @@ sudo dnf remove cups
 * **8** - Supprimer et masquer les services `SYSTEM` & `USER` inutiles :
 **SYSTEM**
 ```
-sudo systemctl mask systemd-vconsole-setup.service
 sudo systemctl mask serial-getty@ttyS2.service
 
 sudo systemctl mask NetworkManager-wait-online.service
