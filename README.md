@@ -234,6 +234,7 @@ blacklist industrialio
 blacklist industrialio_triggered_buffer
 ```
 Puis lancer `sudo dracut --force`
+Au reboot, vérifier avec la commande `lsmod | grep hid_sensor`
 
 * **14** - Autosuspendre le `capteur de luminosité et l'accéléromètre` (en complément de son maskage)
 ```
