@@ -596,68 +596,28 @@ Puis saisir dans un terminal :
 ```
 dconf write /org/gnome/desktop/search-providers/disabled "['org.gnome.Software.desktop']"
 ```
-* **34** - Remplacement de wpa_supplicant par `iwd` pour le **wifi**
-
-Installer iwd :
-```
-sudo dnf install iwd -y
-```
-Lancer le service iwd et désactiver temporairement wpa_supplicant
-```
-sudo systemctl start iwd
-sudo systemctl stop wpa_supplicant
-sudo systemctl disable wpa_supplicant
-```
-Puis créer le fichier de configuration de NetworkManager : 
-```
-sudo gnome-text-editor /etc/NetworkManager/conf.d/00-iwd.conf
-```
-Ajouter les lignes suivantes :
-```
-[device]
-wifi.backend=iwd
-
-[main]
-dns=systemd-resolved
-```
-Redémarrer NetworkManager pour appliquer la configuration :
-```
-sudo systemctl restart NetworkManager
-```
-Se reconnecter & vérifier l'état des connexions Wi-Fi avec `nmcli` :
-```
-nmcli device status
-```
-Si la connection est fonctionnelle, activer le service iwd au boot :
-```
-sudo systemctl enable iwd
-```
-Reboot, puis suppression de wpa_supplicant :
-```
-sudo dnf remove wpa_supplicant
-```
 ----------------------------------------------------------------------------------------------
 
 
 ## 🐾 **E - Réglages de l'UI Gnome Shell** 
 
-* **35** - Régler le système avec `Paramètres` puis `Ajustements` (Changer les polices d'écriture pour `Noto Sans` en 11)
+* **34** - Régler le système avec `Paramètres` puis `Ajustements` (Changer les polices d'écriture pour `Noto Sans` en 11)
 
-* **36** - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
+* **35** - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
 ```
 192.168.31.68:2121
 ```
 
-* **37** - Modifier le mot de passe au démarrage avec le logiciel `Mots de Passe`, puis laisser les champs vides. Penser à reconnecter le compte Google dans Gnome!
+* **36** - Modifier le mot de passe au démarrage avec le logiciel `Mots de Passe`, puis laisser les champs vides. Penser à reconnecter le compte Google dans Gnome!
 
-* **38** - Installer le [wallpaper Fedora 34](https://fedoraproject.org/w/uploads/d/de/F34_default_wallpaper_night.jpg) et le thème de curseurs [Phinger NO LEFT Light](https://github.com/phisch/phinger-cursors?tab=readme-ov-file) et utiliser `DCONF` pour les passer en taille 32.
+* **37** - Installer le [wallpaper Fedora 34](https://fedoraproject.org/w/uploads/d/de/F34_default_wallpaper_night.jpg) et le thème de curseurs [Phinger NO LEFT Light](https://github.com/phisch/phinger-cursors?tab=readme-ov-file) et utiliser `DCONF` pour les passer en taille 32.
 
-* **39** - Régler `HiDPI` sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
+* **38** - Régler `HiDPI` sur 175, cacher les dossiers Modèles, Bureau, ainsi que le wallaper et l'image user, augmenter la taille des icones dossiers.
   
-* **40** Renommer les `logiciels dans l'overview`, cacher ceux qui sont inutiles de faàon à n'avoir qu'une seule et unique page, en utilisant le logiciel `Menu Principal`.
+* **39** Renommer les `logiciels dans l'overview`, cacher ceux qui sont inutiles de faàon à n'avoir qu'une seule et unique page, en utilisant le logiciel `Menu Principal`.
 En profiter pour changer avec Menu Principal l'icone de `Ptyxis`, en la remplaçant par celle de [gnome-terminal](https://upload.wikimedia.org/wikipedia/commons/d/da/GNOME_Terminal_icon_2019.svg)
 
-* **41** - Installer diverses `extensions` :
+* **40** - Installer diverses `extensions` :
 
 a - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/)
 
@@ -693,11 +653,11 @@ p - [Privacy Quick Settings](https://extensions.gnome.org/extension/4491/privacy
 
 q - désactiver l'extension native `Background logo`
 
-* **42** - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
+* **41** - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
 
-* **43** - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
+* **42** - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
 
-* **44** - Régler `Gnome-text-editor` et `Ptyxis`; améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
+* **43** - Régler `Gnome-text-editor` et `Ptyxis`; améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
 ```
 # Ignore la casse lors de la complétion
 set completion-ignore-case on
@@ -715,20 +675,20 @@ set visible-stats on
 TAB: menu-complete
 ```
   
-* **45** - `Celluloid` :
+* **44** - `Celluloid` :
 inscrire `vo=gpu-next` dans Paramètres --> Divers --> Options supplémentaires, activer l'option `focus` et `toujours afficher les boutons de titre`, enfin installer les deux scripts lua suivants pour la musique :
 [Visualizer](https://www.dropbox.com/scl/fi/bbwlvfhtjnu8sgr4yoai9/visualizer.lua?rlkey=gr3bmjnrlexj7onqrxzjqxafl&dl=0)
 [Delete File avec traduction française](https://www.dropbox.com/scl/fi/c2cacmw2a815husriuvc1/delete_file.lua?rlkey=6b9d352xtvybu685ujx5mpv7v&dl=0)
 
-* **46** - `Jdownloader`: réglages de base, thème Black Moon puis icones Flat; font Noto Sans Regular, désactivatioin du dpi et font sur 175; puis désactiver les éléments suivants : tooltip, help, Update Button Flashing, banner, Premium Alert, Donate, speed meter visible.
+* **45** - `Jdownloader`: réglages de base, thème Black Moon puis icones Flat; font Noto Sans Regular, désactivatioin du dpi et font sur 175; puis désactiver les éléments suivants : tooltip, help, Update Button Flashing, banner, Premium Alert, Donate, speed meter visible.
 
-* **47** - Script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les vidéos vers Vidéos en supprimant le sous-dossier d'origine.
+* **46** - Script de `transfert des vidéos` intitulé `.transfert_videos` pour déplacer automatiquement les vidéos vers Vidéos en supprimant le sous-dossier d'origine.
 Le télécharger depuis le dossier `SCRIPTS`, en faire un raccourci avec l'éditeur de menu, passer le chemin `sh /home/ogu/.transfert_videos.sh` et lui mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/drive-multidisk.svg`
 
-* **48** - Script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à la volée.
+* **47** - Script de `bascule Bluetooth` `.bluetooth_toggle` pour activer/désactiver le service bluetooth à la volée.
 Le télécharger depuis le dossier `SCRIPTS`, en faire un raccourci avec l'éditeur de menu, raccourci d'exécution `bash /home/ogu/.bluetooth_toggle.sh` & mettre l'icone `/usr/share/icons/Adwaita/scalable/devices/phone.svg`.
 
-* **49** - Accélérer les `animations` :  saisir
+* **48** - Accélérer les `animations` :  saisir
 ```
 GNOME_SHELL_SLOWDOWN_FACTOR=0.5
 ```
@@ -737,25 +697,25 @@ dans le fichier
 sudo gnome-text-editor /etc/environment
 ```
 
-* **50** - `Scripts` Nautilus :
+* **49** - `Scripts` Nautilus :
 a - `Dropbox.py` pour imiter l'extension nautilus-dropbox avec Maestral (édition et lecture du fichier sur le site Dropbox & copie de l'url de partage)
 b - `Hide.py` et `Unhide.py` pour masquer/rendre visibles les fichiers
 A télécharger depuis le dossier `SCRIPTS` puis à coller dans le dossier `/home/ogu/.local/share/nautilus/scripts/.
 Penser à les rendre exécutables!
 
-* **51** - `LibreOffice` : régler l'UI et les paramètres, désactiver Java, rajouter `-nologo` au raccourci avec l'éditeur de menu pour supprimer le splash screen, passer à `600000000` la valeur de `Graphic Manager` + `UseOpenGL` = true + `UseSkia` = true dans la Configuration Avancée + désactiver l'enregistrement des données personnelles dans les fichiers (Menu Sécurité). 
+* **50** - `LibreOffice` : régler l'UI et les paramètres, désactiver Java, rajouter `-nologo` au raccourci avec l'éditeur de menu pour supprimer le splash screen, passer à `600000000` la valeur de `Graphic Manager` + `UseOpenGL` = true + `UseSkia` = true dans la Configuration Avancée + désactiver l'enregistrement des données personnelles dans les fichiers (Menu Sécurité). 
 
-* **52** - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
+* **51** - Faire le tri dans `~/.local/share/`, `/home/ogu/.config/`, `/usr/share/` et `/etc/`
 ----------------------------------------------------------------------------------------------
 
  
 ## 🌐 **F - Réglages du navigateur Firefox**
 
-* **53** - Réglages internes de `Firefox` (penser à activer CTRL-TAB pour faire défiler dans l'ordre d'utilisation & à passer sur `Sombre` plutot qu'`auto` le paramètre `Apparence des sites web`)
+* **52** - Réglages internes de `Firefox` (penser à activer CTRL-TAB pour faire défiler dans l'ordre d'utilisation & à passer sur `Sombre` plutot qu'`auto` le paramètre `Apparence des sites web`)
 
-* **54** - Changer le `thème` pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/) ou [Gnome Dark ](https://addons.mozilla.org/fr/firefox/addon/adwaita-gnome-dark/?utm_content=addons-manager-reviews-link&utm_medium=firefox-browser&utm_source=firefox-browser)
+* **53** - Changer le `thème` pour [Materia Dark](https://addons.mozilla.org/fr/firefox/addon/materia-dark-theme/) ou [Gnome Dark ](https://addons.mozilla.org/fr/firefox/addon/adwaita-gnome-dark/?utm_content=addons-manager-reviews-link&utm_medium=firefox-browser&utm_source=firefox-browser)
 
-* **55** - Dans `about:config` :
+* **54** - Dans `about:config` :
   
 a - `ui.key.menuAccessKey` = 0 pour désactiver la touche Alt qui ouvre les menus
   
@@ -790,7 +750,7 @@ o - `apz.overscroll.enabled` = false pour supprimer le rebonb lors d uscroll jus
 p - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
 about:cache` pour contrôle. 
 
-* **56** - **Extensions**
+* **55** - **Extensions**
   
 a - [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/) : réglages à faire + import des deux listes sauvegardées
   
@@ -808,11 +768,11 @@ g - [Side View](https://addons.mozilla.org/fr/firefox/addon/side-view/)
 
 h - Scroll To Top Lite(https://addons.mozilla.org/fr/firefox/addon/scroll-to-top-lite/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 
-* **57** - Activer `openh264` & `widevine` dans les plugins firefox.
+* **56** - Activer `openh264` & `widevine` dans les plugins firefox.
   
-* **58** - Désactiver les `recherches populaires` : dans la barre d'adresse, cliquer en bas sur la roue dentée correspondant à Recherches populaires et les désactiver.
+* **57** - Désactiver les `recherches populaires` : dans la barre d'adresse, cliquer en bas sur la roue dentée correspondant à Recherches populaires et les désactiver.
 
-* **59** - Mettre le profil de Firefox en RAM avec `profile-sync-daemon` :
+* **58** - Mettre le profil de Firefox en RAM avec `profile-sync-daemon` :
 * ATTENTION : suivre ces consignes avec **Firefox fermé** - utiliser le browser secondaire WEB
   
 Installer psd (avec dnf `sudo dnf install profile-sync-daemon`, ou avec make en cas d'échec - voir le fichier INSTALL sur le Github), puis l'activer avec les commandes suivantes (sans quoi le service échoue à démarrer) :
@@ -903,6 +863,50 @@ Regarder script de F39
 
 
 💡 A TESTER :
+
+* - Remplacement de wpa_supplicant par `iwd` pour le **wifi**
+ 
+ATTENTION : a ureboot la connection auto ne se fait pas, voir les reglages de config de iwd
+ATTENTION2 : le service démarre plus lentement que wpa_supplicant, à voir le temps de boot pour network-manager avec iwd plutot que wpa
+
+Installer iwd :
+```
+sudo dnf install iwd -y
+```
+Lancer le service iwd et désactiver temporairement wpa_supplicant
+```
+sudo systemctl start iwd
+sudo systemctl stop wpa_supplicant
+sudo systemctl disable wpa_supplicant
+```
+Puis créer le fichier de configuration de NetworkManager : 
+```
+sudo gnome-text-editor /etc/NetworkManager/conf.d/00-iwd.conf
+```
+Ajouter les lignes suivantes :
+```
+[device]
+wifi.backend=iwd
+
+[main]
+dns=systemd-resolved
+```
+Redémarrer NetworkManager pour appliquer la configuration :
+```
+sudo systemctl restart NetworkManager
+```
+Se reconnecter & vérifier l'état des connexions Wi-Fi avec `nmcli` :
+```
+nmcli device status
+```
+Si la connection est fonctionnelle, activer le service iwd au boot :
+```
+sudo systemctl enable iwd
+```
+Reboot, puis suppression de wpa_supplicant :
+```
+sudo dnf remove wpa_supplicant
+```
     
 * Créer un toggle `Powertop` qui va lancer powertop en `auto-tune` pour économiser encore plus de batterie, et baisser la luminosité sur 5% : rentrer cette commande pour le toggle activé :
 ```
