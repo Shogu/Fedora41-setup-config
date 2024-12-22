@@ -279,8 +279,8 @@ do_strip="yes"
 aggressive_strip="yes"
 
 # Compression de l'initramfs
-compress="lz4"
-compress_options="-1"
+compress="zstd"
+compress_options="-4"
 
 # Mode silencieux
 quiet="yes"
@@ -291,9 +291,9 @@ hostonly="yes"
 hostonly_mode="strict"
 ```
 
-Installer binutils pour obtenir le module `strip`, et `lz4` pour la compression :
+Installer binutils pour obtenir le module `strip` :
 ```
-sudo dnf install binutils lz4 -y
+sudo dnf install binutils -y
 ```
 
 Recréer l'initramfs avec :
