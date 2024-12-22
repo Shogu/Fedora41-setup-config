@@ -225,7 +225,13 @@ blacklist nouveau
 blacklist ELAN:Fingerprint
 blacklist btusb
 blacklist joydev
-blacklist hid-sensor_*
+blacklist hid_sensor_accel_3d
+blacklist hid_sensor_als
+blacklist hid_sensor_trigger
+blacklist hid_sensor_iio_common
+blacklist hid_sensor_hub
+blacklist industrialio
+blacklist industrialio_triggered_buffer
 ```
 Puis lancer `sudo dracut --force`
 
