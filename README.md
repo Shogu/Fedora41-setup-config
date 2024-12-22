@@ -332,7 +332,7 @@ sudo gnome-text-editor /etc/fstab
 puis saisir :
   
 ```
-tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=4196M 0 0
+tmpfs /tmp tmpfs defaults,noatime,mode=1777,nosuid,size=2048M 0 0
 ```
 Contrôler avec `cat /etc/fstab` après un reboot.  
 
@@ -419,8 +419,7 @@ sudo sysctl -p
 
 **Boot time : après optimisation : 11.5 secondes**
 
-`Startup finished in 2.190s (firmware) + 497ms (loader) + 1.805s (kernel) + 3.806s (initrd) + 3.192s (userspace)`
-
+`Startup finished in 2.315s (firmware) + 486ms (loader) + 1.742s (kernel) + 3.863s (initrd) + 3.174s (userspace) = 11.583s`
 
 ----------------------------------------------------------------------------------------------
 
