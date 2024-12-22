@@ -102,6 +102,8 @@ sudo dnf remove cups
 **SYSTEM**
 ```
 sudo systemctl mask systemd-vconsole-setup.service
+sudo systemctl mask serial-getty@ttyS2.service
+
 sudo systemctl mask NetworkManager-wait-online.service
 sudo systemctl mask auditd.service
 sudo systemctl mask ModemManager.service
