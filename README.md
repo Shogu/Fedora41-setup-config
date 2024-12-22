@@ -220,6 +220,7 @@ sudo sysctl kernel.nmi_watchdog
 * **13** - Blacklister les pilotes inutiles : créer un fichier `blacklist` ```sudo gnome-text-editor /etc/modprobe.d/blacklist.conf``` et l'éditer :
 ```
 blacklist iTCO_vendor_support
+blacklist iTCO_wdt
 blacklist wdat_wdt
 blacklist intel_pmc_bxt
 blacklist nouveau
