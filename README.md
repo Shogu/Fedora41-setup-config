@@ -220,14 +220,21 @@ sudo sysctl kernel.nmi_watchdog
 
 * **13** - Blacklister les pilotes inutiles : créer un fichier `blacklist` ```sudo gnome-text-editor /etc/modprobe.d/blacklist.conf``` et l'éditer :
 ```
+#watchdogs
 blacklist iTCO_vendor_support
 blacklist iTCO_wdt
 blacklist wdat_wdt
-blacklist intel_pmc_bxt
-blacklist nouveau
+blacklist intel_pmc_bxtvidia
+
+#driver pour nvidia
+blacklist nouveaudrivers
+
+#drivers inutiles
 blacklist ELAN:Fingerprint
 blacklist btusb
 blacklist joydev
+
+#drivers accéléromètre et capteur luminosité
 blacklist hid_sensor_accel_3d
 blacklist hid_sensor_als
 blacklist hid_sensor_trigger
@@ -235,8 +242,18 @@ blacklist hid_sensor_iio_common
 blacklist hid_sensor_hub
 blacklist industrialio
 blacklist industrialio_triggered_buffer
+
+#drivers netbios
+blacklist nf_conntrack_netbios_ns
+blacklist nf_conntrack_broadcast
+
+#drivers son realtek
 blacklist snd_hda_codec_realtek
 blacklist snd_hda_codec_generic
+
+#tty
+blacklist serial8250
+blacklist 8250_pci
 ```
 Puis lancer `sudo dracut --force`
 Au reboot, vérifier avec la commande `lsmod | grep hid_sensor`
