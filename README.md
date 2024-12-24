@@ -665,7 +665,17 @@ q - désactiver l'extension native `Background logo`
 
 * **42** - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
 
-* **43** - Régler `Gnome-text-editor` et `Ptyxis`; améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
+* **43** - Régler `Gnome-text-editor`, mais surtout `Ptyxis` en installant `fish` :
+```
+sudo dnf install fish
+```
+Puis mettre fish comme shell par défaut :
+```
+chsh -s /usr/bin/fish
+```
+Enfin éditer son fichier de configuration avec `gnome-text-editor ~/.config/fish/config.fish` et saisir `set -g fish_greeting ""` pour supprimer le message d'accueil.
+
+Pour le shell bash : améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
 ```
 # Ignore la casse lors de la complétion
 set completion-ignore-case on
