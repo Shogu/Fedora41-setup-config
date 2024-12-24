@@ -68,10 +68,16 @@ sudo dnf remove atheros-firmware
 sudo dnf remove brcmfmac-firmware
 sudo dnf remove tiwilink-firmware
 sudo dnf remove nxpwireless-firmware
+sudo dnf remove gnome-classic-session
 sudo dnf remove mt7xxx-firmware
 sudo dnf remove nvidia-gpu-firmware 
 sudo dnf remove speech-dispatcher
+sudo dnf remove ModemManager
 sudo dnf remove gnome-remote-desktop
+sudo dnf remove gnome-browser-connector
+sudo dnf remove gnome-backgrounds
+sudo dnf remove evince-djvu
+sudo dnf gnome-user-share
 sudo dnf remove vim*
 sudo dnf remove ibus-libzhuyin
 sudo dnf remove ibus-libpinyin
