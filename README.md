@@ -485,7 +485,9 @@ puis saisir : `NautoVTS=1`
 nmcli dev show |grep DNS
 ```
 
-* **26** - Amélioration du réseau : après plusieurs test comparatifs, améliorer le ping, la latence, et un peu le débit avec :
+* **26** - Amélioration du réseau : après plusieurs test comparatifs, améliorer le ping, la latence, et un peu le débit
+Commencer par désactiver `ipv6` dans les Paramètres wifi de Gnome.
+Puis modifier les réglages `sysctl`
 ```
 sudo gnome-text-editor /etc/sysctl.d/99-sysctl.conf
 ```
