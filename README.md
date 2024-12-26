@@ -449,13 +449,14 @@ sudo firewall-cmd --zone=FedoraWorkstation --list-all
 sudo firewall-cmd --get-active-zones
 ```
 
-* **22** - Modifier les réglages d'accès au `swap` & le `dirty_writeback` (conformément aux réglages de Powertop):
+* **22** - Modifier les réglages d'accès au `swap`, le `dirty_writeback` etc (conformément aux réglages de Powertop, et partiellement de CachyOS):
 ```
 echo vm.swappiness=5 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 echo vm.vfs_cache_pressure=50 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 echo vm.watermark_boost_factor=0 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 echo vm.watermark_scale_factor=50 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
-echo vm.page-cluster=1 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
+echo vm.page-cluster=0| sudo tee -a /etc/sysctl.d/99-sysctl.conf
+echo vm.dirty_bytes = 268435456 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 echo "vm.dirty_writeback_centisecs=1500" | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
 sudo sysctl --system
@@ -500,6 +501,10 @@ net.core.wmem_default = 8388608
 net.core.wmem_max = 8388608
 net.ipv4.tcp_mtu_probing = 0
 net.ipv4.tcp_low_latency = 1
+net.ipv4.tcp_ecn = 1
+net.ipv4.tcp_slow_start_after_idle = 0
+net.ipv4.tcp_rfc1337 = 1
+net.core.netdev_max_backlog = 4096
 ```
 Relancer avec :
 ```
