@@ -682,7 +682,19 @@ Puis mettre fish comme shell par défaut :
 ```
 chsh -s /usr/bin/fish
 ```
-Enfin éditer son fichier de configuration avec `gnome-text-editor ~/.config/fish/config.fish` et saisir `set -g fish_greeting ""` pour supprimer le message d'accueil.
+Enfin éditer son fichier de configuration avec `gnome-text-editor ~/.config/fish/config.fish` et saisir :
+```
+# supprimer le message d'accueil.
+set -g fish_greeting
+# supprimer les codes d'erreur rouge mais maintenir les couleurs d'origine
+function fish_prompt
+    # Couleur verte intense pour "ogu"
+    set_color green --bold
+    echo -n "ogu"
+    set_color normal
+    echo -n "@fedora-ogu " (prompt_pwd) " > "
+end
+```
 
 Pour le shell bash : améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
 ```
