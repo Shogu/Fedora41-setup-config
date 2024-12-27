@@ -640,41 +640,43 @@ Extensions esthétiques :
 
 a - [Panel Corners](https://extensions.gnome.org/extension/4805/panel-corners/)
 
-b - [Hide Activities Button](https://extensions.gnome.org/extension/744/hide-activities-button/)
+b - [Rounded Windows Corners](https://extensions.gnome.org/extension/7048/rounded-window-corners-reborn/)
 
-c - [Remove World Clock](https://extensions.gnome.org/extension/6973/remove-world-clocks/)
+c - [Hide Activities Button](https://extensions.gnome.org/extension/744/hide-activities-button/)
+
+d - [Remove World Clock](https://extensions.gnome.org/extension/6973/remove-world-clocks/)
 
 Extensions apportant des fonctions de productivité :
 
-d - [Appindicator](https://extensions.gnome.org/extension/615/appindicator-support/)
+e - [Appindicator](https://extensions.gnome.org/extension/615/appindicator-support/)
 
-e - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/)
+f - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/)
 
-f - [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
+g - [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
 
-g - [Clipboard History](https://extensions.gnome.org/extension/4839/clipboard-history/)
+h - [Clipboard History](https://extensions.gnome.org/extension/4839/clipboard-history/)
 
 Extensions apportant des fonctions UI :  
 
-h - [Battery Time Percentage Compact](https://extensions.gnome.org/extension/2929/battery-time-percentage-compact/) ou [Battery Time](https://extensions.gnome.org/extension/5425/battery-time/)
+i - [Battery Time Percentage Compact](https://extensions.gnome.org/extension/2929/battery-time-percentage-compact/) ou [Battery Time](https://extensions.gnome.org/extension/5425/battery-time/)
 
-i - [Privacy Quick Settings](https://extensions.gnome.org/extension/4491/privacy-settings-menu/) puis la supprimer une fois les réglages réalisés.
+j - [Privacy Quick Settings](https://extensions.gnome.org/extension/4491/privacy-settings-menu/) puis la supprimer une fois les réglages réalisés.
  
-j - [Grand Theft Focus](https://extensions.gnome.org/extension/5410/grand-theft-focus/)
+k - [Grand Theft Focus](https://extensions.gnome.org/extension/5410/grand-theft-focus/)
     
-k - [AutoActivities](https://extensions.gnome.org/extension/5500/auto-activities/)
+l - [AutoActivities](https://extensions.gnome.org/extension/5500/auto-activities/)
 
-l - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/) & supprimer la luminosité automatique dans Settings de Gnome
+m - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/) & supprimer la luminosité automatique dans Settings de Gnome
 
-m - [Hot Edge](https://extensions.gnome.org/extension/4222/hot-edge/)
+n - [Hot Edge](https://extensions.gnome.org/extension/4222/hot-edge/)
   
-n - [Auto Power Profile](https://extensions.gnome.org/extension/6583/auto-power-profile/)
+o - [Auto Power Profile](https://extensions.gnome.org/extension/6583/auto-power-profile/)
   
-o - [Frequency Boost Switch](https://extensions.gnome.org/extension/4792/frequency-boost-switch/)
+p - [Frequency Boost Switch](https://extensions.gnome.org/extension/4792/frequency-boost-switch/)
     
 Extension à désactiver :
 
-p - désactiver l'extension native `Background logo`
+q - désactiver l'extension native `Background logo`
 
 * **41** - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
 
