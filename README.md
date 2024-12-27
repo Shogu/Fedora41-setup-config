@@ -636,39 +636,45 @@ En profiter pour changer avec Menu Principal l'icone de `Ptyxis`, en la remplaç
 
 * **40** - Installer diverses `extensions` :
 
-a - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/)
+Extensions esthétiques :
 
-b - [Panel Corners](https://extensions.gnome.org/extension/4805/panel-corners/)
+a - [Panel Corners](https://extensions.gnome.org/extension/4805/panel-corners/)
 
-c - [Hide Activities Button](https://extensions.gnome.org/extension/744/hide-activities-button/)
+b - [Hide Activities Button](https://extensions.gnome.org/extension/744/hide-activities-button/)
 
-d - [Remove World Clock](https://extensions.gnome.org/extension/6973/remove-world-clocks/)
+c - [Remove World Clock](https://extensions.gnome.org/extension/6973/remove-world-clocks/)
 
-e - [Appindicator](https://extensions.gnome.org/extension/615/appindicator-support/)
-  
-f - [Battery Time Percentage Compact](https://extensions.gnome.org/extension/2929/battery-time-percentage-compact/) ou [Battery Time](https://extensions.gnome.org/extension/5425/battery-time/)
+Extensions apportant des fonctions de productivité :
 
-g - [Hot Edge](https://extensions.gnome.org/extension/4222/hot-edge/)
+d - [Appindicator](https://extensions.gnome.org/extension/615/appindicator-support/)
 
-h - [Grand Theft Focus](https://extensions.gnome.org/extension/5410/grand-theft-focus/)
+e - [Alphabetical Grid](https://extensions.gnome.org/extension/4269/alphabetical-app-grid/)
+
+f - [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
+
+g - [Clipboard History](https://extensions.gnome.org/extension/4839/clipboard-history/)
+
+Extensions apportant des fonctions UI :  
+
+h - [Battery Time Percentage Compact](https://extensions.gnome.org/extension/2929/battery-time-percentage-compact/) ou [Battery Time](https://extensions.gnome.org/extension/5425/battery-time/)
+
+i - [Privacy Quick Settings](https://extensions.gnome.org/extension/4491/privacy-settings-menu/) puis la supprimer une fois les réglages réalisés.
+ 
+j - [Grand Theft Focus](https://extensions.gnome.org/extension/5410/grand-theft-focus/)
     
-i - [AutoActivities](https://extensions.gnome.org/extension/5500/auto-activities/)
+k - [AutoActivities](https://extensions.gnome.org/extension/5500/auto-activities/)
 
-j - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/) & supprimer la luminosité automatique dans Settings de Gnome
+l - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/) & supprimer la luminosité automatique dans Settings de Gnome
 
-k - [Caffeine](https://extensions.gnome.org/extension/517/caffeine/)
+m - [Hot Edge](https://extensions.gnome.org/extension/4222/hot-edge/)
   
-l - [Clipboard History](https://extensions.gnome.org/extension/4839/clipboard-history/)
-
-m - [Auto Power Profile](https://extensions.gnome.org/extension/6583/auto-power-profile/)
+n - [Auto Power Profile](https://extensions.gnome.org/extension/6583/auto-power-profile/)
   
-n - [Frequency Boost Switch](https://extensions.gnome.org/extension/4792/frequency-boost-switch/)
+o - [Frequency Boost Switch](https://extensions.gnome.org/extension/4792/frequency-boost-switch/)
     
-o - [Auto Screen Brightness](https://extensions.gnome.org/extension/7311/auto-screen-brightness/) & supprimer la luminosité automatique dans Settings de Gnome
+Extension à désactiver :
 
-p - [Privacy Quick Settings](https://extensions.gnome.org/extension/4491/privacy-settings-menu/) puis la supprimer une fois les réglages réalisés.
-
-q - désactiver l'extension native `Background logo`
+p - désactiver l'extension native `Background logo`
 
 * **41** - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
 
