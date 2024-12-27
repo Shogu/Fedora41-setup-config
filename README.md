@@ -885,6 +885,9 @@ flatpak run io.github.flattool.Warehouse
 
 sudo fsck -n /boot sudo fsck -n /boot/efi
 
+rm -rf /home/ogu/.cache/mozilla/firefox/h12vhg1e.default-release/cache2/*
+
+
 Regarder script de F39
 
 
