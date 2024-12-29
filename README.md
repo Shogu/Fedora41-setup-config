@@ -798,6 +798,21 @@ o - `apz.overscroll.enabled` = false pour supprimer le rebonb lors d uscroll jus
 p - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
 about:cache` pour contrôle. 
 
+q - `telemetry` : passer en false
+```
+browser.newtabpage.activity-stream.telemetry
+browser.newtabpage.activity-stream.feeds.telemetry
+toolkit.telemetry.bhrPing.enabled
+toolkit.telemetry.archive.enabled
+toolkit.telemetry.firstShutdownPing.enabled
+toolkit.telemetry.reportingpolicy.firstRun
+toolkit.telemetry.hybridContent.enabled
+toolkit.telemetry.newProfilePing.enabled
+toolkit.telemetry.unified
+toolkit.telemetry.shutdownPingSender.enabled
+toolkit.telemetry.updatePing.enabled
+```
+
 * **55** - **Extensions**
   
 a - [uBlock Origin](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/) : réglages à faire + import des deux listes sauvegardées
