@@ -812,6 +812,7 @@ toolkit.telemetry.unified
 toolkit.telemetry.shutdownPingSender.enabled
 toolkit.telemetry.updatePing.enabled
 ```
+r - `browser.proton.tabs.enabled`, à créer en booléen, valeur `true` (arrondi des fenêtres)
 
 * **55** - **Extensions**
   
