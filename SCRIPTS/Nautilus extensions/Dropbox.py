@@ -44,10 +44,15 @@ def main():
 
             # Vérifier s'il existe déjà un lien partagé
             result = subprocess.run(
-                ["maestral", "sharelink", "list", file_name],
+                ["/home/ogu/.local/bin/maestral", "sharelink", "list", file_name],
                 capture_output=True,
                 text=True
             )
+
+            # Affichage du résultat pour débogage
+            print("Code de retour : ", result.returncode)
+            print("Sortie standard : ", result.stdout)
+            print("Erreur : ", result.stderr)
 
             if result.returncode == 0 and result.stdout.strip():
                 # Si un lien existe déjà, ouvrir ce lien
@@ -58,10 +63,15 @@ def main():
                 # Si aucun lien n'existe, créer un nouveau lien
                 print("Aucun lien existant, création d'un nouveau lien...")
                 create_result = subprocess.run(
-                    ["maestral", "sharelink", "create", file_name],
+                    ["/home/ogu/.local/bin/maestral", "sharelink", "create", file_name],
                     capture_output=True,
                     text=True
                 )
+
+                # Affichage du résultat pour débogage
+                print("Code de retour (création) : ", create_result.returncode)
+                print("Sortie standard (création) : ", create_result.stdout)
+                print("Erreur (création) : ", create_result.stderr)
 
                 if create_result.returncode == 0:
                     dropbox_url = create_result.stdout.strip()
@@ -76,4 +86,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
