@@ -1,9 +1,11 @@
 {
-  "timeStamp": 1734110484797,
+  "timeStamp": 1735485059885,
   "version": "1.61.2",
   "userSettings": {
+    "cloudStorageEnabled": true,
+    "contextMenuEnabled": false,
     "importedLists": [],
-    "popupPanelSections": 15
+    "popupPanelSections": 31
   },
   "selectedFilterLists": [
     "ublock-filters",
@@ -20,15 +22,18 @@
     "easylist-newsletters",
     "easylist-notifications",
     "easylist-annoyances",
-    "FRA-0"
+    "FRA-0",
+    "user-filters"
   ],
   "hiddenSettings": {},
   "whitelist": [
     "chrome-extension-scheme",
-    "moz-extension-scheme"
+    "fab3f999-49fe-48ef-9caf-44ba350da3c7.moz-extension-scheme",
+    "www.facebook.com",
+    "www.instagram.com"
   ],
   "dynamicFilteringString": "behind-the-scene * * noop\nbehind-the-scene * inline-script noop\nbehind-the-scene * 1p-script noop\nbehind-the-scene * 3p-script noop\nbehind-the-scene * 3p-frame noop\nbehind-the-scene * image noop\nbehind-the-scene * 3p noop",
   "urlFilteringString": "",
   "hostnameSwitchesString": "no-large-media: behind-the-scene false\nno-csp-reports: * true",
-  "userFilters": ""
+  "userFilters": "! https://github.com/gorhill/uBlock/wiki/Static-filter-syntax#entity\n! https://gist.github.com/imcodingideas/f07be3889411b323e5f8051899b9d9cc\n! https://gist.github.com/illvart/36cc34e024904c78c11fcf32256e8f8a\n! https://cleanbrowsing.org/2021/10/how-to-block-facebook/\n||facebook.*^$all,important\n||facebook.*.edgekey.net^$all,important\n||facebook.*.edgesuite.net^$all,important\n||facebook-web-clients.appspot.com^$all,important\n||fb.*^$all,important\n||fbcdn.*^$all,important\n||fbcdn-*.akamaihd.net^$all,important\n||fbsbx.*^$all,important\n||fbsbx.*.online-metrix.net^$all,important\n||fburl.*^$all,important\n||instagram.*^$all,important\n||instagramstatic-*.akamaihd.net^$all,important\n||instagramstatic-*.akamaihd.net.edgesuite.net^$all,important\n||cdninstagram.*^$all,important\n||messenger.*^$all,important\n||m.me^$all,important\n||tfbnw.*^$all,important\n||whatsapp.*^$all,important"
 }
