@@ -349,6 +349,10 @@ Enfin supprimer les labels SElinux avec :
 ```
 sudo find / -print0 | xargs -r0 setfattr -x security.selinux 2>/dev/null
 ```
+et masker le service :
+```
+systemctl mask selinux-autorelabel-mark.service
+```
 
 * **16** - Passer `xwayland` en autoclose : sur dconf-editor, modifier la clé suivante.
 ```
