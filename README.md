@@ -802,7 +802,9 @@ o - `apz.overscroll.enabled` = false pour supprimer le rebonb lors d uscroll jus
 p - `browser.cache.disk.parent_directory` à créer sour forme de `chaine`, et lui passer l'argument /run/user/1000/firefox, afin de déplacer le cache en RAM. Saisir `
 about:cache` pour contrôle. 
 
-q - `telemetry` : passer en false
+q - `media.autoplay.default` sur 2 (les vidéos ne se lancent que si on clique dessus)
+
+r - `telemetry` : passer en false
 ```
 browser.newtabpage.activity-stream.telemetry
 browser.newtabpage.activity-stream.feeds.telemetry
