@@ -15,7 +15,7 @@
 
 ***Table des matières:***
 
-A - [Installation](https://github.com/Shogu/Fedora41-setup-config/blob/main/README.md#-a---installation)
+A - [Installation](https://github.com/Shogu/Fedora41-setup-config/blob/main/README.md#-a---installation)about
 
 B - [Allégement du système](https://github.com/Shogu/Fedora41-setup-config/blob/main/README.md#-b---all%C3%A9gement-du-syst%C3%A8me)
 
@@ -818,6 +818,7 @@ toolkit.telemetry.unified
 toolkit.telemetry.shutdownPingSender.enabled
 toolkit.telemetry.updatePing.enabled
 ```
+s - `media.ffmpeg.vaapi.enabled` sur true
 
 * **55** - **Extensions**
   
