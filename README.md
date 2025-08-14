@@ -203,7 +203,7 @@ systemctl status systemd-timesyncd
 
 * **11** - Supprimer les `coredump` en éditant systemd : 
 ``` 
-sudo gnome-text-editor /usr/lib/systemd/coredump.conf
+sudo gnome-text-editor /etc/systemd/coredump.conf
 ```
 Editer le fichier comme suit :
 ```
