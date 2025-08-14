@@ -618,6 +618,103 @@ dconf write /org/gnome/desktop/search-providers/disabled "['org.gnome.Software.d
 ```
 ----------------------------------------------------------------------------------------------
 
+#!/bin/bash
+# Fedora Ultra-Minimaliste: Ananicy + bpftune binaire + listener GNOME + notifications
+set -e
+
+echo "=== Installation dépendances ==="
+sudo dnf install -y ananicy gnome-terminal wget libbpf-devel
+
+echo "=== Activation Ananicy ==="
+sudo systemctl enable --now ananicy
+
+echo "=== Profil Ananicy Desktop ==="
+sudo tee /etc/ananicy/ananicy.rules.d/desktop.rules > /dev/null <<'EOF'
+process_name = firefox
+nice = -5
+ionice = 2
+process_name = chromium
+nice = -5
+ionice = 2
+process_name = gnome-terminal
+nice = -5
+ionice = 3
+process_name = gedit
+nice = -5
+ionice = 3
+process_name = nautilus
+nice = -5
+ionice = 2
+process_name = vlc
+nice = -5
+ionice = 2
+process_name = updatedb
+nice = 10
+ionice = 7
+EOF
+
+sudo systemctl restart ananicy
+
+echo "=== Installation bpftune binaire ==="
+sudo wget -O /usr/local/bin/bpftune https://github.com/CachyOS/bpftune/releases/latest/download/bpftune-linux
+sudo chmod +x /usr/local/bin/bpftune
+
+echo "=== Script toggle bpftune avec notifications ==="
+sudo tee /usr/local/bin/bpftune-gnome-toggle.sh > /dev/null <<'EOF'
+#!/bin/bash
+PROFILE=$(gdbus call --session --dest org.gnome.SettingsDaemon.Power \
+        --object-path /org/gnome/SettingsDaemon/Power \
+        --method org.gnome.SettingsDaemon.Power.GetActiveProfile)
+PROFILE=$(echo $PROFILE | tr -d "'\"() ")
+
+if [[ "$PROFILE" == "performance" ]]; then
+    /usr/local/bin/bpftune --disable
+    gdbus call --session --dest org.freedesktop.Notifications \
+        --object-path /org/freedesktop/Notifications \
+        --method org.freedesktop.Notifications.Notify \
+        "bpftune" 0 "" "dialog-warning" "BPFTune désactivé" "Profil GNOME Performance" [] {} 5000
+else
+    /usr/local/bin/bpftune --profile desktop --enable
+    gdbus call --session --dest org.freedesktop.Notifications \
+        --object-path /org/freedesktop/Notifications \
+        --method org.freedesktop.Notifications.Notify \
+        "bpftune" 0 "" "dialog-information" "BPFTune activé" "Profil GNOME Desktop/Balanced" [] {} 5000
+fi
+EOF
+
+sudo chmod +x /usr/local/bin/bpftune-gnome-toggle.sh
+
+echo "=== Service listener GNOME temps réel ==="
+sudo tee /etc/systemd/system/bpftune-gnome-listener.service > /dev/null <<'EOF'
+[Unit]
+Description=BPFTune listener for GNOME Power Profile with notifications
+After=graphical.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c "gdbus monitor --session --dest org.gnome.SettingsDaemon.Power --object-path /org/gnome/SettingsDaemon/Power | while read -r line; do /usr/local/bin/bpftune-gnome-toggle.sh; done"
+Restart=always
+
+[Install]
+WantedBy=graphical.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now bpftune-gnome-listener.service
+
+echo "=== Réinitialisation des réglages dirty ==="
+sudo tee /etc/sysctl.d/99-bpftune-reset.conf > /dev/null <<'EOF'
+vm.dirty_bytes = 268435456
+vm.dirty_writeback_centisecs = 1500
+EOF
+sudo sysctl --system
+
+echo "=== Installation et configuration terminées ==="
+echo "- Ananicy actif avec profil Desktop"
+echo "- bpftune Desktop actif selon le profil GNOME"
+echo "- Notifications GNOME à chaque activation/désactivation de bpftune"
+echo "- Listener GNOME en temps réel activé"
+echo "- Réglages vm.dirty_bytes et vm.dirty_writeback_centisecs réinitialisés"
 
 ## 🐾 **E - Réglages de l'UI Gnome Shell** 
 
