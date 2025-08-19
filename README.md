@@ -40,49 +40,9 @@ G - [Maintenance et mises à jour](https://github.com/Shogu/Fedora41-setup-confi
 * **3** - Graver l'iso `Fedora-Everything-netinst`
 
 * **4** - Utiliser `systemd-boot` plutot que Grub :
-```
-p#!/bin/bash
-set -euo pipefail
 
-ESP="/boot/efi"
+Vérifier avec : `bootctl status`
 
-echo "➡️ Vérification que l’ESP est montée..."
-if ! mountpoint -q "$ESP"; then
-    echo "❌ $ESP n’est pas monté, arrêt."
-    exit 1
-fi
-
-echo "➡️ Installation de systemd-boot..."
-sudo dnf -y install systemd-boot
-sudo bootctl install --esp-path=$ESP
-
-echo "➡️ Détection de l’entrée systemd-boot dans l’UEFI..."
-BOOT_ID=$(sudo efibootmgr -v | grep -i "systemd-bootx64.efi" | awk '{print $1}' | sed 's/Boot//;s/\*//')
-
-if [ -n "$BOOT_ID" ]; then
-    echo "➡️ Mise en premier de l’entrée systemd-boot (Boot$BOOT_ID)..."
-    sudo efibootmgr -o $BOOT_ID
-else
-    echo "❌ Impossible de trouver systemd-boot dans efibootmgr."
-    echo "   Vérifie avec : sudo efibootmgr -v"
-    exit 1
-fi
-
-echo "➡️ Suppression de GRUB et shim..."
-sudo rpm -e --nodeps grub2 grub2-efi grub2-efi-x64 grub2-tools grub2-tools-minimal shim || true
-
-echo "➡️ Nettoyage de l’ESP (suppression des fichiers GRUB)..."
-sudo rm -rf $ESP/EFI/fedora
-
-echo "➡️ Installation du plugin versionlock..."
-sudo dnf -y install 'dnf-command(versionlock)'
-
-echo "➡️ Blocage de grub et shim pour éviter toute réinstallation..."
-sudo dnf versionlock add grub2* shim*
-
-echo "✅ Migration terminée."
-echo "Vérifie avec : bootctl status"
-```
 
 * **5** - Au démarrage, renommer le label BTRFS :
 ```
