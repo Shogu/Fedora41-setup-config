@@ -163,10 +163,10 @@ sudo systemctl mask httpd.service
 sudo systemctl mask mdmonitor.service
 sudo systemctl mask raid-check.timer
 sudo systemctl mask sssd-kcm.service
+sudo systemctl mask sssd-kcm.socket
 sudo systemctl mask pcscd
 sudo systemctl mask pcscd.socket
 sudo systemctl mask fwupd
-sudo systemctl mask sssd-kcm.socket
 sudo systemctl mask sssd.service
 sudo systemctl mask iio-sensor-proxy #accéléromètre qui ne répond pas sur Fedora41 (mais marchait sur F39 en étant trop sensible...) + détecteur de luminosité auto pour le réglage de Gnome-settings qui est désactivé. Nota : l'extension gnome-shell `Screen Rotate` remplace avantageusement le capteur pour passer Fedora en mode tablette)
 ```
