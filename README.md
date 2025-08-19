@@ -39,7 +39,9 @@ G - [Maintenance et mises à jour](https://github.com/Shogu/Fedora41-setup-confi
 
 * **3** - Graver l'iso `Fedora-Everything-netinst`
 
-* **4** - Utiliser `systemd-boot` plutot que Grub : p#!/bin/bash
+* **4** - Utiliser `systemd-boot` plutot que Grub :
+```
+p#!/bin/bash
 set -euo pipefail
 
 ESP="/boot/efi"
@@ -80,6 +82,7 @@ sudo dnf versionlock add grub2* shim*
 
 echo "✅ Migration terminée."
 echo "Vérifie avec : bootctl status"
+```
 
 * **5** - Au démarrage, renommer le label BTRFS :
 ```
