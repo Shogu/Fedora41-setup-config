@@ -436,9 +436,9 @@ Contrôler avec `cat /etc/fstab` après un reboot, et `df -h /tmp`
 
 * **21** - Régler le `pare-feu` :
   
-Connaitre la zone par défaut du système (en général FedoraWorkstation) avec :
+Mettre la zone par défaut du système sur FedoraWorkstation avec :
 ```
-sudo firewall-cmd --get-default-zone
+sudo firewall-cmd --set-default-zone
 ```
 Puis bloquer toutes les connexions entrantes par défaut
 ```
