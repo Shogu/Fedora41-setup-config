@@ -688,7 +688,8 @@ q - désactiver l'extension native `Background logo`
 
 * **41** - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
 
-* **42** - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, et la commande ```flatpak run net.nokyan.Resources``` pour la combinaison `ctrl-alt-supp`.
+
+* **42** - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, la commande ```flatpak run net.nokyan.Resources``` ou gnome-usage pour la combinaison `ctrl-alt-supp`, et régler le root avec mdp dans Nautilus : saisir dans la barre d'adresse `admin://`, puis `ctrl-d` pour en faire un bookmark
 
 * **43** - Régler `Gnome-text-editor`, mais surtout `Ptyxis` en installant `fish` et 'tldr' ("too long/don't read", un manpage en français et simplifié :
 ```
