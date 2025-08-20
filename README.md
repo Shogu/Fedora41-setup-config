@@ -714,7 +714,7 @@ set -g fish_greeting ""
 function fish_prompt
     # Couleur verte pour "ogu"
     set_color green --bold
-    echo -n "ogu --> "
+    echo -n "ogu : "
 
     # Chemin complet avec ~ pour le home
     set -l full_path (pwd)
@@ -731,7 +731,7 @@ function fish_prompt
     end
 
     # Afficher le dernier dossier en blanc gras pour plus de visibilité
-    set_color white --bold
+    set_color blue --bold
     echo -n $last_dir
 
     # Retour à la couleur normale et séparateur
