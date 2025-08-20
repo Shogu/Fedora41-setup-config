@@ -703,9 +703,7 @@ set -g fish_greeting
 function fish_prompt
     # Couleur verte intense pour "ogu"
     set_color green --bold
-    echo -n "ogu"
-    set_color normal
-    echo -n "@fedora-ogu " (prompt_pwd) " > "
+    echo -n "ogu>"
 end
 ```
 
@@ -806,6 +804,8 @@ q - `media.autoplay.default` sur 2 (les vidéos ne se lancent que si on clique d
 
 r - `telemetry` : passer en false
 ```
+datareporting.policy.dataSubmissionEnabled
+
 browser.newtabpage.activity-stream.telemetry
 browser.newtabpage.activity-stream.feeds.telemetry
 toolkit.telemetry.bhrPing.enabled
