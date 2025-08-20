@@ -699,13 +699,35 @@ chsh -s /usr/bin/fish
 ```
 Enfin éditer son fichier de configuration avec `gnome-text-editor ~/.config/fish/config.fish` et saisir :
 ```
-# supprimer le message d'accueil.
-set -g fish_greeting
-# supprimer les codes d'erreur rouge mais maintenir les couleurs d'origine
+# Désactive le message d'accueil de Fish
+set -g fish_greeting ""
+
 function fish_prompt
-    # Couleur verte intense pour "ogu"
+    # Couleur verte pour "ogu"
     set_color green --bold
-    echo -n "ogu>"
+    echo -n "ogu --> "
+
+    # Chemin complet avec ~ pour le home
+    set -l full_path (pwd)
+    set -l display_path (string replace --regex "^$HOME" "~" $full_path)
+
+    # Séparer le dernier dossier
+    set -l parent_dir (dirname $display_path)
+    set -l last_dir (basename $display_path)
+
+    # Afficher le parent en cyan normal
+    set_color magenta
+    if test $parent_dir != "."
+        echo -n "$parent_dir/"
+    end
+
+    # Afficher le dernier dossier en blanc gras pour plus de visibilité
+    set_color white --bold
+    echo -n $last_dir
+
+    # Retour à la couleur normale et séparateur
+    set_color normal
+    echo -n " > "
 end
 ```
 
