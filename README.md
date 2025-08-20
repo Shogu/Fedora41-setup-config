@@ -578,6 +578,7 @@ Nota : penser à décocher "Exécuter en arrière plan" dans les réglages de Gn
 ```
 sudo dnf install dconf-editor -y
 sudo dnf install evince-thumbnailer -y
+sudo dnf install doublecmd-gtk -y
 sudo dnf install gnome-tweaks -y
 sudo dnf install powertop -y
 sudo dnf install zstd -y
