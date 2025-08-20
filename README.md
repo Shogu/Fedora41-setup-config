@@ -581,6 +581,8 @@ sudo dnf install evince-thumbnailer -y
 sudo dnf install gnome-tweaks -y
 sudo dnf install powertop -y
 sudo dnf install zstd -y
+sudo dnf install fuse fuse-libs
+sudo dnf install binutils
 sudo dnf install ffmpegthumbnailer.x86_64 -y
 sudo dnf install profile-cleaner -y
 sudo dnf install btrfs-assistant -y
