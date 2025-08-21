@@ -146,6 +146,7 @@ systemctl list-unit-files --type=service --state=enabled
 **USER**
 ```
 systemctl --user mask evolution-addressbook-factory.service #contacts d'Evolution
+systemctl --user mask org.gnome.SettingsDaemon.Usb Protection.service #protection contre les clefs usb quand l'écran est verrouillé
 systemctl --user mask org.gnome.SettingsDaemon.Wacom.service #Wacom
 systemctl --user mask org.gnome.SettingsDaemon.Keyboard.service #paramètres du clavier
 systemctl --user mask org.freedesktop.IBus.session.GNOME.service #saisie multilingue
