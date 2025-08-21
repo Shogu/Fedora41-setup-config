@@ -217,12 +217,17 @@ Storage=none
 ProcessSizeMax=0
 ```
 
-* **12** - Supprimer le `watchdog`
+* **12** - Supprimer le `watchdog` et appliquer une sécurité aux pointeurs du kernel :
 ```
 sudo gnome-text-editor /etc/sysctl.d/99-custom.conf
 ```
 
-et saisir : `kernel.nmi_watchdog=0`, puis relancer avec : ```sudo sysctl --system```
+et saisir : 
+```
+kernel.nmi_watchdog=0
+kernel.kptr_restrict = 1
+```
+puis relancer avec : ```sudo sysctl --system```
 
 Reboot & contrôle avec :
 ```
