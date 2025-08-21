@@ -719,18 +719,21 @@ sudo gnome-text-editor /etc/systemd/system/powertop-tweaks.service
 ```
 ```
 [Unit]
-Description=Powertop tweaks script
-DefaultDependencies=no
-After=local-fs.target systemd-modules-load.service
-Before=sysinit.target
+Description=Apply Powertop "Bad" settings
+After=multi-user.target sound.target
+Wants=multi-user.target
 
 [Service]
 Type=oneshot
 ExecStart=/usr/local/bin/powertop-tweaks.sh
-RemainAfterExit=yes
+User=root
+RemainAfterExit=no
+ExecStartPre=/bin/sleep 5
 
 [Install]
-WantedBy=sysinit.target
+WantedBy=multi-user.target
+
+
 ```
 Puis :
 ```
