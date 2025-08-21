@@ -669,27 +669,46 @@ sudo gnome-text-editor /usr/local/bin/powertop-tweaks.sh
 ```
 #!/bin/bash
 # Powertop auto-tune replacement script
-# Applique les réglages qui étaient "Bad" par défaut
+# Applique les réglages "Bad" par défaut en toute sécurité
 
+# ----------------------------
 # SATA link power management
-echo 'med_power_with_dipm' > /sys/class/scsi_host/host0/link_power_management_policy 2>/dev/null || true
-echo 'med_power_with_dipm' > /sys/class/scsi_host/host1/link_power_management_policy 2>/dev/null || true
-
-# Audio codec power management
-echo '1' > /sys/module/snd_hda_intel/parameters/power_save 2>/dev/null || true
-
-# Runtime PM PCI (Wi-Fi, SATA, NVMe…)
-for dev in \
-  "0000:02:00.0" \  # Intel Wireless 8265
-  "0000:00:1f.2" \  # Sunrise Point-LP SATA Controller
-  "0000:00:17.0" \  # SATA ports
-  "0000:00:1c.0" \  # PCI bridges
-  "0000:04:00.0"    # Samsung NVMe
-do
-    if [ -d "/sys/bus/pci/devices/$dev/power" ]; then
-        echo 'auto' > "/sys/bus/pci/devices/$dev/power/control" 2>/dev/null || true
+# ----------------------------
+HOSTS=("host0" "host1")
+for host in "${HOSTS[@]}"; do
+    FILE="/sys/class/scsi_host/$host/link_power_management_policy"
+    if [ -w "$FILE" ]; then
+        echo 'med_power_with_dipm' | sudo tee "$FILE" >/dev/null
     fi
 done
+
+# ----------------------------
+# Audio codec power management
+# ----------------------------
+HDA_FILE="/sys/module/snd_hda_intel/parameters/power_save"
+if [ -w "$HDA_FILE" ]; then
+    echo '1' | sudo tee "$HDA_FILE" >/dev/null
+fi
+
+# ----------------------------
+# Runtime PM PCI devices
+# ----------------------------
+PCI_DEVS=(
+    "0000:02:00.0"  # Intel Wireless 8265
+    "0000:00:1f.2"  # Sunrise Point-LP SATA Controller
+    "0000:00:17.0"  # SATA ports
+    "0000:00:1c.0"  # PCI bridges
+    "0000:04:00.0"  # Samsung NVMe
+)
+
+for dev in "${PCI_DEVS[@]}"; do
+    POWER_DIR="/sys/bus/pci/devices/$dev/power"
+    CTRL_FILE="$POWER_DIR/control"
+    if [ -d "$POWER_DIR" ] && [ -w "$CTRL_FILE" ]; then
+        echo 'auto' | sudo tee "$CTRL_FILE" >/dev/null
+    fi
+done
+
 ```
 Et rendre le script exécutable : `sudo chmod +x /usr/local/bin/powertop-tweaks.sh`
 
