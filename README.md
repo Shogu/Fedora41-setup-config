@@ -471,9 +471,21 @@ echo vm.dirty_background_bytes=67108864 | sudo tee -a /etc/sysctl.d/99-sysctl.co
 sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
 sudo sysctl --system
 ```
++
+
+`sudo nano /etc/tmpfiles.d/thp.conf`
+
+et saisir 
+
+```
+# Réduit l’overprovision de Transparent Huge Pages
+w! /sys/kernel/mm/transparent_hugepage/khugepaged/max_ptes_none - - - - 409
+```
+puis recharger `sudo systemd-tmpfiles --create /etc/tmpfiles.d/thp.conf`
 
 Reboot et vérifier avec :
 ```
+cat /sys/kernel/mm/transparent_hugepage/khugepaged/max_ptes_none
 cat /proc/sys/vm/swappiness
 cat /proc/sys/vm/vfs_cache_pressure
 cat /proc/sys/vm/dirty_writeback_centisecs
