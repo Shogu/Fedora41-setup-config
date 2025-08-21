@@ -664,8 +664,11 @@ A tester : service systemd powertop-autotune :
 
 ```
 [Unit]
-Description=Apply powertop autotune settings at boot
-After=systemd-modules-load.service
+[Unit]
+Description=Apply powertop autotune settings early
+DefaultDependencies=no
+After=local-fs.target systemd-modules-load.service
+Before=sysinit.target
 
 [Service]
 Type=oneshot
@@ -673,7 +676,8 @@ ExecStart=/usr/sbin/powertop --auto-tune
 RemainAfterExit=yes
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=sysinit.target
+
 ```
 
 puis sudo systemctl daemon-reload
