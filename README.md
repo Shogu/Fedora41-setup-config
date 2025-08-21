@@ -919,7 +919,94 @@ cd firefox
 ls
 du -sh /run/user/1000/psd/nom du profil/
 ```
+* **59** Editer le menu contextuel de Firefox : créer le fichier userChrome.css à coller dans le dossier .mozilla/firefox/xxx.default-release/chrome  Nota : le chemin est visible dans about:support
 
+```
+/* ================================
+   Menu clic droit Firefox allégé
+   userChrome.css
+   ================================ */
+
+/* Enregistrer la page sous… */
+#context-savepage { display: none !important; }
+
+/* Envoyer la page par e-mail */
+#context-sendpage { display: none !important; }
+
+/* Précédent / Suivant */
+#context-back,
+#context-forward { display: none !important; }
+
+/* Recharger */
+#context-reload { display: none !important; }
+
+/* Marquer cette page */
+#context-bookmarkpage { display: none !important; }
+
+/* Marquer le lien */
+#context-bookmarklink { display: none !important; }
+
+/* Séparateurs inutiles */
+menuseparator { display: none !important; }
+
+/* Partager l’image, envoyer l’image par mail */
+#context-sendimage,
+#context-setDesktopBackground { display: none !important; }
+
+/* Enregistrer l’image sous… */
+#context-saveimage { display: none !important; }
+
+/* Inspecter l’élément */
+#context-inspect { display: none !important; }
+
+/* Ouvrir le lien dans une nouvelle fenêtre */
+#context-openlink { display: none !important; }
+
+/* Ouvrir le lien dans une fenêtre de navigation privée */
+#context-openlinkprivate { display: none !important; }
+
+
+/* ================================
+   Menu clic droit sur texte sélectionné
+   userChrome.css
+   ================================ */
+
+/* Copier / Couper / Coller : gardé */
+
+/* Rechercher "..." avec le moteur par défaut */
+#context-searchselect { display: none !important; }
+
+/* Traduire le texte */
+#context-translate { display: none !important; }
+
+/* Partager le texte sélectionné */
+#context-sendtext { display: none !important; }
+
+/* Ajouter aux marque-pages */
+#context-bookmarklink { display: none !important; }
+
+/* Ouvrir dans une nouvelle fenêtre / fenêtre privée */
+#context-openlink { display: none !important; }
+#context-openlinkprivate { display: none !important; }
+
+/* Inspecter l’élément */
+#context-inspect { display: none !important; }
+
+/* Séparateurs inutiles */
+menuseparator { display: none !important; }
+
+/* Rechercher dans le dictionnaire */
+#context-dictionary { display: none !important; }
+
+/* Vérification orthographique */
+#spell-check { display: none !important; }
+
+/* Imprimer */
+#context-print { display: none !important; }
+
+/* Code source */
+#context-viewsource { display: none !important; }
+```
 
 
 ## 🪛 **G - Maintenance de la distribution**
