@@ -367,7 +367,7 @@ sudo gnome-text-editor /etc/kernel/cmdline
 
 Puis saisir :
 ```
-mitigations=off selinux=0 cgroup_disable=rdma nmi_watchdog=0 loglevel=0 noresume console=tty1 8250.nr_uarts=1
+mitigations=off i915.mitigations=off selinux=0 cgroup_disable=rdma nmi_watchdog=0 loglevel=0 noresume console=tty1 8250.nr_uarts=1
 ```
 Nota : si le boot est bavard, envisager l'argument `systemd.show_status=false`
 
