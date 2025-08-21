@@ -973,9 +973,6 @@ menuseparator { display: none !important; }
 
 /* Copier / Couper / Coller : gardé */
 
-/* Rechercher "..." avec le moteur par défaut */
-#context-searchselect { display: none !important; }
-
 /* Traduire le texte */
 #context-translate { display: none !important; }
 
