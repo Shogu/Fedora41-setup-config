@@ -660,27 +660,66 @@ dconf write /org/gnome/desktop/search-providers/disabled "['org.gnome.Software.d
 ## 🐾 **E - Réglages de l'UI Gnome Shell** 
 
 
-A tester : service systemd powertop-autotune :
+A tester : service systemd powertop-autotune : créer le scripy :
 
 ```
+sudo gnome-text-editor /usr/local/bin/powertop-tweaks.sh
+```
+
+```
+#!/bin/bash
+# Powertop auto-tune replacement script
+# Applique les réglages qui étaient "Bad" par défaut
+
+# SATA link power management
+echo 'med_power_with_dipm' > /sys/class/scsi_host/host0/link_power_management_policy 2>/dev/null || true
+echo 'med_power_with_dipm' > /sys/class/scsi_host/host1/link_power_management_policy 2>/dev/null || true
+
+# Audio codec power management
+echo '1' > /sys/module/snd_hda_intel/parameters/power_save 2>/dev/null || true
+
+# Runtime PM PCI (Wi-Fi, SATA, NVMe…)
+for dev in \
+  "0000:02:00.0" \  # Intel Wireless 8265
+  "0000:00:1f.2" \  # Sunrise Point-LP SATA Controller
+  "0000:00:17.0" \  # SATA ports
+  "0000:00:1c.0" \  # PCI bridges
+  "0000:04:00.0"    # Samsung NVMe
+do
+    if [ -d "/sys/bus/pci/devices/$dev/power" ]; then
+        echo 'auto' > "/sys/bus/pci/devices/$dev/power/control" 2>/dev/null || true
+    fi
+done
+```
+Et rendre le script exécutable : `sudo chmod +x /usr/local/bin/powertop-tweaks.sh`
+
+Puis créer le service systemd :
+
+```
+sudo gnome-text-editor /etc/systemd/system/powertop-tweaks.service
+```
+```
 [Unit]
-[Unit]
-Description=Apply powertop autotune settings early
+Description=Powertop tweaks script
 DefaultDependencies=no
 After=local-fs.target systemd-modules-load.service
 Before=sysinit.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/sbin/powertop --auto-tune
+ExecStart=/usr/local/bin/powertop-tweaks.sh
 RemainAfterExit=yes
 
 [Install]
 WantedBy=sysinit.target
-
+```
+Puis :
+```
+sudo systemctl daemon-reload
+sudo systemctl enable powertop-tweaks
 ```
 
-puis sudo systemctl daemon-reload
+
 
 * **34** - Régler le système avec `Paramètres` puis `Ajustements` (Changer les polices d'écriture pour `Noto Sans` en 11)
 
