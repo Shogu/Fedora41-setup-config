@@ -464,9 +464,10 @@ echo vm.swappiness=5 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 echo vm.vfs_cache_pressure=50 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 echo vm.watermark_boost_factor=0 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 echo vm.watermark_scale_factor=50 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
-echo vm.page-cluster=0| sudo tee -a /etc/sysctl.d/99-sysctl.conf
-echo vm.dirty_bytes = 268435456 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
-echo "vm.dirty_writeback_centisecs=1500" | sudo tee -a /etc/sysctl.d/99-sysctl.conf
+echo vm.page-cluster=0 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
+echo vm.dirty_bytes=268435456 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
+echo vm.dirty_writeback_centisecs=1500 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
+echo vm.dirty_background_bytes=67108864 | sudo tee -a /etc/sysctl.d/99-sysctl.conf
 sudo sysctl -p /etc/sysctl.d/99-sysctl.conf
 sudo sysctl --system
 ```
