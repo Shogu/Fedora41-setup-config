@@ -483,8 +483,21 @@ w! /sys/kernel/mm/transparent_hugepage/khugepaged/max_ptes_none - - - - 409
 ```
 puis recharger `sudo systemd-tmpfiles --create /etc/tmpfiles.d/thp.conf`
 
++
+
+Créer le fichier 'sudo nano /etc/tmpfiles.d/thp-tcmalloc.conf' puis saisir :
+
+```
+# Optimisation THP pour tcmalloc
+w! /sys/kernel/mm/transparent_hugepage/defrag - - - - defer+madvise
+```
+
+et appliquer avec `sudo systemd-tmpfiles --create /etc/tmpfiles.d/thp-tcmalloc.conf
+`
+
 Reboot et vérifier avec :
 ```
+cat /sys/kernel/mm/transparent_hugepage/defrag
 cat /sys/kernel/mm/transparent_hugepage/khugepaged/max_ptes_none
 cat /proc/sys/vm/swappiness
 cat /proc/sys/vm/vfs_cache_pressure
