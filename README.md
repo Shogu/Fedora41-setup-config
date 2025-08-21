@@ -659,6 +659,25 @@ dconf write /org/gnome/desktop/search-providers/disabled "['org.gnome.Software.d
 
 ## 🐾 **E - Réglages de l'UI Gnome Shell** 
 
+
+A tester : service systemd powertop-autotune :
+
+```
+[Unit]
+Description=Apply powertop autotune settings at boot
+After=systemd-modules-load.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/powertop --auto-tune
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+```
+
+puis sudo systemctl daemon-reload
+
 * **34** - Régler le système avec `Paramètres` puis `Ajustements` (Changer les polices d'écriture pour `Noto Sans` en 11)
 
 * **35** - Régler Nautilus & créer un marque-page pour `Dropbox` & pour l'accès `ftp` au disque SSD sur la TV Android :
