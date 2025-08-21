@@ -146,6 +146,7 @@ systemctl list-unit-files --type=service --state=enabled
 **USER**
 ```
 systemctl --user mask evolution-addressbook-factory.service #contacts d'Evolution
+systemctl --user mask org.gnome.SettingsDaemon.Sharing.service #active les options de partage Gnome
 systemctl --user mask org.gnome.SettingsDaemon.Usb Protection.service #protection contre les clefs usb quand l'écran est verrouillé
 systemctl --user mask org.gnome.SettingsDaemon.Wacom.service #Wacom
 systemctl --user mask org.gnome.SettingsDaemon.Keyboard.service #paramètres du clavier
@@ -154,6 +155,8 @@ systemctl --user mask org.gnome.SettingsDaemon.PrintNotifications.service #impri
 systemctl --user mask org.gnome.SettingsDaemon.A11ySettings.service #accessibilité
 systemctl --user mask at-spi-dbus-bus.service #accessibilité type lecteur d'écran
 systemctl --user mask org.gnome.SettingsDaemon.Smartcard.service #carte à puce
+systemctl --user mask org.gnome.SettingsDaemon.Datetime.service #horloge dans Gnome, mais il ya deja systemd-timesyncd
+systemctl --user mask org.gnome.SettingsDaemon.Color.service #pris een compte des fichiers icc de calibration écran
 ```
 Puis contrôler avec :
 ```
