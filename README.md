@@ -347,6 +347,28 @@ sudo lsinitrd -m
 
 ## 🚀 **C - Optimisation du système**
 
+
+* **15** - Lancer Powertop au boot :
+* 
+Autoriser powertop sans mot de passe en éditant sudoers :
+```
+sudo visudo
+```
+et saisir
+```
+ogu ALL=(ALL) NOPASSWD: /usr/sbin/powertop
+```
+Puis créer un autostart avec `nano ~/.config/autostart/powertop.desktop` puis saisir :
+```
+[Desktop Entry]
+Type=Application
+Exec=sh -c "sudo /usr/sbin/powertop --auto-tune >/dev/null 2>&1 &"
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=Powertop Auto-Tune
+```
+
 * **15** - Désactiver `SElinux` :
 ```
 sudo gnome-text-editor /etc/selinux/config
@@ -658,89 +680,6 @@ dconf write /org/gnome/desktop/search-providers/disabled "['org.gnome.Software.d
 ----------------------------------------------------------------------------------------------
 
 ## 🐾 **E - Réglages de l'UI Gnome Shell** 
-
-
-A tester : service systemd powertop-autotune : créer le scripy :
-
-```
-sudo gnome-text-editor /usr/local/bin/powertop-tweaks.sh
-```
-
-```
-#!/bin/bash
-# Powertop auto-tune replacement script
-# Applique les réglages "Bad" par défaut en toute sécurité
-
-# ----------------------------
-# SATA link power management
-# ----------------------------
-HOSTS=("host0" "host1")
-for host in "${HOSTS[@]}"; do
-    FILE="/sys/class/scsi_host/$host/link_power_management_policy"
-    if [ -w "$FILE" ]; then
-        echo 'med_power_with_dipm' | sudo tee "$FILE" >/dev/null
-    fi
-done
-
-# ----------------------------
-# Audio codec power management
-# ----------------------------
-HDA_FILE="/sys/module/snd_hda_intel/parameters/power_save"
-if [ -w "$HDA_FILE" ]; then
-    echo '1' | sudo tee "$HDA_FILE" >/dev/null
-fi
-
-# ----------------------------
-# Runtime PM PCI devices
-# ----------------------------
-PCI_DEVS=(
-    "0000:02:00.0"  # Intel Wireless 8265
-    "0000:00:1f.2"  # Sunrise Point-LP SATA Controller
-    "0000:00:17.0"  # SATA ports
-    "0000:00:1c.0"  # PCI bridges
-    "0000:04:00.0"  # Samsung NVMe
-)
-
-for dev in "${PCI_DEVS[@]}"; do
-    POWER_DIR="/sys/bus/pci/devices/$dev/power"
-    CTRL_FILE="$POWER_DIR/control"
-    if [ -d "$POWER_DIR" ] && [ -w "$CTRL_FILE" ]; then
-        echo 'auto' | sudo tee "$CTRL_FILE" >/dev/null
-    fi
-done
-
-```
-Et rendre le script exécutable : `sudo chmod +x /usr/local/bin/powertop-tweaks.sh`
-
-Puis créer le service systemd :
-
-```
-sudo gnome-text-editor /etc/systemd/system/powertop-tweaks.service
-```
-```
-[Unit]
-Description=Apply Powertop "Bad" settings
-After=multi-user.target sound.target
-Wants=multi-user.target
-
-[Service]
-Type=oneshot
-ExecStart=/usr/local/bin/powertop-tweaks.sh
-User=root
-RemainAfterExit=no
-ExecStartPre=/bin/sleep 5
-
-[Install]
-WantedBy=multi-user.target
-
-
-```
-Puis :
-```
-sudo systemctl daemon-reload
-sudo systemctl enable powertop-tweaks
-```
-
 
 
 * **34** - Régler le système avec `Paramètres` puis `Ajustements` (Changer les polices d'écriture pour `Noto Sans` en 11)
