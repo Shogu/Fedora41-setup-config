@@ -543,6 +543,8 @@ sudo gnome-text-editor /etc/systemd/logind.conf
 ```
 puis saisir : `NautoVTS=1`
 
+Ou bien argument kernel = `8250.nr_uarts=0` pour désactiver tous les tty 
+
 * **25** - Vérifier que le système utilise bien les DNS du `routeur Xiaomi` (192.168.31.1) :
 ```
 nmcli dev show |grep DNS
