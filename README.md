@@ -108,8 +108,9 @@ sudo dnf remove cups
 * **8** - Supprimer et masquer les services `SYSTEM` & `USER` inutiles :
 **SYSTEM**
 ```
-sudo systemctl mask serial-getty@ttyS2.service
 sudo systemctl mask systemd-vconsole-setup.service #attention, cela crée parfois un message d'erreur au boot!
+sudo systemctl mask serial-getty@ttyS2.service
+sudo systemctl mask colord.service #sauf si fichier icc de configuration de l'écran
 sudo systemctl mask NetworkManager-wait-online.service
 sudo systemctl mask auditd.service
 sudo systemctl mask ModemManager.service
