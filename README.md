@@ -301,7 +301,8 @@ omit_dracutmodules+=" multipath nss-softokn memstrack usrmount mdraid dmraid deb
 
 omit_modules+=" systemd-vconsole-setup "
 
-omit_drivers+=" nvidia amd nouveau "
+omit_drivers+=" amd nouveau nvidia nvidia_modeset nvidia_uvm nvidia_drm "
+
 
 # Système de fichiers utilisés
 filesystems+=" ext4 btrfs fat "
@@ -318,7 +319,7 @@ aggressive_strip="yes"
 
 # Compression de l'initramfs
 compress="zstd"
-compress_options="-4"
+compress_options="-3"
 
 # Mode silencieux
 quiet="yes"
