@@ -271,6 +271,12 @@ blacklist snd_hda_codec_generic
 #tty
 blacklist serial8250
 blacklist 8250_pci
+
+##TPM
+blacklist tpm
+blacklist tpm_tis
+blacklist tpm_crb
+blacklist tpm_tis_core
 ```
 Puis lancer `sudo dracut --force`
 Au reboot, vérifier avec la commande `lsmod | grep hid_sensor`
@@ -400,7 +406,7 @@ sudo gnome-text-editor /etc/kernel/cmdline
 
 Puis saisir :
 ```
-mitigations=off i915.mitigations=off selinux=0 cgroup_disable=rdma nmi_watchdog=0 loglevel=0 noresume console=tty0 8250.nr_uarts=0 ipv6.disable=1
+mitigations=off i915.mitigations=off selinux=0 cgroup_disable=rdma nmi_watchdog=0 loglevel=0 noresume console=tty0 8250.nr_uarts=0 ipv6.disable=1 tpm.disable=1
 ```
 Nota : si le boot est bavard, envisager l'argument `systemd.show_status=false`
 
