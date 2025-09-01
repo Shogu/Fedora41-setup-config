@@ -757,9 +757,6 @@ q - [Auto Power Profile](https://extensions.gnome.org/extension/6583/auto-power-
   
 r - [Frequency Boost Switch](https://extensions.gnome.org/extension/4792/frequency-boost-switch/)
     
-Extension à désactiver :
-
-q - désactiver l'extension native `Background logo`
 
 * **41** - Installer [Nautilus-admin](https://download.copr.fedorainfracloud.org/results/tomaszgasior/mushrooms/fedora-41-x86_64/07341996-nautilus-admin/nautilus-admin-1.1.9-5.fc41.noarch.rpm) puis lancer la commande ```nautilus -q``` pour relancer Fichiers
 
