@@ -763,46 +763,13 @@ r - [Frequency Boost Switch](https://extensions.gnome.org/extension/4792/frequen
 
 * **42** - Raccourcis à éditer dans Gnome : mettre `ptyxis` à la place de la touche Exposant, la commande ```flatpak run net.nokyan.Resources``` ou gnome-usage pour la combinaison `ctrl-alt-supp`, et régler le root avec mdp dans Nautilus : saisir dans la barre d'adresse `admin://`, puis `ctrl-d` pour en faire un bookmark. Penser à activer la Recherche dans les signets dans l'onglet `Recherche` de `gnome-settings`
 
-* **43** - Régler `Gnome-text-editor`, mais surtout `Ptyxis` en installant `fish` et 'tldr' ("too long/don't read", un manpage en français et simplifié :
+* **43** - Régler `Gnome-text-editor`et `Ptyxis`, configurer `fish` avec `sudo gnome-text-editor /usr/share/cachyos-fish-config/cachyos-config.fish` et saisir :
+  
 ```
-sudo dnf install fish tldr
-```
-Puis mettre fish comme shell par défaut :
-```
-chsh -s /usr/bin/fish
-```
-Enfin éditer son fichier de configuration avec `gnome-text-editor ~/.config/fish/config.fish` et saisir :
-```
-# Désactive le message d'accueil de Fish
-set -g fish_greeting ""
-
-function fish_prompt
-    # Couleur verte pour "ogu"
-    set_color green --bold
-    echo -n "ogu : "
-
-    # Chemin complet avec ~ pour le home
-    set -l full_path (pwd)
-    set -l display_path (string replace --regex "^$HOME" "~" $full_path)
-
-    # Séparer le dernier dossier
-    set -l parent_dir (dirname $display_path)
-    set -l last_dir (basename $display_path)
-
-    # Afficher le parent en cyan normal
-    set_color magenta
-    if test $parent_dir != "."
-        echo -n "$parent_dir/"
-    end
-
-    # Afficher le dernier dossier en blanc gras pour plus de visibilité
-    set_color blue --bold
-    echo -n $last_dir
-
-    # Retour à la couleur normale et séparateur
-    set_color normal
-    echo -n " > "
-end
+# Désactive fastfetch en tant que message de bienvenue
+# function fish_greeting
+#     fastfetch
+# end
 ```
 
 Pour le shell bash : améliorer l'autocomplétion du terminal en créant le fichier`.inputrc` et le placer dans `~/` :
